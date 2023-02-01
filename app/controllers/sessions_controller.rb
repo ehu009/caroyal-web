@@ -15,5 +15,18 @@ class SessionsController < ApplicationController
         end
     end
 
+    def destroy
+
+        if session[:user_id] != nil then
+            session[:user_id] = nil
+            
+        else
+            
+        end
+
+        redirect_to login_path
+
+    end
+
 
 end
