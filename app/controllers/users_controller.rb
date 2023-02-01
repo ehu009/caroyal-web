@@ -11,7 +11,7 @@ class UsersController < ApplicationController
             session[:user_id] = @user.id
             redirect_to root_path
         else
-            render :new
+            
         end
     end
 
@@ -19,6 +19,16 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
     end
 
+    def overview
+        id = session[:user_id]
+        if id == nil then
+            redirect_to login_path
+        else
+          @user = User.find_by_id id            
+        end
+
+
+    end
 
     private
 
