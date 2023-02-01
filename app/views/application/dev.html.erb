@@ -2,10 +2,14 @@ this is the dev page
 <br>
 <br>
 <br>
+login: <%= link_to "fdhsajk", '/login' %>
 <br>
+current user is <b><% if current_user != nil then %> : <%= current_user.email %> : <%= current_user.id %> : <%= link_to "user page", account_overview_path %><% else %>nil</b><% end %>
 <br>
+logout: <%= link_to "hehuhehahs", "/logout" %>
 <br>
 
+<% if @users != nil then %>
 <% @users.each do |u| %>
     <p>
     <b><%= u.email %></b>
@@ -13,6 +17,7 @@ this is the dev page
     <%= u.created_at %>
     </p>
 
+<% end %>
 <% end %>
 
 
