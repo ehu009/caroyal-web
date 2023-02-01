@@ -6,17 +6,14 @@ class SessionsController < ApplicationController
         if !!@user && @user.authenticate(params[:password])
 
             session[:user_id] = @user.id
-            redirect_to user_path
+            redirect_to account_overview_path
 
         else
-
             message = "Error logging in."
             redirect_to login_path, notice: message
             
         end
     end
-
-
 
 
 end
