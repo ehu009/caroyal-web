@@ -1,30 +1,29 @@
 class SessionsController < ApplicationController
 
     def create
+        message = "Error logging in."
         @user = User.find_by(email: params[:email])
 
         if !!@user && @user.authenticate(params[:password])
 
             session[:user_id] = @user.id
-            redirect_to account_overview_path
+            message = "Login successful."
+            redirect_to account_overview_path, notice: message
 
         else
-            message = "Error logging in."
             redirect_to login_path, notice: message
             
         end
     end
 
     def destroy
-
+        message = "You were not logged in."
         if session[:user_id] != nil then
             session[:user_id] = nil
-            
-        else
-            
+            message = "Sucessfully logged out."
         end
 
-        redirect_to login_path
+        redirect_to login_path, notice: message
 
     end
 

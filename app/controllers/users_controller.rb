@@ -5,13 +5,13 @@ class UsersController < ApplicationController
     end
 
     def create
-
         @user = User.new(user_params)
         if @user.save
             session[:user_id] = @user.id
-            redirect_to root_path
+            redirect_to root_path, notice: "User account was created successfully."
         else
-            
+            message = @user.errors.messages
+            redirect_to new_user_path, notice: message
         end
     end
 
@@ -20,13 +20,13 @@ class UsersController < ApplicationController
     end
 
     def overview
+
         id = session[:user_id]
         if id == nil then
-            redirect_to login_path
+            redirect_to login_path, notice: "You are not logged in."
         else
           @user = User.find_by_id id            
         end
-
 
     end
 
