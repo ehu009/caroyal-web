@@ -7,7 +7,10 @@ Rails.application.routes.draw do
   root 'application#home'
 
   get '/dev', to: 'application#dev'
+
   
+  resources :prices, except: [:show]
+
 
   resources :users, only: [:index, :new, :create, :edit, :update, :show, :destroy]
 
