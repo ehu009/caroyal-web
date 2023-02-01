@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get '/dev', to: 'application#dev'
   
 
-  resources :users, only: [:new, :create, :edit, :update, :show, :destroy]
+  resources :users, only: [:index, :new, :create, :edit, :update, :show, :destroy]
 
   get 'account', to: 'users#overview', as: :account_overview
 
