@@ -4,4 +4,9 @@ class ApplicationController < ActionController::Base
 
     end
 
+    def dev
+        @users = User.take
+    end
+
+
 end
