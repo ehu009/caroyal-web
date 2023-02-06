@@ -1,0 +1,18 @@
+<p>
+<%= link_to "create a new price", new_price_path %>
+</p>
+
+<h3>all the prices</h3>
+
+<table>
+<% @prices.each do |p| %>
+<tr>
+<td><%= p.id %></td>
+<td><%= p.value %></td>
+<td><%= p.location %></td>
+<td><%= p.time_recorded %></td>
+<td><%= link_to "edit price", edit_price_path(p) %></td>
+<td><%= link_to "destroy price", price_path(p), method: :delete %></td>
+</tr>
+<% end %>
+</table>
