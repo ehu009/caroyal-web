@@ -70,3 +70,8 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+
+# Use charkick for charting e.g. prices
+gem "groupdate" #group by date
+gem "chartkick"
