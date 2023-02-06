@@ -35,6 +35,12 @@ class PricesController < ApplicationController
         redirect_to redir, notice: message
     end
 
+    def price_data
+                
+        render json: Price.all.group(:location).group_by_day(:time_recorded).sum(:value).chart_json
+
+    end
+
     def destroy
         message = "That price listing does not exist."
         @price = Price.find_by_id price_params[:id]

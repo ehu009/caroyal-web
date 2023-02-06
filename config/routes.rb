@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   
   resources :prices, except: [:show]
 
+  get 'price_data', to: "prices#price_data", as: :price_data
+
 
   resources :users, only: [:index, :new, :create, :edit, :update, :show, :destroy]
 
