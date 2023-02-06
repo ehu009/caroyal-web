@@ -9,13 +9,13 @@ class PricesController < ApplicationController
     end
 
     def create
-        
+        message = ""
         @price = Price.new(price_params)
         if @price.save
             message = "Price added."
         else
         end
-        redirect_to prices_path
+        redirect_to prices_path, notice: message
     end
 
     def edit
@@ -23,13 +23,16 @@ class PricesController < ApplicationController
     end
 
     def update
+        message = "Price updated."
+        redir = edit_price_path(price_params[:id])
+        
         @price = Price.find_by_id price_params[:id]
         if @price.update(price_params)
-            redirect_to prices_path, notice: "Price added."
+            redir = prices_path
         else
             message = @price.errors.messages
-            redirect_to edit_price_path, notice: message
         end
+        redirect_to redir, notice: message
     end
 
     def destroy
