@@ -1,0 +1,16 @@
+<h2>New price listing</h2>
+
+<p>
+<%= form_for @price do |f| %>
+    <%= f.label :location %>
+    <%= f.text_field :location %>
+    <br>
+    <%= f.label :value %>
+    <%= f.number_field :value %>
+    <br>
+    <%= f.label :time_recorded %>
+    <%= f.date_field :time_recorded %>
+    <br>
+    <%= f.submit  "Add price listing" %>
+<% end %>
+</p>

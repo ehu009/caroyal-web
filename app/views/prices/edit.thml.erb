@@ -1,0 +1,27 @@
+<h2>Editing price listing</h2>
+
+<p>
+original:
+<br>
+<%= @price.location %>
+<br>
+<%= @price.value %>
+<br>
+<%= @price.time_recorded %>
+</p>
+
+<p>
+<%= form_for @price do |f| %>
+    <%= f.label :location %>
+    <%= f.text_field :location %>
+    <br>
+    <%= f.label :value %>
+    <%= f.integer_field :value %>
+    <br>
+    <%= f.label :time_recorded %>
+    <%= f.date_field :time_recorded %>
+
+    <%= f.submit  "Add price listing" %>
+
+<% end %>
+</p>
