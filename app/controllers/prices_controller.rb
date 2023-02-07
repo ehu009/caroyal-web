@@ -1,4 +1,5 @@
 class PricesController < ApplicationController
+    before_action :confirm_admin, except: :price_data
 
     def index
         @prices = Price.take(10)
@@ -14,6 +15,7 @@ class PricesController < ApplicationController
         if @price.save
             message = "Price added."
         else
+            message = "Error creating new price."
         end
         redirect_to prices_path, notice: message
     end
@@ -54,6 +56,17 @@ class PricesController < ApplicationController
     
     def price_params
         params.require(:price).permit(:location, :value, :time_recorded)
+    end
+
+    def confirm_admin
+        id = session[:user_id]
+        
+        if id != nil then
+            user = User.find_by_id id
+            if user.administrator == false then
+                redirect_to root_path, notice: "Sorry - that page is for administrators."
+            end
+        end
     end
 
 end
