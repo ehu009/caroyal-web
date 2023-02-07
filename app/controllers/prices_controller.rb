@@ -1,5 +1,5 @@
 class PricesController < ApplicationController
-    before_action :confirm_admin, except: :price_data
+    before_action :confirm_admin, except: [:price_data]
 
     def index
         @prices = Price.take(10)
@@ -36,10 +36,20 @@ class PricesController < ApplicationController
         end
         redirect_to redir, notice: message
     end
-
+    
+    def date_and_price_list(location)
+        Price.where(:location => location).map do |x|
+            [x[:time_recorded], x[:value]]
+        end
+    end
+    
     def price_data
-                
-        render json: Price.all.group(:location).group_by_day(:time_recorded).sum(:value).chart_json
+        
+        l = Price.all.select(:location).distinct
+        m = l.map do |x|
+            { :name => x[:location], :data => date_and_price_list(x[:location]) }
+        end
+        render json: m
 
     end
 
