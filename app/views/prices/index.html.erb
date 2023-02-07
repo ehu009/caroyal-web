@@ -7,12 +7,12 @@
 <table>
 <% @prices.each do |p| %>
 <tr>
-<td><%= p.id %></td>
 <td><%= p.value %></td>
 <td><%= p.location %></td>
 <td><%= p.time_recorded %></td>
 <td><%= link_to "edit price", edit_price_path(p) %></td>
-<td><%= link_to "destroy price", price_path(p), method: :delete %></td>
+<td><%= button_to "destroy price", price_path(p), method: :delete, form: { data: { turbo_confirm: "Are you sure?" } } %></td>
+
 </tr>
 <% end %>
 </table>
