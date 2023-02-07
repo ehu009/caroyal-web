@@ -41,6 +41,71 @@
         width: 25%;
       }
 
+      .veil {
+        background-color: black;
+        z-index: 3;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+        position: fixed;
+        visibility: hidden;
+        opacity: 0;
+      }
+
+      .veil-fadein {
+        animation: fadeInFromNone 1s forwards;
+      }
+      .veil-fadeout {
+        animation: fadeOutFrom 0.8s forwards;
+      }
+      @keyframes fadeInFromNone {
+          0% {
+              display: none;
+              visibility: hidden;
+              opacity: 0;
+          }
+
+          1% {
+              display: block;
+              visibility: visible;
+              opacity: 0;
+          }
+
+          100% {
+              display: block;
+              visibility: visible;
+              opacity: 0.6;
+          }
+      }
+
+      @keyframes fadeOutFrom {
+          0% {
+              display: block;
+              visibility: visible;
+              opacity: 0.6;
+          }
+
+          99% {
+              display: block;
+              visibility: visible;
+              opacity: 0;
+          }
+
+          100% {
+              display: none;
+              visibility: hidden;
+              opacity: 0;
+          }
+      }
+
+      .toast-container {
+        position: fixed;
+        z-index: 4;
+        vertical-align: center;
+        width:100%;
+        top: 50%;
+      }
+
       .white-text {
         color: white;
       }
@@ -63,9 +128,16 @@
         color: #90855B;
       }
     </style>
+    <script>
+      function unveil(id) {
+        var e = document.getElementById(id);
+        e.classList.add('veil-fadeout');
+      }
+    </script>
   </head>
 
   <body>
+    <div class="veil" id="veil"></div>
     <div class="container-fluid blue-bg white-text">
       
       <div class="col-1 nav-container">
@@ -86,6 +158,29 @@
         <div class="col-md-3 col-sm-2"></div>
       </div>
     </div>
+
+    <% if notice != nil then %>
+    <div class="container-fluid row toast-container">
+      <div class="col-sm-3 col-md-4"></div>
+
+      <div class="col-sm-6 col-md-4">
+        <div class="toast show" width="100%">
+          <div class="toast-header">
+            <b class="dark-blue-text">Notice</b>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" onclick="unveil('veil');"></button>
+          </div>
+          <div class="toast-body">
+            <%= notice %>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+    <script >
+      var p = document.getElementById('veil');
+      p.classList.add("veil-fadein");
+    </script>
+    <% end %>
 
 
     <div class="modal fade" id="navModal">
@@ -125,6 +220,5 @@
         </div>
       </div>
     </div>
-    
   </body>
 </html>
