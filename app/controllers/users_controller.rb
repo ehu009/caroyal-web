@@ -109,15 +109,19 @@ class UsersController < ApplicationController
         current_user = nil
 
         if c_id != nil then
-            current_user = User.find_by_id c_id
-            message = "Only administrators may edit an account they do not own."
+            message = "Please confirm account deletion before committing."
             redir = edit_user_path(c_id)
-            
-            if c_id.to_s == params[:id] then
-                allow = true
-            else
-                if current_user.administrator then
-                    allow = true                    
+
+            if params[:confirm_deletion] == "on" then
+                current_user = User.find_by_id c_id
+                message = "Only administrators may edit an account they do not own."
+                
+                if c_id.to_s == params[:id] then
+                    allow = true
+                else
+                    if current_user.administrator then
+                        allow = true                    
+                    end
                 end
             end
                 
@@ -139,11 +143,11 @@ class UsersController < ApplicationController
     private
 
     def regular_params
-        params.require(:user).permit(:email, :password, :first_name, :last_name, :company_name, :producer, :distributor)
+        params.require(:user).permit(:confirm_deletion, :email, :password, :first_name, :last_name, :company_name, :producer, :distributor)
     end
 
     def admin_params
-        params.require(:user).permit(:administrator, :email, :password, :first_name, :last_name, :company_name, :producer, :distributor)
+        params.require(:user).permit(:confirm_deletion, :administrator, :email, :password, :first_name, :last_name, :company_name, :producer, :distributor)
     end
 
     def user_params
