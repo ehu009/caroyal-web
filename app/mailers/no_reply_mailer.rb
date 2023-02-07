@@ -1,0 +1,2 @@
+class NoReplyMailer < ApplicationMailer
+end
