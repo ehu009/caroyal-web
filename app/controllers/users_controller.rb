@@ -5,7 +5,8 @@ class UsersController < ApplicationController
     end
 
     def create
-        @user = User.new(user_params)
+
+        @user = User.new(regular_params)
         if @user.save
             session[:user_id] = @user.id
             redirect_to root_path, notice: "User account was created successfully."
@@ -17,6 +18,75 @@ class UsersController < ApplicationController
 
     def show
         @user = User.find(params[:id])
+    end
+
+    def edit
+        allow = false
+        message = "You cannot edit account info without first logging in."
+        redir = login_path
+        
+        c_id = session[:user_id]
+
+        if c_id != nil then
+            current_user = User.find_by_id c_id
+            message = "Only administrators may edit an account they do not own."
+            redir = account_overview_path
+
+            if c_id.to_s == params[:id] then
+                allow = true
+            else
+                if current_user.administrator then
+                    allow = true                    
+                end
+            end
+                
+        end
+        if allow == false then
+            redirect_to redir, notice: message
+        else
+            @user = User.find(params[:id])
+        end
+    end
+
+    def update
+        
+        allow = false
+        message = "You cannot edit account info without first logging in."
+        redir = login_path
+        
+        c_id = session[:user_id]
+        current_user = nil
+
+        if c_id != nil then
+            current_user = User.find_by_id c_id
+            message = "Only administrators may edit an account they do not own."
+            redir = edit_user_path(c_id)
+            
+            if c_id.to_s == params[:id] then
+                allow = true
+            else
+                if current_user.administrator then
+                    allow = true                    
+                end
+            end
+                
+        end
+        if allow == false then
+            redirect_to redir, notice: message
+        else
+            @user = User.find(params[:id])
+        end
+
+        redir = edit_user_path(@user.id)
+        if allow then
+            if @user.update user_params
+                message = "Account information successfully updated."
+                redir = account_overview_path
+            else
+                message = @user.errors.messages
+            end
+        end
+        redirect_to redir, notice: message
     end
 
     def overview
@@ -32,7 +102,23 @@ class UsersController < ApplicationController
 
     private
 
+    def regular_params
+        params.require(:user).permit(:email, :password, :first_name, :last_name, :company_name, :producer, :distributor)
+    end
+
+    def admin_params
+        params.require(:user).permit(:administrator, :email, :password, :first_name, :last_name, :company_name, :producer, :distributor)
+    end
+
     def user_params
-        params.require(:user).permit(:email, :password)
+        c_id = session[:user_id]
+        if c_id != nil then
+            current_user = User.find_by_id c_id
+            unless current_user.administrator then
+                regular_params
+            else
+                admin_params
+            end
+        end
     end
 end
