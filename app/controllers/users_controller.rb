@@ -9,7 +9,7 @@ class UsersController < ApplicationController
         @user = User.new(regular_params)
         if @user.save
             session[:user_id] = @user.id
-            redirect_to root_path, notice: "User account was created successfully."
+            redirect_to account_overview_path, notice: "User account was created successfully."
         else
             message = @user.errors.messages
             redirect_to new_user_path, notice: message
@@ -99,6 +99,41 @@ class UsersController < ApplicationController
         end
 
     end
+
+    def destroy
+        allow = false
+        message = "You cannot edit account info without first logging in."
+        redir = login_path
+        
+        c_id = session[:user_id]
+        current_user = nil
+
+        if c_id != nil then
+            current_user = User.find_by_id c_id
+            message = "Only administrators may edit an account they do not own."
+            redir = edit_user_path(c_id)
+            
+            if c_id.to_s == params[:id] then
+                allow = true
+            else
+                if current_user.administrator then
+                    allow = true                    
+                end
+            end
+                
+        end
+        if allow == true then
+            @user = User.find(user_params[:id])
+            message = "Account deletion failed."
+            
+            if @user.destroy then
+                message = "Account deletion successful."
+                redir = root_path
+            end
+        end
+        redirect_to redir, notice: message
+    end
+
 
     private
 
