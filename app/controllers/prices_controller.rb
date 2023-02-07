@@ -19,14 +19,14 @@ class PricesController < ApplicationController
     end
 
     def edit
-        @price = Price.find_by_id price_params[:id]
+        @price = Price.find_by_id params[:id]
     end
 
     def update
         message = "Price updated."
-        redir = edit_price_path(price_params[:id])
+        redir = edit_price_path(params[:id])
         
-        @price = Price.find_by_id price_params[:id]
+        @price = Price.find_by_id params[:id]
         if @price.update(price_params)
             redir = prices_path
         else
@@ -43,7 +43,7 @@ class PricesController < ApplicationController
 
     def destroy
         message = "That price listing does not exist."
-        @price = Price.find_by_id price_params[:id]
+        @price = Price.find_by_id params[:id]
         if @price.destroy then
             message = "Price listing has been destroyed."
         end
