@@ -4,6 +4,13 @@ class UsersController < ApplicationController
         @user = User.new
     end
 
+    def stats
+        p = User.where(:producer => true)
+        d = User.where(:distributor => true)
+
+        render json: [["Producers",p.count()],["Distributors", d.count()]]
+    end
+
     def create
 
         @user = User.new(regular_params)
