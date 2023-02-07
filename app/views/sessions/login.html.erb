@@ -1,13 +1,33 @@
+<h2>
+Log in
+</h2>
+<p>
+<%= form_tag '/login' do |f| %>
+    <div class="container-fluid row">
+        <div class="col-md-3 col-sm-12">
+            <%= label_tag :email %>
+        </div>
+        <div class="col-md-9 col-sm-12">
+            <%= text_field_tag :email, "", style: "width:100%;" %>
+        </div>
+        <div class="col-md-3 col-sm-12">
+            <%= label_tag :password %>
+        </div>
+        <div class="col-md-9 col-sm-12">
+            <%= password_field_tag :password, "", style: "width:100%;" %>
+        </div>
 
-<div>
-    
 
-    <h2>Log in </h2>
-    <%= form_tag '/login' do %>
-    
-    Email: <%= text_field_tag :email %><br>
-    Password: <%= password_field_tag :password %><br>
-    <%= submit_tag "Log in" %>
-
-    <% end %>
-</div>
+        <div class="col-md-3 col-sm-0">
+        </div>
+        <div class="col-md-9 col-sm-12">
+            <%= submit_tag "Log in" %>
+        </div>
+    </div>
+<% end %>
+<hr class="text-white">
+</p>
+<p>
+<h5>Don't have an account?</h5>
+<%=link_to 'Create an account here', new_user_path %>
+</p>
