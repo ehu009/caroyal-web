@@ -1,0 +1,138 @@
+<h2>
+    Editing account information
+</h2>
+
+<p>
+    Change email address
+    <br>
+    <%= form_for @user do |f| %>
+    <div class="container-fluid row">
+        <div class="col-md-3 col-sm-12">
+            <%= f.label :email %>
+        </div>
+        <div class="col-md-9 col-sm-12">
+            <%= f.text_field :email, style: "width:85%" %>
+        </div>
+        <div class="col-md-3 col-sm-0">
+        </div>
+        <div class="col-md-9 col-sm-12">
+            <%= f.submit  "Update email address" %>
+        </div>
+    </div>
+    <% end %>
+
+    <hr class="white-text">
+</p>
+
+<p>
+    Change password
+    <br>
+    <%= form_for @user do |f| %>
+    <div class="container-fluid row">
+        <div class="col-md-3 col-sm-12">
+            <%= f.label :password %>
+        </div>
+        <div class="col-md-9 col-sm-12">
+            <%= f.text_field :password, style: "width:85%" %>
+        </div>
+        <div class="col-md-3 col-sm-0">
+        </div>
+        <div class="col-md-9 col-sm-12">
+            <%= f.submit  "Update password" %>
+        </div>
+    </div>
+    <% end %>
+
+    <hr class="white-text">
+</p>
+
+<p>
+Change account information
+<br>
+<%= form_for @user do |f| %>
+<div class="container-fluid row">
+    
+    <% if current_user_is_admin? then %>
+    <p>
+    <div class="col-md-3 col-sm-12">
+        <%= f.label :administrator %>
+    </div>
+    <div class="col-md-9 col-sm-12">
+        <%= f.check_box :administrator %>
+    </div>
+    </p>
+    <% end %>
+    <p>
+    <div class="col-md-3 col-sm-12">
+        <%= f.label :first_name %>
+    </div>
+    <div class="col-md-9 col-sm-12">
+        <%= f.text_field :first_name, style: "width:85%" %>
+    </div>
+        
+    <div class="col-md-3 col-sm-12">
+        <%= f.label :last_name %>
+    </div>
+    <div class="col-md-9 col-sm-12">
+        <%= f.text_field :last_name, style: "width:85%" %>
+    </div>
+    
+    <div class="col-md-3 col-sm-12">
+        <%= f.label :company_name %>
+    </div>
+    <div class="col-md-9 col-sm-12">
+        <%= f.text_field :company_name, style: "width:85%" %>
+    </div>
+    
+    </p>
+    <p>
+    <div class="col-md-3 col-sm-6">
+        <%= f.label :producer %>
+    </div>
+    <div class="col-md-3 col-sm-6">
+        <%= f.check_box :producer %>
+    </div>
+    
+    <div class="col-md-3 col-sm-6">
+        <%= f.label :distributor %>
+    </div>
+    <div class="col-md-3 col-sm-6">
+        <%= f.check_box :distributor %>
+    </div>
+
+    
+    </p>
+    <p>
+        <div class="col-md-3 col-sm-0">
+        </div>
+        <div class="col-md-9 col-sm-12">
+            <%= f.submit  "Update account information" %>
+        </div>
+        </div>
+        <hr class="white-text">
+    </p>
+<% end %>
+</p>
+
+<p>
+    Account deletion
+    <br>
+    
+    <%= form_for @user, method: :delete do |f| %>
+    <div class="container-fluid row">
+        <div class="col-md-3 col-sm-6">
+            <label for="confirm-delete"> Confirm deletion </label>
+        </div>
+        <div class="col-md-9 col-sm-6">
+            <input type="checkbox" id="confirm-delete" name="confirm_deletion">
+        </div>
+
+        <div class="col-md-3 col-sm-0">
+        </div>
+        <div class="col-md-9 col-sm-12">
+            <%= f.submit "destrooooooy" %>
+        </div>
+    </div>
+    <% end %>
+    
+</p>
