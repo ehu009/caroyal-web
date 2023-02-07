@@ -66,8 +66,26 @@
   </head>
 
   <body>
-  
-    <%= yield %>
+    <div class="container-fluid blue-bg white-text">
+
+      
+      <div class="col-1 nav-container">
+          <i class="fa-solid fa-bars nav-burger white-text" data-bs-toggle="modal" data-bs-target="#navModal"></i>
+      </div>
+      
+      <div class="container-fluid text-center">
+          <img class="logo-top" src="Caroyal transparent PNG-02.png">
+      </div>
+      
+    
+
+
+
+
+
+        <%= yield %>
+    </div>
+
 
     <div class="modal fade" id="navModal">
       <div class="modal-dialog">
