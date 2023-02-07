@@ -123,10 +123,11 @@ class UsersController < ApplicationController
                 
         end
         if allow == true then
-            @user = User.find(user_params[:id])
+            @user = User.find(params[:id])
             message = "Account deletion failed."
             
             if @user.destroy then
+                session[:user_id] = nil
                 message = "Account deletion successful."
                 redir = root_path
             end
