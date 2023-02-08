@@ -1,0 +1,21 @@
+<div class="container-fluid row toast-container">
+    
+    <div class="col-sm-3 col-md-4"></div>
+
+    <div class="col-sm-6 col-md-4">
+        <div class="toast show" id="notice-toast" width="100%">
+            <div class="toast-header">
+                <b class="dark-blue-text">Notice</b>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" onclick="unveil('veil');"></button>
+            </div>
+            <div class="toast-body">
+                <%= notice %>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<script >
+    var p = document.getElementById('veil');
+    p.classList.add("veil-fadein");
+</script>
