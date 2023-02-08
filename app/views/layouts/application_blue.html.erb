@@ -15,7 +15,7 @@
 
     <!-- use locally hosted FontAwesome -->
     <script src="/fa-all.js"></script>
-    
+
     <script>
       function unveil(id) {
         var e = document.getElementById(id);
@@ -32,7 +32,7 @@
       
 
     <%= render "nav_burger" %>
-    <%= render "top_logo", color = "white" %>
+    <%= render "top_logo", presence: true, color = "white" %>
     
     
     <!-- main content -->  
