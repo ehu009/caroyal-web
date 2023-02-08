@@ -18,8 +18,8 @@
 
     <style type="text/css">
       .nav-burger {
-        margin: 20px;
-        padding: 10px;
+        background: transparent;
+        z-index: 4;
         height:100%;
         transform: rotate(0deg);
         -webkit-transform: rotate(0deg);
@@ -31,7 +31,18 @@
         -webkit-transform: rotate(-15deg);
         transition: 1s;
       }
+      .nav-burger-bg {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        z-index: 2;
+        display: inline-block;
+      }
       .nav-container {
+        width: 6%;
+        aspect-ratio: 1 / 1;
+        margin: 20px;
+        /*padding:0px;*/
         z-index: 2;
         position: fixed;
       }
@@ -39,11 +50,12 @@
         margin-top: 20px;
         margin-bottom: 20px;
         width: 28%;
+        
       }
 
       .veil {
         background-color: black;
-        z-index: 3;
+        z-index: 5;
         width: 100%;
         height: 100vh;
         overflow: hidden;
@@ -154,10 +166,14 @@
   <body class="blue-bg">
     <div class="veil" id="veil" data-bs-dismiss="toast" onclick="unveil('veil'); remove_toast('notice-toast');"></div>
     
-    <div class="container-fluid white-text">
-      <div class="col-1 nav-container">
+      
+        <div class="nav-container">
+          <span class="nav-burger-bg dark-blue-bg text-center">
+          
           <i class="fa-solid fa-bars nav-burger white-text" data-bs-toggle="modal" data-bs-target="#navModal"></i>
-      </div>
+          </span>
+        </div>
+      
     
       
       <div class="container-fluid text-center">
@@ -165,7 +181,6 @@
           <img class="logo-top" src="/Caroyal transparent PNG-02.png">
         <% end %>
       </div>
-    </div>
     <div class="container-fluid white-text main-content">
     
       <div class="container-fluid row">
