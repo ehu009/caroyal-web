@@ -62,6 +62,7 @@
         position: fixed;
         visibility: hidden;
         opacity: 0;
+        top: 0px;
       }
 
       .veil-fadein {
@@ -164,16 +165,14 @@
   </head>
 
   <body class="blue-bg">
-    <div class="veil" id="veil" data-bs-dismiss="toast" onclick="unveil('veil'); remove_toast('notice-toast');"></div>
+      
+
+    <%= render "nav_burger" %>
+    <%= render "top_logo" %>
     
       
-        <%= render "nav_burger" %>
-        <%= render "top_logo" %>
-    
-      
-      
+    <!-- main content -->  
     <div class="container-fluid white-text main-content">
-    
       <div class="container-fluid row">
         <div class="col-md-3 col-sm-2"></div>
         <div class="col-md-6 col-sm-8">
@@ -181,17 +180,17 @@
         </div>
         <div class="col-md-3 col-sm-0"></div>
       </div>
-
-      
     </div>
 
+    <%= render 'footer' %>
+
+
+    <!-- pop-ups -->
+    <div class="veil" id="veil" data-bs-dismiss="toast" onclick="unveil('veil'); remove_toast('notice-toast');"></div>
     <% if notice != nil then %>
       <%= render 'notice_toast' %>
     <% end %>
-
     <%= render 'nav_modal' %>
-
-    <%= render 'footer' %>
     
   </body>
 </html>
