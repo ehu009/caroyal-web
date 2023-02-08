@@ -207,45 +207,6 @@
       p.classList.add("veil-fadein");
     </script>
     <% end %>
-
-
-    <div class="modal fade" id="navModal">
-      <div class="modal-dialog">
-        <div class="modal-content">
-
-          <div class="modal-header">
-            <h4 class="modal-title">Navigation</h4>
-            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-          </div>
-
-          <div class="modal-body blue-text">
-            <ul>
-                
-                <li data-bs-dismiss="modal"><%= link_to "About us", root_path + '#about' %>
-                </li>
-                <li data-bs-dismiss="modal"><%= link_to "Our products", root_path + '#products' %>
-                </li>
-                <li data-bs-dismiss="modal"><%= link_to "Contact us", root_path + '#contact' %>
-                </li>
-                <li data-bs-dismiss="modal"><%= link_to "Log in", login_path %>
-                </li>
-                <li data-bs-dismiss="modal"><%= link_to "New user", new_user_path %>
-                </li>
-                <!--
-                <li>
-                </li>
-                <li>
-                </li>
-                -->
-            </ul>
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" class="btn blue-bg white-text" data-bs-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
     
     <footer class="dark-blue-bg white-text footer">
     <div class="container-fluid text-center">
