@@ -51,6 +51,30 @@
     width: 28%;  
   }
 
+
+  .wall {
+    height: 100vh;
+  }
+  .center-wall {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .logo-wall-logo {
+    width: 50%;    
+  }
+  .logo-wall-btn {
+    top: 70%;
+    position:absolute;
+    border-radius:25px;
+    padding:25px;
+    padding-top:15px;
+    padding-bottom:15px;
+
+  }
+
+
+
   .veil {
     background-color: black;
     z-index: 5;
