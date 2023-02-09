@@ -33,18 +33,23 @@
 
     <%= render "nav_burger" %>
     <%= render "top_logo", present: false %>
+    <%= render "account_pill" %>
     
-    
-    <!-- main content -->  
+    <!-- main content -->
     <div class="container-fluid white-text main-content">
+      
+      <!--
       <div class="container-fluid row">
         <div class="col-md-3 col-sm-2"></div>
         <div class="col-md-6 col-sm-8">
+        -->
           <%= yield %>
+        <!--
         </div>
         <div class="col-md-3 col-sm-0"></div>
       </div>
     </div>
+    -->
 
     <%= render 'footer' %>
 
