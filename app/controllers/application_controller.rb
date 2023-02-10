@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
     
-    layout "application_white", only: [:home]
+    layout "application_white", except: [:account_overview, :dev]
     before_action :get_current_user
 
     def home
