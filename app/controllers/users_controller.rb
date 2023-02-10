@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-
+    layout "application_blue", except: [:new]
+    layout "application_white", only: [:new]
+    
     def new
         @user = User.new
     end
