@@ -17,6 +17,16 @@
     <script src="/fa-all.js"></script>
 
     <script>
+      function open_nav(id) {
+        var e = document.getElementById(id);
+        e.classList.add('nav-veil-fadein');
+        e.classList.remove('nav-veil-fadeout');
+      }
+      function close_nav(id) {
+        var e = document.getElementById(id);
+        e.classList.remove('nav-veil-fadein');
+        e.classList.add('nav-veil-fadeout');
+      }
       function unveil(id) {
         var e = document.getElementById(id);
         e.classList.add('veil-fadeout');
@@ -32,6 +42,7 @@
       
 
     <%= render "nav_burger" %>
+    <%= render "nav_veil" %>
     <%= render "top_logo", present: false %>
     <%= render "account_pill" %>
     
