@@ -3,20 +3,20 @@
 </h2>
 
 <p>
-    Change email address
+    <h5>Change email address</h5>
     <br>
     <%= form_for @user do |f| %>
     <div class="container-fluid row">
-        <div class="col-md-3 col-sm-12">
+        <div class="col-md-4 col-sm-12">
             <%= f.label :email %>
         </div>
-        <div class="col-md-9 col-sm-12">
+        <div class="col-md-8 col-sm-12">
             <%= f.text_field :email, style: "width:100%" %>
         </div>
-        <div class="col-md-3 col-sm-0">
+        <div class="col-md-4 col-sm-0">
         </div>
-        <div class="col-md-9 col-sm-12">
-            <%= f.submit  "Update email address" %>
+        <div class="col-md-8 col-sm-12">
+            <%= f.submit  "Update email address", class: "form-btn white-text blue-bg" %>
         </div>
     </div>
     <% end %>
@@ -25,20 +25,20 @@
 </p>
 
 <p>
-    Change password
+    <h5>Change password</h5>
     <br>
     <%= form_for @user do |f| %>
     <div class="container-fluid row">
-        <div class="col-md-3 col-sm-12">
+        <div class="col-md-4 col-sm-12">
             <%= f.label :password %>
         </div>
-        <div class="col-md-9 col-sm-12">
-            <%= f.text_field :password, style: "width:100%" %>
+        <div class="col-md-8 col-sm-12">
+            <%= f.password_field :password, style: "width:100%" %>
         </div>
-        <div class="col-md-3 col-sm-0">
+        <div class="col-md-4 col-sm-0">
         </div>
-        <div class="col-md-9 col-sm-12">
-            <%= f.submit  "Update password" %>
+        <div class="col-md-8 col-sm-12">
+            <%= f.submit  "Update password", class: "form-btn white-text blue-bg" %>
         </div>
     </div>
     <% end %>
@@ -46,46 +46,35 @@
     <hr class="white-text">
 </p>
 
-<p>
-Change account information
-<br>
+
+
+
 <%= form_for @user do |f| %>
 <div class="container-fluid row">
-    
-    <% if current_user_is_admin? then %>
-    <p>
-    <div class="col-md-3 col-sm-12">
-        <%= f.label :administrator %>
-    </div>
-    <div class="col-md-9 col-sm-12">
-        <%= f.check_box :administrator, class: "form-check-input" %>
-    </div>
-    </p>
-    <% end %>
-    <p>
-    <div class="col-md-3 col-sm-12">
-        <%= f.label :first_name %>
-    </div>
-    <div class="col-md-9 col-sm-12">
-        <%= f.text_field :first_name, style: "width:100%" %>
-    </div>
-        
-    <div class="col-md-3 col-sm-12">
-        <%= f.label :last_name %>
-    </div>
-    <div class="col-md-9 col-sm-12">
-        <%= f.text_field :last_name, style: "width:100%" %>
-    </div>
-    
-    <div class="col-md-3 col-sm-12">
+<p> 
+
+
+<h5>Business details</h5>
+
+<p>
+    <div class="col-md-4 col-sm-12">
         <%= f.label :company_name %>
     </div>
-    <div class="col-md-9 col-sm-12">
-        <%= f.text_field :company_name, style: "width:100%" %>
+    <div class="col-md-8 col-sm-12">
+        <%= f.text_field :company_name, style: "width:100%;" %>
     </div>
-    
-    </p>
-    <p>
+    <div class="col-md-4 col-sm-12">
+        <%= f.label :company_address %>
+    </div>
+    <div class="col-md-8 col-sm-12">
+        <%= f.text_field :company_address, style: "width:100%;" %>
+    </div>
+    <div class="col-md-4 col-sm-12">
+        <%= f.label :tax_identification_number, "TIN (tax ID)" %>
+    </div>
+    <div class="col-md-8 col-sm-12">
+        <%= f.text_field :tax_identification_number, style: "width:100%;" %>
+    </div>
     <div class="col-md-3 col-sm-6">
         <%= f.label :producer %>
     </div>
@@ -99,14 +88,59 @@ Change account information
     <div class="col-md-3 col-sm-6">
         <%= f.check_box :distributor, class: "form-check-input" %>
     </div>
-
+    
     
     </p>
+<hr class="white-text">
+<h5>Personal details</h5>
+<p>
+    
+
+    <div class="col-md-4 col-sm-12">
+        <%= f.label :full_name %>
+    </div>
+    <div class="col-md-8 col-sm-12">
+        <%= f.select :name_prefix, ["Mr", "Mrs", "Ms"] %><%= f.text_field :full_name, style: "width:100%;" %>
+    </div>
+    <div class="col-md-4 col-sm-12">
+        <%= f.label :phone_number %>
+    </div>
+    <div class="col-md-8 col-sm-12">
+        <%= f.number_field :phone_number, style: "width:100%;" %>
+    </div>
+
+    <div class="col-md-4 col-sm-12">
+        <%= f.label :address %>
+    </div>
+    <div class="col-md-8 col-sm-12">
+        <%= f.text_field :address, style: "width:100%;" %>
+    </div>
+    <div class="col-md-4 col-sm-12">
+        <%= f.label :country %>
+    </div>
+    <div class="col-md-8 col-sm-12">
+        <%= f.country_select :country, include_blank: 'Select a country' %>
+    </div>
+    <div class="col-md-4 col-sm-12">
+        <%= f.label :city %>
+    </div>
+    <div class="col-md-8 col-sm-12">
+        <%= f.text_field :city %>
+    </div>
+    <div class="col-md-4 col-sm-12">
+        <%= f.label :age %>
+    </div>
+    <div class="col-md-8 col-sm-12">
+        <%= f.number_field :age %>
+    </div>
+
+
+</p>
     <p>
-        <div class="col-md-3 col-sm-0">
+        <div class="col-md-4 col-sm-0">
         </div>
-        <div class="col-md-9 col-sm-12">
-            <%= f.submit  "Update account information" %>
+        <div class="col-md-8 col-sm-12">
+            <%= f.submit  "Update account information", class: "form-btn white-text blue-bg" %>
         </div>
         </div>
         <hr class="white-text">
@@ -115,22 +149,24 @@ Change account information
 </p>
 
 <p>
+<h5>
     Account deletion
+    </h5>
     <br>
     
     <%= form_for @user, method: :delete do |f| %>
     <div class="container-fluid row">
-        <div class="col-md-3 col-sm-6">
+        <div class="col-md-4 col-sm-6">
             <label for="confirm-delete"> Confirm deletion </label>
         </div>
-        <div class="col-md-9 col-sm-6">
+        <div class="col-md-8 col-sm-6">
             <input type="checkbox" id="confirm-delete" name="confirm_deletion" class="form-check-input">
         </div>
 
-        <div class="col-md-3 col-sm-0">
+        <div class="col-md-4 col-sm-0">
         </div>
-        <div class="col-md-9 col-sm-12">
-            <%= f.submit "Destroy user account" %>
+        <div class="col-md-8 col-sm-12">
+            <%= f.submit "Destroy user account", class: "account-delete-btn white-text blue-bg form-btn" %>
         </div>
     </div>
     <% end %>
