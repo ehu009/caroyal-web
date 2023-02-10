@@ -3,4 +3,12 @@ class User < ApplicationRecord
     validates :email, uniqueness: true
     validates_format_of :email, with: URI::MailTo::EMAIL_REGEXP
     validates :password_digest, presence: true
+
+    validates :company_name, presence: true
+    validates :company_address, presence: true
+    validates :tax_identification_number, presence: true
+    validates :name_prefix, presence: true
+    validates :phone_number, presence: true
+    validates :country, presence: true
+    validates :city, presence: true
 end
