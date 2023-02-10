@@ -11,6 +11,18 @@ class ApplicationController < ActionController::Base
         @users = User.all
     end
 
+    def about
+
+    end
+
+    def contact
+
+    end
+
+    def products
+
+    end
+
     def account_overview
 
         if @current_user == nil then
