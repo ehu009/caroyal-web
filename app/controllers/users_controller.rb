@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
-    layout "application_blue", except: [:new]
     layout "application_white", only: [:new]
-    
+
     def new
         @user = User.new
     end
@@ -101,16 +100,7 @@ class UsersController < ApplicationController
         redirect_to redir, notice: message
     end
 
-    def overview
-
-        id = session[:user_id]
-        if id == nil then
-            redirect_to login_path, notice: "You are not logged in."
-        else
-          @user = User.find_by_id id            
-        end
-
-    end
+    
 
     def destroy
         allow = false

@@ -1,5 +1,5 @@
 class PricesController < ApplicationController
-    layout "application_blue"
+    
     before_action :confirm_admin, except: [:price_data]
 
     def index

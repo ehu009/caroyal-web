@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-    layout "application_blue", except: [:home]
+    
     layout "application_white", only: [:home]
     before_action :get_current_user
 
@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
     end
 
     def about
-
+        
     end
 
     def contact
