@@ -75,3 +75,5 @@ end
 # Use charkick for charting e.g. prices
 gem "groupdate" #group by date
 gem "chartkick"
+
+gem 'country_select', '~> 8.0'
