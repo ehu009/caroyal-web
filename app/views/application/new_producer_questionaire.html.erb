@@ -1,0 +1,54 @@
+<div style="margin-top:5%">
+<h2>
+    Questionaire
+</h2>
+
+<p>
+    <h5>As a producer:</h5>
+    <%= form_for @prod_q, url: fill_producer_questionaire_path do |f| %>
+    <p>
+        What commodities do you want to export?
+        <br>
+        <%= f.text_field :commodities %>
+    </p>
+    <p>
+        What volume in kg or tonnes do you intend to export in a year?
+        <br>
+        <%= f.number_field :volume %><%= f.select :unit, ['kilos', 'tonnes'] %>
+    </p>
+    <p>
+        Select all payment types that you can receive:
+        <div class="container-fluid row">
+            <div class="col-4">
+                Bank deposit: 
+            </div>
+            <div class="col-8">
+                <%= f.check_box :pays_deposit %>
+            </div>
+            <div class="col-4">
+                Bank wire: 
+            </div>
+            <div class="col-8">
+                <%= f.check_box :pays_wire %>
+            </div>
+            <div class="col-4">
+                Card payment: 
+            </div>
+            <div class="col-8">
+                <%= f.check_box :pays_card %>
+            </div>
+            <div class="col-4">
+                Cryptocurrency: 
+            </div>
+            <div class="col-8">
+                <%= f.check_box :pays_crypto %>
+            </div>
+        </div>
+    </p>
+
+    <%= f.submit  "Submit producer questionaire", class: "form-btn white-text blue-bg" %>
+        
+    <% end %>
+    <hr class="white-text">
+</p>
+</div>
