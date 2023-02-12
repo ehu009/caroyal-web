@@ -21,8 +21,11 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :new, :create, :edit, :update, :show, :destroy]
 
   get 'welcome', to: 'application#first_time_login', as: :first_time_login
-  get 'questionaire', to: 'application#new_questionaire', as: :new_questionaire
-  post 'questionaire', to: 'application#fill_questionaire', as: :fill_questionaire
+  get 'producer_questionaire', to: 'application#new_producer_questionaire', as: :new_producer_questionaire
+  post 'producer_questionaire', to: 'application#fill_producer_questionaire', as: :fill_producer_questionaire
+  get 'distributor_questionaire', to: 'application#new_distributor_questionaire', as: :new_distributor_questionaire
+  post 'distributor_questionaire', to: 'application#fill_distributor_questionaire', as: :fill_distributor_questionaire
+
   get 'account', to: 'application#account_overview', as: :account_overview
 
   get '/login', to: 'sessions#login'
