@@ -93,6 +93,17 @@
     justify-content: center;
     align-items: center;*/
   }
+
+  .fish-wall {
+    background-repeat: repeat-y;
+    background-image: url('/Stockfish_Lofoten_2009.jfif');
+    background-size:100vw;
+  }
+
+  .blurred-box {
+    box-shadow: 0 0 10px 10px white;
+  }
+
   .account-pill {
     margin: 3%;
     z-index: 4;
