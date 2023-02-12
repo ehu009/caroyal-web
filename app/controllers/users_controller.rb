@@ -20,7 +20,7 @@ class UsersController < ApplicationController
         @user.distributor = false
         if @user.save
             session[:user_id] = @user.id
-            redirect_to account_overview_path, notice: "User account was created successfully."
+            redirect_to first_time_login, notice: "User account was created successfully."
         else
             message = @user.errors.messages
             redirect_to new_user_path, notice: message
