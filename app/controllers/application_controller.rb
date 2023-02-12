@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::Base
     
-    layout "application_white", except: [:account_overview, :first_time_login, :dev]
+    layout "application_white", except: [:account_overview, :first_time_login, :dev, :new_producer_questionaire, :new_distributor_questionaire, :fill_producer_questionaire, :fill_distributor_questionaire]
     before_action :get_current_user
+    before_action :must_login, only: [:new_producer_questionaire, :new_distributor_questionaire, :fill_producer_questionaire, :fill_distributor_questionaire]
 
     def home
 
@@ -27,12 +28,67 @@ class ApplicationController < ActionController::Base
 
     end
 
+    def new_producer_questionaire
+        @prod_q = ProducerQuestionaire.new
+    end
+    def new_distributor_questionaire
+        @dist_q = DistributorQuestionaire.new
+    end
+
+    def fill_producer_questionaire        
+        message = nil
+        redir = new_producer_questionaire_path
+        failure = false
+        @prod_q = ProducerQuestionaire.new(producer_params)
+        @prod_q.user = @current_user
+        unless @prod_q.save
+            message = @prod_q.errors.messages
+            @prod_q = nil
+            failure = true
+        end
+        unless failure == true then
+            if @current_user.distributor == true then
+                redir =  new_distributor_questionaire_path
+            else
+                message = "Thanks for taking the time to fill out our questionaire."
+            end
+        end
+        redirect_to redir, notice: message
+    end
+
+    def fill_distributor_questionaire
+        
+        failure = false
+        message = nil
+        redir = new_distributor_questionaire_path
+        @dist_q = DistributorQuestionaire.new(distributor_params)
+        @dist_q.user = @current_user
+        
+        unless @dist_q.save
+            message = @dist_q.errors.messages
+            failure = true
+            @dist_q = nil
+        end
+        if failure == false then
+            message = "Thanks for taking the time to fill out our questionaire."
+            redir = account_overview_path
+        end
+        redirect_to redir, notice: message
+    end
+
     def account_overview
 
         if @current_user == nil then
             redirect_to login_path, notice: "You are not logged in."
         else
           @user = @current_user
+          
+          if @user.producer == true then
+            @prod_q = ProducerQuestionaire.where(user: @current_user)
+          end
+          if @user.distributor == true then
+            @dist_q = DistributorQuestionaire.where(user: @current_user)
+          end
         end
 
     end
@@ -42,5 +98,18 @@ class ApplicationController < ActionController::Base
         @current_user ||= User.find_by_id(session[:user_id]) if !!session[:user_id]
     end
 
+    def must_login
+        if @current_user == nil then
+            redirect_to '/login', notice: "You are not logged in."
+        end
+    end
+
+    def producer_params
+        params.require(:producer_questionaire).permit(:commodities, :volume, :pays_deposit, :pays_wire, :pays_card, :pays_crypto, :unit)
+    end
+
+    def distributor_params
+        params.require(:distributor_questionaire).permit(:length, :yearly_amount, :other_products, :pays_deposit, :pays_wire, :pays_card, :pays_crypto, :unit)
+    end
 
 end
