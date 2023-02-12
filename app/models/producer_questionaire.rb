@@ -1,0 +1,2 @@
+class ProducerQuestionaire < ApplicationRecord
+end
