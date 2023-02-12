@@ -14,13 +14,12 @@ class UsersController < ApplicationController
 
     def create
 
-        @user = User.new(regular_params)
+        @user = User.new(user_params)
         @user.administrator = false
-        @user.producer = false
-        @user.distributor = false
+        
         if @user.save
             session[:user_id] = @user.id
-            redirect_to first_time_login, notice: "User account was created successfully."
+            redirect_to first_time_login_path, notice: "User account was created successfully."
         else
             message = @user.errors.messages
             redirect_to new_user_path, notice: message
@@ -145,11 +144,11 @@ class UsersController < ApplicationController
     private
 
     def regular_params
-        params.require(:user).permit(:confirm_deletion, :email, :password, :first_name, :last_name, :company_name, :producer, :distributor)
+        params.require(:user).permit(:confirm_deletion, :email, :password, :company_name, :producer, :distributor, :company_address, :tax_identification_number, :name_prefix, :full_name, :age, :phone_number, :address, :country, :city)
     end
 
     def admin_params
-        params.require(:user).permit(:confirm_deletion, :administrator, :email, :password, :first_name, :last_name, :company_name, :producer, :distributor)
+        params.require(:user).permit(:confirm_deletion, :administrator, :email, :password, :company_name, :producer, :distributor, :company_address, :tax_identification_number, :name_prefix, :full_name, :age, :phone_number, :address, :country, :city)
     end
 
     def user_params
@@ -161,6 +160,8 @@ class UsersController < ApplicationController
             else
                 admin_params
             end
+        else
+            regular_params
         end
     end
 end
