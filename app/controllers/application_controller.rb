@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
     
-    layout "application_white", except: [:account_overview, :dev]
+    layout "application_white", except: [:account_overview, :first_time_login, :dev]
     before_action :get_current_user
 
     def home
@@ -20,6 +20,10 @@ class ApplicationController < ActionController::Base
     end
 
     def products
+
+    end
+
+    def first_time_login
 
     end
 

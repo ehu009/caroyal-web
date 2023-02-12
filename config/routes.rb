@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :new, :create, :edit, :update, :show, :destroy]
 
+  get 'welcome', to: 'application#first_time_login', as: :first_time_login
   get 'account', to: 'application#account_overview', as: :account_overview
 
   get '/login', to: 'sessions#login'
