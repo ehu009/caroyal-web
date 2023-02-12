@@ -1,13 +1,33 @@
 
 <div style="height:100vh;">
 
-<div style="margin-top:30%">
+<div style="margin-top:10%">
 <h3>
 Account overview
 </h3>
+
+<% link = nil %>
+<% if @current_user.distributor == true && @dist_q.any? == false then %>
+<% link = new_distributor_questionaire_path %>
+<% end %>
+<% if @current_user.producer == true && @prod_q.any? == false then %>
+<% link = new_producer_questionaire_path %>
+<% end %>
+
+<% if link != nil %>
+<p>
+We have a questionaire for you -<br>
+If you'd like to partake, please <%= link_to "click here", link %>.
+</p>
+
+<% end %>
+
 <p>
 If you would like to edit your account information, you can do so <%=link_to "here", edit_user_path(@current_user) %>.
 </p>
+
+
+
 <%= render 'construction' %>
 
 
