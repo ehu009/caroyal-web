@@ -1,0 +1,25 @@
+.account-pill {
+    margin: 3%;
+    z-index: 4;
+    position: fixed;
+    right:0px;
+    top: 0px;
+    border-color: #051933;
+    border-width: 4px;
+    border-style: solid;
+    border-radius:25px;
+    padding: 20px;
+    /*width: 25%;*/
+
+    transform: scaleX(100%);
+    -webkit-transform: scaleX(100%);
+    transform: scaleY(100%);
+    -webkit-transform: scaleY(100%);
+    transition: 0.7s;
+}
+  .account-pill:hover {
+    transform: scaleX(110%);
+    -webkit-transform: scaleX(110%);
+    transform: scaleY(110%);
+    -webkit-transform: scaleY(110%);
+}
