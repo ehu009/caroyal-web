@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-    layout "application_white"
+    layout "application_fishy"
     def create
         message = "Error logging in."
         @user = User.find_by(email: params[:email])

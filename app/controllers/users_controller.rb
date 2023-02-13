@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    layout "application_white", only: [:new]
+    layout "application_fishy", only: [:new]
 
     def new
         @user = User.new
@@ -155,6 +155,7 @@ class UsersController < ApplicationController
         c_id = session[:user_id]
         if c_id != nil then
             current_user = User.find_by_id c_id
+
             unless current_user.administrator then
                 regular_params
             else

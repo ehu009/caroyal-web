@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
-    
-    layout "application_white", except: [:account_overview, :first_time_login, :dev, :new_producer_questionaire, :new_distributor_questionaire, :fill_producer_questionaire, :fill_distributor_questionaire]
+    layout "application_white", only: [:home]
+    #layout "application_white", except: [:account_overview, :first_time_login, :dev, :new_producer_questionaire, :new_distributor_questionaire, :fill_producer_questionaire, :fill_distributor_questionaire]
     before_action :get_current_user
     before_action :must_login, only: [:new_producer_questionaire, :new_distributor_questionaire, :fill_producer_questionaire, :fill_distributor_questionaire]
 
