@@ -5,47 +5,50 @@
     <!--</div>-->
     
 <div class="container-fluid wall" style="z-index:-1;overflow: hidden; top: 0px; position: absolute;padding:0px;" >
-<img src="/Stockfish_Lofoten_2009.jfif"  style="z-index:-2; width:100%;">
+    <img src="/Stockfish_Lofoten_2009.jfif"  style="z-index:-2; width:100%;">
     
     <div class="container-fluid row " style="z-index:3;position: absolute; top: 25%;">
         <div class="col-md-3 col-sm-2"></div>
         <div class="col-md-6 col-sm-8 white-bg blurred-box" style="border-radius:25px;padding:25px;opacity:0.9">
     
         
-        <h2>
-Log in
-</h2>
-<p>
-<%= form_tag '/login' do |f| %>
-    <div class="container-fluid row">
-        <div class="col-md-3 col-sm-12">
-            <%= label_tag :email %>
-        </div>
-        <div class="col-md-9 col-sm-12">
-            <%= text_field_tag :email, "", class: "visible", style: "width:100%;" %>
-        </div>
-        <div class="col-md-3 col-sm-12">
-            <%= label_tag :password %>
-        </div>
-        <div class="col-md-9 col-sm-12">
-            <%= password_field_tag :password, "", style: "width:100%;" %>
-        </div>
+            <h2>
+                Log in
+            </h2>
+            <p>
+            <%= form_tag '/login' do |f| %>
+                <div class="container-fluid row">
+                    <div class="col-md-3 col-sm-12">
+                        <%= label_tag :email %>
+                    </div>
+                    <div class="col-md-9 col-sm-12">
+                        <%= text_field_tag :email, "", class: "visible", style: "width:100%;" %>
+                    </div>
+                    <div class="col-md-3 col-sm-12">
+                        <%= label_tag :password %>
+                    </div>
+                    <div class="col-md-9 col-sm-12">
+                        <%= password_field_tag :password, "", style: "width:100%;" %>
+                    </div>
 
 
-        <div class="col-md-3 col-sm-0">
-        </div>
-        <div class="col-md-9 col-sm-12">
-            <%= submit_tag "Log in" %>
-        </div>
+                    <div class="col-md-3 col-sm-0">
+                    </div>
+                    <div class="col-md-9 col-sm-12">
+                        <%= submit_tag "Log in" %>
+                    </div>
+                </div>
+            <% end %>
+                <hr class="dark-blue-text">
+            </p>
+            <p>
+                <h5>Don't have an account?</h5>
+                <%=link_to 'Create an account here', new_user_path %>
+            </p>
+            <div class="col-md-3 col-sm-0"></div>
+            </div>
+    
     </div>
-<% end %>
-<hr class="dark-blue-text">
-</p>
-<p>
-<h5>Don't have an account?</h5>
-<%=link_to 'Create an account here', new_user_path %>
-</p>
-
-        </div>
-        <div class="col-md-3 col-sm-0"></div>
-      </div>
+    
+</div>
+      
