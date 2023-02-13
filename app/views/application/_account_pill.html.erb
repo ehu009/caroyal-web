@@ -4,11 +4,10 @@
 <% end %>
 
 <div class="blue-bg white-text account-pill text-center" onclick="window.location.href='<%= path %>'">
-    <% if @current_user != nil then %>
+<% if @current_user != nil then %>
     <i class="fa-regular fa-user white-text" style="margin-right:10px;"></i>
     <%= @current_user.full_name %>
-    <% else %>
+<% else %>
     <strong>Log in</strong>
-    <% end %>
-
+<% end %>
 </div>
