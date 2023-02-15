@@ -10,8 +10,8 @@ class User < ApplicationRecord
     validates :first_name, presence: true
     validates :last_name, presence: true
     validates :phone_number, uniqueness: true, presence: true
-    validates :country, presence: true
-    validates :city, presence: true
+    validates :company_country, presence: true
+    validates :company_city, presence: true
 
     has_one :distributor_questionare
     has_one :producer_questionare
