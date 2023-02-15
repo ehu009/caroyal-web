@@ -105,19 +105,26 @@
     </div>
     
     <div class="col-md-4 col-sm-12 form-field">
-    <span style="right:0px; color: red">*</span>
         <%= f.label :first_name %>
+        <span style="right:0px; color: red">*</span>
     </div>
     <div class="col-md-8 col-sm-12 form-field">
         <%= f.text_field :first_name, style: "width:100%;" %>
     </div>
     <div class="col-md-4 col-sm-12 form-field">
-    <span style="right:0px; color: red">*</span>
         <%= f.label :last_name, "Surname"%>
+        <span style="right:0px; color: red">*</span>
     </div>
     <div class="col-md-8 col-sm-12 form-field">
         <%= f.text_field :last_name, style: "width:100%;" %>
     </div>
+    <div class="col-md-4 col-sm-12 form-field">
+        <%= f.label :date_of_birth %>
+    </div>
+    <div class="col-md-8 col-sm-12 form-field">
+        <%= f.date_field :date_of_birth %>
+    </div>
+
     <div class="col-md-4 col-sm-12 form-field">
         <%= f.label :phone_number %>
     </div>
@@ -143,12 +150,7 @@
     <div class="col-md-8 col-sm-12 form-field">
         <%= f.text_field :city %>
     </div>
-    <div class="col-md-4 col-sm-12 form-field">
-        <%= f.label :date_of_birth %>
-    </div>
-    <div class="col-md-8 col-sm-12 form-field">
-        <%= f.date_field :date_of_birth %>
-    </div>
+
 
 
 </p>
