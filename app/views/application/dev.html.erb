@@ -1,6 +1,7 @@
 this is the dev page
 <br>
 <br>
+account creation: <%= link_to "hahafdf", new_user_path%>
 <br>
 login: <%= link_to "fdhsajk", '/login' %>
 <br>
@@ -8,19 +9,39 @@ current user is <b><% if current_user != nil then %> : <%= current_user.email %>
 <br>
 logout: <%= link_to "hehuhehahs", "/logout" %>
 <br>
-
+<p>
+<%=link_to "questionaire", new_producer_questionaire_path %>
+</p>
 <% if @users != nil then %>
 <% @users.each do |u| %>
     <p>
     <b><%= u.email %></b>
     <br>
     <%= u.created_at %>
+    <br>
+    name: <%= u.full_name %>
+    <br/>
+    <% if u.administrator then %>
+    <b>ADMIN</b>
+    <br>
+    <% end %>
+    <%= link_to "edit user info", edit_user_path(u) %>
+    <br>
+    questionaire id: <%=u.producer_questionaire.id%>
+
     </p>
 
+
 <% end %>
 <% end %>
 
+<p>
+<%= link_to "new price listing", new_price_path %>
+<br>
 
+<%= link_to "goto price index", prices_path %>
+
+</p>
 
 
 
