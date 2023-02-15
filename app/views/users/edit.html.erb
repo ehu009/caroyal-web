@@ -7,10 +7,10 @@
     <br>
     <%= form_for @user do |f| %>
     <div class="container-fluid row">
-        <div class="col-md-4 col-sm-12">
+        <div class="col-md-4 col-sm-12 form-field">
             <%= f.label :email %>
         </div>
-        <div class="col-md-8 col-sm-12">
+        <div class="col-md-8 col-sm-12 form-field">
             <%= f.text_field :email, style: "width:100%" %>
         </div>
         <div class="col-md-4 col-sm-0">
@@ -29,10 +29,10 @@
     <br>
     <%= form_for @user do |f| %>
     <div class="container-fluid row">
-        <div class="col-md-4 col-sm-12">
+        <div class="col-md-4 col-sm-12 form-field">
             <%= f.label :password %>
         </div>
-        <div class="col-md-8 col-sm-12">
+        <div class="col-md-8 col-sm-12 form-field">
             <%= f.password_field :password, style: "width:100%" %>
         </div>
         <div class="col-md-4 col-sm-0">
@@ -57,22 +57,22 @@
 <h5>Business details</h5>
 
 <p>
-    <div class="col-md-4 col-sm-12">
+    <div class="col-md-4 col-sm-12 form-field">
         <%= f.label :company_name %>
     </div>
-    <div class="col-md-8 col-sm-12">
+    <div class="col-md-8 col-sm-12 form-field">
         <%= f.text_field :company_name, style: "width:100%;" %>
     </div>
-    <div class="col-md-4 col-sm-12">
+    <div class="col-md-4 col-sm-12 form-field">
         <%= f.label :company_address %>
     </div>
-    <div class="col-md-8 col-sm-12">
+    <div class="col-md-8 col-sm-12 form-field">
         <%= f.text_field :company_address, style: "width:100%;" %>
     </div>
-    <div class="col-md-4 col-sm-12">
+    <div class="col-md-4 col-sm-12 form-field">
         <%= f.label :tax_identification_number, "TIN (tax ID)" %>
     </div>
-    <div class="col-md-8 col-sm-12">
+    <div class="col-md-8 col-sm-12 form-field">
         <%= f.number_field :tax_identification_number, style: "width:100%;", class: "hidden-arrows" %>
     </div>
     <div class="col-md-3 col-sm-6">
@@ -96,41 +96,41 @@
 <p>
     
 
-    <div class="col-md-4 col-sm-12">
+    <div class="col-md-4 col-sm-12 form-field">
         <%= f.label :full_name %>
     </div>
-    <div class="col-md-8 col-sm-12">
+    <div class="col-md-8 col-sm-12 form-field">
         <%= f.select :name_prefix, ["Mr", "Mrs", "Ms"] %><%= f.text_field :full_name, style: "width:100%;" %>
     </div>
-    <div class="col-md-4 col-sm-12">
+    <div class="col-md-4 col-sm-12 form-field">
         <%= f.label :phone_number %>
     </div>
-    <div class="col-md-8 col-sm-12">
+    <div class="col-md-8 col-sm-12 form-field">
         <%= f.number_field :phone_number, style: "width:100%;", class: "hidden-arrows" %>
     </div>
 
-    <div class="col-md-4 col-sm-12">
+    <div class="col-md-4 col-sm-12 form-field">
         <%= f.label :address %>
     </div>
-    <div class="col-md-8 col-sm-12">
+    <div class="col-md-8 col-sm-12 form-field">
         <%= f.text_field :address, style: "width:100%;" %>
     </div>
-    <div class="col-md-4 col-sm-12">
+    <div class="col-md-4 col-sm-12 form-field">
         <%= f.label :country %>
     </div>
-    <div class="col-md-8 col-sm-12">
+    <div class="col-md-8 col-sm-12 form-field">
         <%= f.country_select :country, include_blank: 'Select a country' %>
     </div>
-    <div class="col-md-4 col-sm-12">
+    <div class="col-md-4 col-sm-12 form-field">
         <%= f.label :city %>
     </div>
-    <div class="col-md-8 col-sm-12">
+    <div class="col-md-8 col-sm-12 form-field">
         <%= f.text_field :city %>
     </div>
-    <div class="col-md-4 col-sm-12">
+    <div class="col-md-4 col-sm-12 form-field">
         <%= f.label :age %>
     </div>
-    <div class="col-md-8 col-sm-12">
+    <div class="col-md-8 col-sm-12 form-field">
         <%= f.number_field :age %>
     </div>
 

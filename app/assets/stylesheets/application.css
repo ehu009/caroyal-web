@@ -200,6 +200,10 @@
     -webkit-appearance: none;
     margin: 0;
   }
+  .form-field {
+    margin-top:8px;
+    margin-bottom: 8px;
+  }
   .form-btn {
     border-style: solid;
     border-width: 4;
