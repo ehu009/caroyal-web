@@ -195,6 +195,11 @@
   .button-like {
     cursor: pointer;
   }
+  .hidden-arrows::-webkit-outer-spin-button,
+  .hidden-arrows::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
   .form-btn {
     border-style: solid;
     border-width: 4;

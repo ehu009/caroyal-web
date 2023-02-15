@@ -44,7 +44,7 @@
             <span style="right:0px; color: red">*</span>
         </div>
         <div class="col-md-8 col-sm-12">
-            <%= f.text_field :tax_identification_number, style: "width:100%;" %>
+            <%= f.number_field :tax_identification_number, style: "width:100%;", class: "hidden-arrows" %>
         </div>
         <div class="col-md-3 col-sm-6">
             <%= f.label :producer %>
@@ -80,7 +80,7 @@
             <span style="right:0px; color: red">*</span>
         </div>
         <div class="col-md-8 col-sm-12">
-            <%= f.number_field :phone_number, style: "width:100%;" %>
+            <%= f.number_field :phone_number, style: "width:100%;", class: "hidden-arrows" %>
         </div>
 
         <div class="col-md-4 col-sm-12">
