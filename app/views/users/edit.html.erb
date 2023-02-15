@@ -3,20 +3,21 @@
 </h2>
 
 <p>
-    <h5>Change email address</h5>
+    <h5>Change login information</h5>
     <br>
     <%= form_for @user do |f| %>
     <div class="container-fluid row">
         <div class="col-md-4 col-sm-12 form-field">
-            <%= f.label :email %>
+            <%= f.label :phone_number %>
         </div>
         <div class="col-md-8 col-sm-12 form-field">
-            <%= f.text_field :email, style: "width:100%" %>
+            <%= f.number_field :phone_number, style: "width:100%;", class: "hidden-arrows" %>
         </div>
+        
         <div class="col-md-4 col-sm-0">
         </div>
         <div class="col-md-8 col-sm-12">
-            <%= f.submit  "Update email address", class: "form-btn white-text blue-bg" %>
+            <%= f.submit  "Update phone number", class: "form-btn white-text blue-bg" %>
         </div>
     </div>
     <% end %>
@@ -94,7 +95,6 @@
 <hr class="white-text">
 <h5>Personal details</h5>
 <p>
-    
 
     <div class="col-md-4 col-sm-12 form-field">
         <%= f.label :name_prefix %>
@@ -126,12 +126,11 @@
     </div>
 
     <div class="col-md-4 col-sm-12 form-field">
-        <%= f.label :phone_number %>
+        <%= f.label :email %>
     </div>
     <div class="col-md-8 col-sm-12 form-field">
-        <%= f.number_field :phone_number, style: "width:100%;", class: "hidden-arrows" %>
+        <%= f.text_field :email, style: "width:100%" %>
     </div>
-
     <div class="col-md-4 col-sm-12 form-field">
         <%= f.label :address %>
     </div>

@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
     layout "application_fishy"
     def create
         message = "Error logging in."
-        @user = User.find_by(email: params[:email])
+        @user = User.find_by(phone_number: params[:phone_number])
 
         if !!@user && @user.authenticate(params[:password])
 
