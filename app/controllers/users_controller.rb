@@ -149,11 +149,11 @@ class UsersController < ApplicationController
     private
 
     def regular_params
-        params.require(:user).permit(:confirm_deletion, :email, :password, :company_name, :producer, :distributor, :company_address, :tax_identification_number, :name_prefix, :first_name, :last_name, :date_of_birth, :phone_number, :address, :country, :city)
+        params.require(:user).permit(:confirm_deletion, :email, :password, :company_name, :producer, :distributor, :company_address, :tax_identification_number, :name_prefix, :first_name, :last_name, :date_of_birth, :phone_number, :address, :country, :city, :company_city, :company_country)
     end
 
     def admin_params
-        params.require(:user).permit(:confirm_deletion, :administrator, :email, :password, :company_name, :producer, :distributor, :company_address, :tax_identification_number, :name_prefix, :first_name, :last_name, :date_of_birth, :phone_number, :address, :country, :city)
+        params.require(:user).permit(:confirm_deletion, :administrator, :email, :password, :company_name, :producer, :distributor, :company_address, :tax_identification_number, :name_prefix, :first_name, :last_name, :date_of_birth, :phone_number, :address, :country, :city, :company_city, :company_country)
     end
 
     def user_params
