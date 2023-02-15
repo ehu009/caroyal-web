@@ -1,29 +1,45 @@
-<h2>
-    Log in
-</h2>
+
 <p>
 <%= form_tag '/login' do |f| %>
+    
     <div class="container-fluid row">
-        <div class="col-md-3 col-sm-12">
+        <!--<div class="col-md-3 col-sm-0">
+        </div>-->
+        <div class="col-sm-12 text-center">
+            <h2>
+                Log in
+            </h2>
+        </div>
+        <div class="col-md-1 col-sm-0">
+        </div>
+        <div class="col-md-3 col-sm-12 form-field">
             <%= label_tag :phone_number %>
         </div>
-        <div class="col-md-9 col-sm-12">
-            <%= number_field_tag :phone_number, class: "visible", style: "width:10%;" %>
+        <div class="col-md-6 col-sm-12 form-field">
+            <%= number_field_tag :phone_number, "", class: "hidden-arrows", style: "width:100%;" %>
         </div>
-        <div class="col-md-3 col-sm-12">
+        <div class="col-md-2 col-sm-0">
+        </div>
+
+
+
+        <div class="col-md-1 col-sm-0">
+        </div>
+        <div class="col-md-3 col-sm-12 form-field">
             <%= label_tag :password %>
         </div>
-        <div class="col-md-9 col-sm-12">
-            <%= password_field_tag :password, style: "width:100%;" %>
+        <div class="col-md-6 col-sm-12 form-field">
+            <%= password_field_tag :password, "", style: "width:100%;" %>
+        </div>
+        <div class="col-md-2 col-sm-0">
         </div>
 
-
-        <div class="col-md-3 col-sm-0">
-        </div>
-        <div class="col-md-9 col-sm-12">
-            <%= submit_tag "Log in" %>
+        <div class="col-sm-12 text-center">
+        
+            <%= submit_tag "Submit", class: "form-btn dark-blue-bg white-text" %>
         </div>
     </div>
+    
 <% end %>
     <hr class="dark-blue-text">
 </p>
