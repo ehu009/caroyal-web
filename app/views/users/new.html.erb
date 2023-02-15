@@ -6,6 +6,13 @@
 <div class="container-fluid row">
     <p>
         <div class="col-md-4 col-sm-12 form-field">
+            <%= f.label :phone_number %>
+            <span style="right:0px; color: red">*</span>
+        </div>
+        <div class="col-md-8 col-sm-12 form-field">
+            <%= f.number_field :phone_number, style: "width:100%;", class: "hidden-arrows" %>
+        </div>
+        <div class="col-md-4 col-sm-12 form-field">
             <%= f.label :email %>
         </div>
         <div class="col-md-8 col-sm-12 form-field">
@@ -74,13 +81,7 @@
         <div class="col-md-8 col-sm-12 form-field">
             <%= f.select :name_prefix, ["Mr", "Mrs", "Ms"] %><%= f.text_field :full_name, style: "width:100%;" %>
         </div>
-        <div class="col-md-4 col-sm-12 form-field">
-            <%= f.label :phone_number %>
-            <span style="right:0px; color: red">*</span>
-        </div>
-        <div class="col-md-8 col-sm-12 form-field">
-            <%= f.number_field :phone_number, style: "width:100%;", class: "hidden-arrows" %>
-        </div>
+        
 
         <div class="col-md-4 col-sm-12 form-field">
             <%= f.label :address %>
