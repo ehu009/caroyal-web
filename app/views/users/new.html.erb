@@ -112,14 +112,12 @@
         </div>
         <div class="col-md-4 col-sm-12 form-field">
             <%= f.label :country %>
-            <span style="right:0px; color: red">*</span>
         </div>
         <div class="col-md-8 col-sm-12 form-field">
             <%= f.country_select :country, value: session[:create_params]["country"], include_blank: 'Select a country' %>
         </div>
         <div class="col-md-4 col-sm-12 form-field">
             <%= f.label :city %>
-            <span style="right:0px; color: red">*</span>
         </div>
         <div class="col-md-8 col-sm-12 form-field">
             <%= f.select :city, [], value: session[:create_params]["city"], style: "width:100%" %>
