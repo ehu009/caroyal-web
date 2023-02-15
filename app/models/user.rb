@@ -7,6 +7,8 @@ class User < ApplicationRecord
     validates :company_address, presence: true
     validates :tax_identification_number, presence: true
     validates :name_prefix, presence: true
+    validates :first_name, presence: true
+    validates :last_name, presence: true
     validates :phone_number, uniqueness: true, presence: true
     validates :country, presence: true
     validates :city, presence: true
