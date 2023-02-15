@@ -3,6 +3,9 @@ class UsersController < ApplicationController
 
     def new
         @user = User.new
+        if session[:create_params] == nil then
+            session[:create_params] = {}
+        end
     end
 
     def stats
@@ -16,11 +19,13 @@ class UsersController < ApplicationController
 
         @user = User.new(user_params)
         @user.administrator = false
-        
+        session[:create_params] = {}
         if @user.save
             session[:user_id] = @user.id
+            session[:create_params] = nil
             redirect_to first_time_login_path, notice: "User account was created successfully."
         else
+            remember_create_params
             message = @user.errors.messages
             redirect_to new_user_path, notice: message
         end
@@ -164,5 +169,19 @@ class UsersController < ApplicationController
         else
             regular_params
         end
+    end
+
+    def remember_create_params
+        session[:create_params] = params[:user]
+        session[:create_params]['password'] = ""
+        def set_checkmark key
+            v = false
+            if session[:create_params][key] == "1" then
+                v = true
+            end
+            session[:create_params][key] = v
+        end
+        set_checkmark 'producer'
+        set_checkmark 'distributor'
     end
 end

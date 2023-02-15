@@ -10,13 +10,13 @@
             <span style="right:0px; color: red">*</span>
         </div>
         <div class="col-md-8 col-sm-12 form-field">
-            <%= f.number_field :phone_number, style: "width:100%;", class: "hidden-arrows" %>
+            <%= f.number_field :phone_number, value: session[:create_params]["phone_number"], style: "width:100%;", class: "hidden-arrows" %>
         </div>
         <div class="col-md-4 col-sm-12 form-field">
             <%= f.label :email %>
         </div>
         <div class="col-md-8 col-sm-12 form-field">
-            <%= f.text_field :email, style: "width:100%;" %>
+            <%= f.text_field :email, value: session[:create_params]["email"], style: "width:100%;" %>
         </div>
         <div class="col-md-4 col-sm-12 form-field">
             <%= f.label :password %>
@@ -36,34 +36,34 @@
             <span style="right:0px; color: red">*</span>
         </div>
         <div class="col-md-8 col-sm-12 form-field">
-            <%= f.text_field :company_name, style: "width:100%;" %>
+            <%= f.text_field :company_name, value: session[:create_params]["company_name"], style: "width:100%;" %>
         </div>
         <div class="col-md-4 col-sm-12 form-field">
             <%= f.label :company_address %>
             <span style="right:0px; color: red">*</span>
         </div>
         <div class="col-md-8 col-sm-12 form-field">
-            <%= f.text_field :company_address, style: "width:100%;" %>
+            <%= f.text_field :company_address, value: session[:create_params]["company_address"], style: "width:100%;" %>
         </div>
         <div class="col-md-4 col-sm-12 form-field">
             <%= f.label :tax_identification_number, "TIN (tax ID)" %>
             <span style="right:0px; color: red">*</span>
         </div>
         <div class="col-md-8 col-sm-12 form-field">
-            <%= f.number_field :tax_identification_number, style: "width:100%;", class: "hidden-arrows" %>
+            <%= f.number_field :tax_identification_number, value: session["create_params"][:tax_identification_number], style: "width:100%;", class: "hidden-arrows" %>
         </div>
         <div class="col-md-3 col-sm-6 form-field">
             <%= f.label :producer %>
         </div>
         <div class="col-md-3 col-sm-6 form-field">
-            <%= f.check_box :producer, class: "form-check-input" %>
+            <%= f.check_box :producer, checked: session[:create_params]["producer"], class: "form-check-input" %>
         </div>
         
         <div class="col-md-3 col-sm-6 form-field">
             <%= f.label :distributor %>
         </div>
         <div class="col-md-3 col-sm-6 form-field">
-            <%= f.check_box :distributor, class: "form-check-input" %>
+            <%= f.check_box :distributor, checked: session[:create_params]["distributor"], class: "form-check-input" %>
         </div>
         
     
@@ -79,7 +79,7 @@
             <span style="right:0px; color: red">*</span>
         </div>
         <div class="col-md-8 col-sm-12 form-field">
-            <%= f.select :name_prefix, ["Mr", "Mrs", "Ms"] %>
+            <%= f.select :name_prefix, ["Mr", "Mrs", "Ms"], value: session["create_params"][:name_prefix] %>
         </div>
         
         <div class="col-md-4 col-sm-12 form-field">
@@ -87,20 +87,20 @@
             <span style="right:0px; color: red">*</span>
         </div>
         <div class="col-md-8 col-sm-12 form-field">
-            <%= f.text_field :first_name, style: "width:100%;" %>
+            <%= f.text_field :first_name, value: session[:create_params]["first_name"], style: "width:100%;" %>
         </div>
         <div class="col-md-4 col-sm-12 form-field">
             <%= f.label :last_name, "Surname"%>
             <span style="right:0px; color: red">*</span>
         </div>
         <div class="col-md-8 col-sm-12 form-field">
-            <%= f.text_field :last_name, style: "width:100%;" %>
+            <%= f.text_field :last_name, value: session[:create_params]["last_name"], style: "width:100%;" %>
         </div>
         <div class="col-md-4 col-sm-12 form-field">
             <%= f.label :date_of_birth %>
         </div>
         <div class="col-md-8 col-sm-12 form-field">
-            <%= f.date_field :date_of_birth %>
+            <%= f.date_field :date_of_birth, value: session[:create_params]["date_of_birth"] %>
         </div>
 
 
@@ -108,21 +108,21 @@
             <%= f.label :address %>
         </div>
         <div class="col-md-8 col-sm-12 form-field">
-            <%= f.text_field :address, style: "width:100%;" %>
+            <%= f.text_field :address, value: session[:create_params]["address"], style: "width:100%;" %>
         </div>
         <div class="col-md-4 col-sm-12 form-field">
             <%= f.label :country %>
             <span style="right:0px; color: red">*</span>
         </div>
         <div class="col-md-8 col-sm-12 form-field">
-            <%= f.country_select :country, include_blank: 'Select a country' %>
+            <%= f.country_select :country, value: session[:create_params]["country"], include_blank: 'Select a country' %>
         </div>
         <div class="col-md-4 col-sm-12 form-field">
             <%= f.label :city %>
             <span style="right:0px; color: red">*</span>
         </div>
         <div class="col-md-8 col-sm-12 form-field">
-            <%= f.select :city, [], style: "width:100%" %>
+            <%= f.select :city, [], value: session[:create_params]["city"], style: "width:100%" %>
         </div>
     </p>
 
