@@ -1,35 +1,7 @@
 
-var cityData = null;
-
-function getCityData(data_url) {
-    var getJSON = function(url, callback) {
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', url, true);
-        xhr.onload = function() {
-        var status = xhr.status;
-        if (status === 200) {
-            callback(null, xhr.response);
-        } else {
-            callback(status, xhr.response);
-        }
-        };
-        xhr.send();
-    };
-    getJSON(data_url,
-        function(err, data) {
-            if (err !== null) {
-                alert('Something went wrong while loading city data: ' + err);
-            } else {
-                cityData = JSON.parse(data);
-            }
-        });
-}
-
-
 function initCitySelect(elem) {
     var opt = document.createElement("option");
     opt.disabled = true;
-    opt.selected = true;
     opt.text = "Select a country first";
     elem.appendChild(opt);
 }
@@ -55,14 +27,24 @@ function populateCitySelect(elem, countryCode) {
     }
 }
 
-function initCitySelector(countrySelectId, citySelectId) {
+function initCitySelector(countrySelectId, citySelectId, initCountry, initCity) {
     var country_field = document.getElementById(countrySelectId);
     var city_field = document.getElementById(citySelectId);
 
     initCitySelect(city_field);
-
-    country_field.onchange = function () {
-        resetCitySelect(city_field);
-        populateCitySelect(city_field, country_field.value);
-    };
+    
+    addEventListener("city-data-available",
+        () => {      
+            if (initCountry != "") {
+                if (initCity != "" | initCity != undefined) {
+                    populateCitySelect(city_field, initCountry);
+                    city_field.value = initCity;
+                }
+            }
+            country_field.onchange = function () {
+                resetCitySelect(city_field);
+                populateCitySelect(city_field, country_field.value);
+            };
+        },
+    false);
 }

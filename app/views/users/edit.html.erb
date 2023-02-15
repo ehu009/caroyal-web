@@ -75,6 +75,18 @@
         <%= f.text_field :company_address, style: "width:100%;" %>
     </div>
     <div class="col-md-4 col-sm-12 form-field">
+        <%= f.label :company_country %>
+    </div>
+    <div class="col-md-8 col-sm-12 form-field">
+        <%= f.country_select :company_country, include_blank: 'Select a country' %>
+    </div>
+    <div class="col-md-4 col-sm-12 form-field">
+        <%= f.label :company_city %>
+    </div>
+    <div class="col-md-8 col-sm-12 form-field">
+        <%= f.select :company_city, [], style: "width:100%" %>
+    </div>
+    <div class="col-md-4 col-sm-12 form-field">
         <%= f.label :tax_identification_number, "TIN (tax ID)" %>
         <span style="right:0px; color: red">*</span>
     </div>
@@ -194,3 +206,13 @@
     <% end %>
     
 </p>
+<script>
+    window.onload = function() {
+        
+        cityData = getCityData("https://raw.githubusercontent.com/lutangar/cities.json/master/cities.json");
+        
+        initCitySelector("user_country", "user_city", "<%= session[:create_params]['country'] %>", "<%= session[:create_params]['city'] %>");
+        initCitySelector("user_company_country", "user_company_city", "<%= session[:create_params]['company_country'] %>", "<%= session[:create_params]['company_country'] %>");
+        
+    }
+</script>

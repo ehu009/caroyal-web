@@ -1,6 +1,6 @@
 
 <h2>New User</h2>
-
+<%= session[:create_params]['city'] %>
 
 <%= form_for @user do |f| %>
 <div class="container-fluid row">
@@ -46,11 +46,25 @@
             <%= f.text_field :company_address, value: session[:create_params]["company_address"], style: "width:100%;" %>
         </div>
         <div class="col-md-4 col-sm-12 form-field">
+            <%= f.label :company_country %>
+        </div>
+        <div class="col-md-8 col-sm-12 form-field">
+            <%= f.country_select :company_country, value: session[:create_params]["company_country"], include_blank: 'Select a country' %>
+        </div>
+        <div class="col-md-4 col-sm-12 form-field">
+            <%= f.label :company_city %>
+        </div>
+        <div class="col-md-8 col-sm-12 form-field">
+            <%= f.select :company_city, [], value: session[:create_params]["company_city"], style: "width:100%" %>
+        </div>
+
+
+        <div class="col-md-4 col-sm-12 form-field">
             <%= f.label :tax_identification_number, "TIN (tax ID)" %>
             <span style="right:0px; color: red">*</span>
         </div>
         <div class="col-md-8 col-sm-12 form-field">
-            <%= f.number_field :tax_identification_number, value: session["create_params"][:tax_identification_number], style: "width:100%;", class: "hidden-arrows" %>
+            <%= f.number_field :tax_identification_number, value: session["create_params"]["tax_identification_number"], style: "width:100%;", class: "hidden-arrows" %>
         </div>
         <div class="col-md-3 col-sm-6 form-field">
             <%= f.label :producer %>
@@ -114,13 +128,13 @@
             <%= f.label :country %>
         </div>
         <div class="col-md-8 col-sm-12 form-field">
-            <%= f.country_select :country, value: session[:create_params]["country"], include_blank: 'Select a country' %>
+            <%= f.country_select :country, selected: session[:create_params]["country"], include_blank: 'Select a country' %>
         </div>
         <div class="col-md-4 col-sm-12 form-field">
             <%= f.label :city %>
         </div>
         <div class="col-md-8 col-sm-12 form-field">
-            <%= f.select :city, [], value: session[:create_params]["city"], style: "width:100%" %>
+            <%= f.select :city, [], selected: session[:create_params]["city"], style: "width:100%" %>
         </div>
     </p>
 
@@ -134,4 +148,14 @@
 </div>
 <% end %>
 
-
+<script>
+        
+    window.onload = function() {
+        
+        cityData = getCityData("https://raw.githubusercontent.com/lutangar/cities.json/master/cities.json");
+        
+        initCitySelector("user_country", "user_city", "<%= session[:create_params]['country'] %>", "<%= session[:create_params]['city'] %>");
+        initCitySelector("user_company_country", "user_company_city", "<%= session[:create_params]['company_country'] %>", "<%= session[:create_params]['company_country'] %>");
+        
+    }
+</script>
