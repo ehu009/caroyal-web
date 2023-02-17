@@ -19,7 +19,7 @@ logout: <%= link_to "hehuhehahs", "/logout" %>
     <br>
     <%= u.created_at %>
     <br>
-    name: <%= u.full_name %>
+    name: <%= u.first_name %> <%= u.last_name %>
     <br/>
     <% if u.administrator then %>
     <b>ADMIN</b>
@@ -27,7 +27,9 @@ logout: <%= link_to "hehuhehahs", "/logout" %>
     <% end %>
     <%= link_to "edit user info", edit_user_path(u) %>
     <br>
-    questionaire id: <%=u.producer_questionaire.id%>
+    phone: <%=u.phone_number%>
+    <br>
+    questionaire id: <%#=u.producer_questionaire.id%>
 
     </p>
 
