@@ -30,6 +30,7 @@
   }
   .center-wall {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
   }
@@ -37,11 +38,21 @@
     width: 50%;    
   }
   .logo-wall-btn {
+    /*
     position:relative;
-    width: 12%;
+    */
+    /*
+    width: 125px;
+    */
+    min-width: 125px;
+    max-width: 12%;
+    /*
     left: 44%;
+    */
     border-radius:25px;
+   
     padding:25px;
+    
     padding-top:15px;
     padding-bottom:15px;
     transform: scaleX(100%);
