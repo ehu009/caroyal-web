@@ -1,6 +1,6 @@
 //= require chartkick
 //= require Chart.bundle
-//= require city_select
+
 
   function open_nav(id) {
     var e = document.getElementById(id);
