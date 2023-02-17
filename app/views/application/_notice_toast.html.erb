@@ -11,7 +11,19 @@
                 <button type="button" class="btn-close" data-bs-dismiss="toast" onclick="unveil('veil');" style="background-color:white"></button>
             </div>
             <div class="toast-body">
+                <% if notice.is_a?(Hash) then %>
+                <% notice.each do |k, v| %>
+                <b><%= k %></b>: 
+                <% plural = (v.length > 1)%>
+                <% v.each do |err| %>
+                <%= err %><% if plural %>,&nbsp;<% end %>
+                <% end %>
+                <br>
+                <% end %>
+                <% else %>
                 <%= notice %>
+                <% end %>
+
             </div>
         </div>
     </div>
