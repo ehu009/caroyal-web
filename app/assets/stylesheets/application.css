@@ -173,6 +173,11 @@
         opacity: 0;
     }
 }
+  .form-indicator-text {
+    font-size: small;
+    color: gray;
+    font-style: italic;
+  }
   .notice-toast-container {
     position: fixed;
     z-index: 11;

@@ -1,6 +1,5 @@
 
 <h2>New User</h2>
-<%= session[:create_params]['city'] %>
 
 <%= form_for @user do |f| %>
 <div class="container-fluid row">
@@ -13,17 +12,122 @@
             <%= f.number_field :phone_number, value: session[:create_params]["phone_number"], style: "width:100%;", class: "hidden-arrows" %>
         </div>
         <div class="col-md-4 col-sm-12 form-field">
-            <%= f.label :email %>
+            <label>Confirm</label><span style="right:0px; color: red">*</span>
         </div>
         <div class="col-md-8 col-sm-12 form-field">
-            <%= f.text_field :email, value: session[:create_params]["email"], style: "width:100%;" %>
+            <input id="phone-confirm" value="<%= session[:create_params]["phone_number"] %>" style="width:100%;" class="hidden-arrows" type="number">
         </div>
+        <div class="col-md-4 col-sm-0 form-field">
+        </div>
+        <div class="col-md-8 col-sm-12 form-field">
+            <i id="phone-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">phone numbers must match</span>
+        </div>
+
+
         <div class="col-md-4 col-sm-12 form-field">
             <%= f.label :password %>
             <span style="right:0px; color: red">*</span>
         </div>
         <div class="col-md-8 col-sm-12 form-field">
             <%= f.password_field :password, style: "width:100%;" %>
+        </div>
+        <div class="col-md-4 col-sm-12 form-field">
+            <label>Confirm</label>
+            <span style="right:0px; color: red">*</span>
+        </div>
+        <div class="col-md-8 col-sm-12 form-field">
+            <input id="password-confirm" style="width:100%;" type="password">
+        </div>
+        <div class="col-md-4 col-sm-0 form-field">
+        </div>
+        <div class="col-md-8 col-sm-12 form-field">
+            <i id="pwd-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">passwords must match</span><br>
+            <i id="length-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">must be at least 10 characters long</span><br>
+            <i id="lower-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">must contain lower case</span><br>
+            <i id="upper-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">must contain upper case</span><br>
+            <i id="number-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">must contain a number</span><br>
+            <br>
+            <script>
+            
+            function compare(elemA, elemB, indicator) {
+                
+                if (elemA.value === elemB.value) {
+                    indicator.style.visibility = "visible";
+                    return true;
+                }
+                else {
+                    indicator.style.visibility = "hidden";
+                    return false;
+                }
+            }
+            function pwdRequirements(elem, length_i, number_i, lower_i, upper_i) {
+                var length = false;
+                var number = false;
+                var lower = false;
+                var upper = false;
+                
+                length_i.style.visibility = "hidden";
+                number_i.style.visibility = "hidden";
+                lower_i.style.visibility = "hidden";
+                upper_i.style.visibility = "hidden";
+
+
+                var s = elem.value;
+                var i=0;
+                var character='';
+                while (i <= s.length){
+                    if (i >= 10) {
+                        length = true;
+                        length_i.style.visibility = "visible";
+                    }
+                    character = s.charAt(i);
+                    if (!isNaN(character * 1)){
+                        number = true;
+                        number_i.style.visibility = "visible";
+                    }else{
+                        if (character == character.toUpperCase()) {
+                            upper = true;
+                            upper_i.style.visibility = "visible";
+                        }
+                        if (character == character.toLowerCase()){
+                            lower = true;
+                            lower_i.style.visibility = "visible";
+                        }
+                    }
+                    i++;
+                    if (length && number && lower && upper) {
+                        break;
+                    }
+                }
+                return (length && number && lower && upper);
+            }
+            
+            
+            document.getElementById("new_user").onchange = function(){
+                var p = document.getElementById("user_phone_number")
+                var pC = document.getElementById("phone-confirm");
+                var pwd = document.getElementById("user_password")
+                var pwdC = document.getElementById("password-confirm");
+
+                var allow = false;
+                var phone_i = document.getElementById("phone-indicate");
+                var pwd_i = document.getElementById("pwd-indicate");
+                var length_i = document.getElementById("length-indicate");
+                var number_i = document.getElementById("number-indicate");
+                var lower_i = document.getElementById("lower-indicate");
+                var upper_i = document.getElementById("upper-indicate");
+                allow |= compare(p, pC, phone_i);
+                allow &= compare(pwd, pwdC, pwd_i);
+                allow &= pwdRequirements(pwd, length_i, number_i, lower_i, upper_i);
+                if (allow) {
+                    document.getElementById('user_submit').disabled = false;
+                }                
+            };
+
+
+            </script>
+
+
         </div>
     </p>
     <hr class="dark-blue-text">
@@ -37,6 +141,12 @@
         </div>
         <div class="col-md-8 col-sm-12 form-field">
             <%= f.text_field :company_name, value: session[:create_params]["company_name"], style: "width:100%;" %>
+        </div>
+        <div class="col-md-4 col-sm-12 form-field">
+            <%= f.label :email %>
+        </div>
+        <div class="col-md-8 col-sm-12 form-field">
+            <%= f.text_field :email, value: session[:create_params]["email"], style: "width:100%;" %>
         </div>
         <div class="col-md-4 col-sm-12 form-field">
             <%= f.label :company_address %>
@@ -142,14 +252,13 @@
         <div class="col-md-4 col-sm-0">
         </div>
         <div class="col-md-8 col-sm-12">
-            <%= f.submit "Create Account", class: "form-btn blue-bg white-text" %>
+            <%= f.submit "Create Account", disabled: "disabled", id: "user_submit", class: "form-btn blue-bg white-text" %>
         </div>
     </p>
 </div>
 <% end %>
 
 <script>
-        
     window.onload = function() {
         
         cityData = getCityData("https://raw.githubusercontent.com/lutangar/cities.json/master/cities.json");
