@@ -155,17 +155,22 @@
         <div class="col-md-8 col-sm-12 form-field">
             <%= f.text_field :company_address, value: session[:create_params]["company_address"], style: "width:100%;" %>
         </div>
+
+        
+        
         <div class="col-md-4 col-sm-12 form-field">
             <%= f.label :company_country %>
+            <span style="right:0px; color: red">*</span>
         </div>
         <div class="col-md-8 col-sm-12 form-field">
-            <%= f.country_select :company_country, value: session[:create_params]["company_country"], include_blank: 'Select a country' %>
+            <%= f.country_select :company_country, {include_blank: 'Select a country'}, {class: "wide-select"} %>
         </div>
         <div class="col-md-4 col-sm-12 form-field">
             <%= f.label :company_city %>
+            <span style="right:0px; color: red">*</span>
         </div>
         <div class="col-md-8 col-sm-12 form-field">
-            <%= f.select :company_city, [], value: session[:create_params]["company_city"], style: "width:100%" %>
+            <%= f.select :company_city, [], {}, {class: "wide-select"} %>
         </div>
 
 
@@ -238,13 +243,13 @@
             <%= f.label :country %>
         </div>
         <div class="col-md-8 col-sm-12 form-field">
-            <%= f.country_select :country, selected: session[:create_params]["country"], include_blank: 'Select a country' %>
+            <%= f.country_select :country, {include_blank: 'Select a country'}, {class: "wide-select"} %>
         </div>
         <div class="col-md-4 col-sm-12 form-field">
             <%= f.label :city %>
         </div>
         <div class="col-md-8 col-sm-12 form-field">
-            <%= f.select :city, [], selected: session[:create_params]["city"], style: "width:100%" %>
+            <%= f.select :city, [], {}, {class: "wide-select"} %>
         </div>
     </p>
 
@@ -264,7 +269,7 @@
         cityData = getCityData("https://raw.githubusercontent.com/lutangar/cities.json/master/cities.json");
         
         initCitySelector("user_country", "user_city", "<%= session[:create_params]['country'] %>", "<%= session[:create_params]['city'] %>");
-        initCitySelector("user_company_country", "user_company_city", "<%= session[:create_params]['company_country'] %>", "<%= session[:create_params]['company_country'] %>");
+        initCitySelector("user_company_country", "user_company_city", "<%= session[:create_params]['company_country'] %>", "<%= session[:create_params]['company_city'] %>");
         
     }
 </script>

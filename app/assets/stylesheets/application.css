@@ -16,20 +16,12 @@
 
 
 .wide-select {
-/*  min-width:100%;*/
-  max-width:5ch;
+  min-width:100%;
+  max-width:100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-  .demo-2 {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    max-width: 100%;
-    
-
-  }
 
   .logo-top {
     margin-top: 20px;

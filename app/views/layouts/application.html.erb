@@ -16,7 +16,7 @@
     <!-- use locally hosted FontAwesome -->
     <script src="/fa-all.js"></script>
 
-    <script>
+<script>
     
 function open_nav(id) {
     var e = document.getElementById(id);
@@ -78,6 +78,7 @@ function getCityData(data_url) {
 function initCitySelect(elem) {
   var opt = document.createElement("option");
   opt.disabled = true;
+  opt.classList.add('wide-select')
   opt.text = "Select a country first";
   elem.appendChild(opt);
 }
@@ -112,9 +113,11 @@ function initCitySelector(countrySelectId, citySelectId, initCountry, initCity) 
   addEventListener("city-data-available",
       () => {      
           if (initCountry != "") {
+
+              initSelectorWith(country_field, initCountry, false);
               if (initCity != "" | initCity != undefined) {
                   populateCitySelect(city_field, initCountry);
-                  city_field.value = initCity;
+                  initSelectorWith(city_field, initCity, true);
               }
           }
           country_field.onchange = function () {
@@ -124,6 +127,18 @@ function initCitySelector(countrySelectId, citySelectId, initCountry, initCity) 
       },
   false);
 }
+
+
+function initSelectorWith(elem, value, print) {
+    for (let i = 0; i < elem.options.length; i += 1) {
+        var e = elem.options.item(i);
+        if (e.value == value) {
+            elem.selectedIndex = i;
+            break;
+        }
+    }
+}
+
 
 </script>
   </head>
