@@ -1,14 +1,22 @@
 class NoReplyMailer < ApplicationMailer
-    default from: email_address_with_name('no-reply@caroyal.no', "no-reply")
 
-    def email_confirm
+    def email_confirmation
       @user = params[:user]
-      puts @user.email
-      #@url  = 'http://example.com/login'
-      mail(to: @user.email, subject: 'Welcome to My Awesome Site') #do |m|
-      #  m.html { render 'email_confirm' }
-      #  m.text { render plain: 'email_confirm yo'}
-      #end
+      
+      o = [('a'..'z'), ('A'..'Z')].map(&:to_a).flatten
+      @token = (0...25).map { o[rand(o.length)] }.join
+
+      from = Email.new(email: 'no-reply@caroyal.com')
+      to = Email.new(email: @user.email)
+      content = Content.new(type: 'text/html', value: render_to_string(:email_confirmation))
+
+      mail = SendGrid::Mail.new(from, 'Confirm you email address', to, content)
+      sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
+      response = sg.client.mail._('send').post(request_body: mail.to_json)
+
+      @user.confirmation_sent_at = Time.now()
+      @user.confirmation_token = @token
+      @user.save
     end
 
 end
