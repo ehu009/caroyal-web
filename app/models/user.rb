@@ -1,6 +1,6 @@
 class User < ApplicationRecord
     has_secure_password
-    validates_format_of :email, with: URI::MailTo::EMAIL_REGEXP
+    validate :check_email
     validates :password_digest, presence: true
 
     validates :company_name, presence: true
@@ -16,4 +16,10 @@ class User < ApplicationRecord
     has_one :distributor_questionare
     has_one :producer_questionare
 
+    protected
+    def check_email
+        unless email.blank?
+         validates_format_of :email, with: URI::MailTo::EMAIL_REGEXP
+        end
+    end
 end
