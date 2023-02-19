@@ -77,3 +77,5 @@ gem "groupdate" #group by date
 gem "chartkick"
 
 gem 'country_select', '~> 8.0'
+
+gem 'sendgrid-ruby'
