@@ -20,15 +20,22 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
         @user.administrator = false
         session[:create_params] = {}
+        message = "User account was created successfully."
+        redir = new_user_path
         if @user.save
             session[:user_id] = @user.id
             session[:create_params] = nil
-            redirect_to first_time_login_path, notice: "User account was created successfully."
+            email = false
+            if @user.email != "" && @user.email != nil then
+                NoReplyMailer.email_confirmation(@user).send_now
+                messsage += "<br>We've sent you an email so that you may confirm your email address."
+            end
+            redir = first_time_login_path
         else
             remember_create_params
             message = @user.errors.messages
-            redirect_to new_user_path, notice: message
         end
+        redirect_to redir, notice: message
     end
 
     def show
