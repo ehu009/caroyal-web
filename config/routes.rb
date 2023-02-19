@@ -18,6 +18,9 @@ Rails.application.routes.draw do
   get 'price_data', to: "prices#price_data", as: :price_data
   get 'user_stats', to: "users#stats", as: :user_stats
 
+
+  get 'confirm_email', to: 'application#confirm_email', as: :confirm_email
+  
   resources :users, only: [:index, :new, :create, :edit, :update, :show, :destroy]
 
   get 'welcome', to: 'application#first_time_login', as: :first_time_login
