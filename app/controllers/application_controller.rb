@@ -24,14 +24,14 @@ class ApplicationController < ActionController::Base
     end
 
     def confirm_email
-        @user = User.find(confirmation_token: params[:token])
+        @user = User.find_by confirmation_token: params[:token]
         message = "Found no user with this confirmation token"
         redir = root_path
         if @user != nil then
             time = Time.now
             @user.confirmation_token = nil
             message = "Your email confirmation link has expired.<br>We've dispatched another one to your email address."
-            if (time - @user.confirmation_sent_at).days > 30 then
+            if ((time - @user.confirmation_sent_at).to_i / (60*60)) > 15 then
                 NoReplyMailer.email_confirmation(@user).send_now
             else
                 @user.confirmed_at = time
