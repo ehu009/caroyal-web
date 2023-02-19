@@ -28,7 +28,7 @@ class UsersController < ApplicationController
             email = false
             if @user.email != "" && @user.email != nil then
                 NoReplyMailer.email_confirmation(@user).send_now
-                messsage += "<br>We've sent you an email so that you may confirm your email address."
+                message += "<br>We've sent you an email so that you may confirm your email address."
             end
             redir = first_time_login_path
         else
