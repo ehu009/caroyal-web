@@ -1,0 +1,2 @@
+class TimelineEvent < ApplicationRecord
+end
