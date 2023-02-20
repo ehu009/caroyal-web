@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-    layout "application_white", only: [:home]
+    layout "application_white", only: [:home, :timeline]
     before_action :get_current_user
     before_action :must_login, only: [:new_producer_questionaire, :new_distributor_questionaire, :fill_producer_questionaire, :fill_distributor_questionaire]
 
@@ -21,6 +21,10 @@ class ApplicationController < ActionController::Base
 
     def products
 
+    end
+
+    def timeline
+        @events = TimelineEvent.all
     end
 
     def confirm_email

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'about', to: 'application#about', as: :about
   get 'products', to: 'application#products', as: :products
   get 'contact', to: 'application#contact', as: :contact
+  get 'timeline', to: 'application#timeline', as: :timeline
   
   get '/dev', to: 'application#dev'
 
