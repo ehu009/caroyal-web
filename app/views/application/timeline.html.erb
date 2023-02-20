@@ -1,0 +1,21 @@
+
+<section class="timeline">
+<ul>
+<% @events.each do |t| %>
+<li>
+<div>
+<div class="timeline-time">
+<% time = t[:time] %>
+<%= time.month %> <%= time.year %>
+</div>
+<div class="timeline-title">
+<%= t[:title] %>
+</div>
+<div class="timeline-text white-text">
+<%= t[:text] %>
+</div>
+</div>
+</li>
+<% end %>
+</ul>
+</section>
