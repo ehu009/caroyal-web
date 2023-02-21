@@ -14,6 +14,20 @@
  *= require_self
  */
 
+ .parallax {
+  /* The image used */
+  background-image: url("_DSC5780Tørrfisk.jpg");
+
+  /* Set a specific height */
+  min-height: 100vh;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 
 .wide-select {
   min-width:100%;
@@ -89,7 +103,9 @@
   .blurred-box {
     box-shadow: 0 0 10px 10px white;
   }
-
+  .gold-blurred-box {
+    box-shadow: 0 0 5px 5px #b6a14d;
+  }
 
 
 
