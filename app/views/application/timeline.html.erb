@@ -6,15 +6,15 @@
 <% time = t.time %>
 
 <% if t.text == nil && time == nil then%>
-<li class="timeline-era">
-    <div class="white-text">
+<li>
+    <div class="timeline-era white-text">
     <h2 class="timeline-title">
         <%= t[:title] %>
     </h2>
     </div>
 <% else %>
 <li>
-<div class="white-text">
+<div class="timeline-event white-text">
     <h2 class="timeline-time">
         <%= Date::MONTHNAMES[time.month] %> <%= time.year %>
     </h2>
