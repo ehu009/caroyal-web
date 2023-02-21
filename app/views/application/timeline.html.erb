@@ -1,20 +1,33 @@
-
+<h2>Caroyal Timeline</h2>
 <section class="timeline">
 <ul>
 <% @events.each do |t| %>
+
+
+<% time = t.time %>
+
+<% if t.text == nil && time == nil then%>
+<li class="timeline-era">
+    <div class="">
+    <h2 class="timeline-title">
+        <%= t[:title] %>
+    </h2>
+    </div>
+<% else %>
 <li>
-<div>
-<div class="timeline-time">
-<% time = t[:time] %>
-<%= time.month %> <%= time.year %>
+<div class="">
+    <h2 class="timeline-time">
+        <%= Date::MONTHNAMES[time.month] %> <%= time.year %>
+    </h2>
+    <span class="timeline-title">
+        <%= t[:title] %>
+    </span><br>
+    <span class="timeline-text">
+        <%= t[:text] %>
+    </span>
 </div>
-<div class="timeline-title">
-<%= t[:title] %>
-</div>
-<div class="timeline-text white-text">
-<%= t[:text] %>
-</div>
-</div>
+<% end %>
+
 </li>
 <% end %>
 </ul>
