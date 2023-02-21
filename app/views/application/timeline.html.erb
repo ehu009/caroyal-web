@@ -1,4 +1,3 @@
-<h2>Caroyal Timeline</h2>
 <section class="timeline">
 <ul>
 <% @events.each do |t| %>
@@ -8,14 +7,14 @@
 
 <% if t.text == nil && time == nil then%>
 <li class="timeline-era">
-    <div class="">
+    <div class="white-text">
     <h2 class="timeline-title">
         <%= t[:title] %>
     </h2>
     </div>
 <% else %>
 <li>
-<div class="">
+<div class="white-text">
     <h2 class="timeline-time">
         <%= Date::MONTHNAMES[time.month] %> <%= time.year %>
     </h2>
