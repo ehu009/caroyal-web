@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
     end
 
     def timeline
-        @events = TimelineEvent.all
+        @events = TimelineEvent.all.order :number
     end
 
     def confirm_email
