@@ -1,3 +1,10 @@
+<div class="parallax">
+<div class="container-fluid text-center" style="z-index:2;">
+    <%= link_to root_path do %>
+    <img class="logo-top" src="/Caroyal transparent PNG-02.png">
+    <% end %>
+</div>
+
 <section class="timeline">
 <ul>
 <% @events.each do |t| %>
@@ -6,15 +13,15 @@
 <% time = t.time %>
 
 <% if t.text == nil && time == nil then%>
-<li>
-    <div class="timeline-era white-text">
+<li class="timeline-era">
+    <div class="white-text">
     <h2 class="timeline-title">
         <%= t[:title] %>
     </h2>
     </div>
 <% else %>
-<li>
-<div class="timeline-event white-text">
+<li class="timeline-event">
+<div class="white-text gold-blurred-box">
     <h2 class="timeline-time">
         <%= Date::MONTHNAMES[time.month] %> <%= time.year %>
     </h2>
@@ -31,3 +38,4 @@
 <% end %>
 </ul>
 </section>
+</div>
