@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::Base
     layout "application_white", only: [:home, :timeline]
+    
     before_action :get_current_user
-    before_action :must_login, only: [:new_producer_questionaire, :new_distributor_questionaire, :fill_producer_questionaire, :fill_distributor_questionaire]
+    before_action :must_login, only: [:account_overview, :first_time_login, :new_producer_questionaire, :new_distributor_questionaire, :fill_producer_questionaire, :fill_distributor_questionaire]
 
     def home
 
@@ -42,13 +43,14 @@ class ApplicationController < ActionController::Base
                 message = "You email address has been confirmed."
             end
             @user.save
+            @current_user = @user
             redir = account_overview_path
         end
         redirect_to redir, notice: message
     end
 
     def first_time_login
-
+        @user = @current_user
     end
 
     def new_producer_questionaire
