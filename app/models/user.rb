@@ -12,6 +12,7 @@ class User < ApplicationRecord
     validates :phone_number, uniqueness: true, presence: true
     validates :company_country, presence: true
     validates :company_city, presence: true
+    validates :phone_code, presence: true
 
     has_one :distributor_questionare
     has_one :producer_questionare
