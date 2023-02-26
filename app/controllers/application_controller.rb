@@ -25,6 +25,10 @@ class ApplicationController < ActionController::Base
 
     end
 
+    def privacy_policy
+        render layout: "application_white"
+    end
+
     def timeline
         @events = TimelineEvent.all.order :number
         render layout: "application_white"
