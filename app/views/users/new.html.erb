@@ -10,14 +10,14 @@
         </div>
         <div class="col-md-8 col-sm-12 form-field" style="padding-right:0px;">
             <div class="container-fluid row" style="padding:0px;">
-                <div class="col-5">
+                <div class="col-sm-5 col-md-4">
                     
                 <%= f.select :phone_code, [], {}, {class: "wide-select", style: "padding:1px 2px;height:100%"} %>
 
 
                 </div>
 
-                <div class="col-7" style="padding:0px;">
+                <div class="col-sm-7 col-md-8" style="padding:0px;">
                     <%= f.number_field :phone_number, value: session[:create_params]["phone_number"], style: "width:100%", class: "hidden-arrows" %>
                 </div>
             </div>
@@ -27,11 +27,11 @@
         </div>
         <div class="col-md-8 col-sm-12 form-field" style="padding-right:0px">
             <div class="container-fluid row" style="padding:0px;">
-                <div class="col-5">
+                <div class="col-sm-5 col-md-4">
                     
                 </div>
 
-                <div class="col-7" style="padding:0px;">
+                <div class="col-sm-7 col-md-8" style="padding:0px;">
                     <input id="phone-confirm" style="width:100%;" class="hidden-arrows" type="number">
                 </div>
             </div>
@@ -285,12 +285,12 @@
 <script>
     window.onload = function() {
         
-        cityData = getCityData("https://raw.githubusercontent.com/lutangar/cities.json/master/cities.json");
+        cityData = getJSONData("/country_cities.json", cityDataSuccess);
         
         initCitySelector("user_country", "user_city", "<%= session[:create_params]['country'] %>", "<%= session[:create_params]['city'] %>");
         initCitySelector("user_company_country", "user_company_city", "<%= session[:create_params]['company_country'] %>", "<%= session[:create_params]['company_city'] %>");
         
-        phoneData = getPhoneData('/country_phones.json');
+        phoneData = getJSONData('/country_phones.json', phoneDataSuccess);
         initPhoneSelector("user_phone_code", "<%= session[:create_params]['phone_code'] %>");
     }
 </script>
