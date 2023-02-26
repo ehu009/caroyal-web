@@ -184,14 +184,14 @@
 
 <p>
 <h5>
-    Account deletion
+    Account termination
     </h5>
     <br>
     
     <%= form_for @user, method: :delete do |f| %>
     <div class="container-fluid row">
         <div class="col-md-4 col-sm-6">
-            <label for="confirm-delete"> Confirm deletion </label>
+            <label for="confirm-delete"> Confirm</label>
         </div>
         <div class="col-md-8 col-sm-6">
             <input type="checkbox" id="confirm-delete" name="confirm_deletion" class="form-check-input">
@@ -200,7 +200,7 @@
         <div class="col-md-4 col-sm-0">
         </div>
         <div class="col-md-8 col-sm-12">
-            <%= f.submit "Destroy user account", class: "account-delete-btn white-text blue-bg form-btn" %>
+            <%= f.submit "Delete user account", class: "account-delete-btn white-text blue-bg form-btn" %>
         </div>
     </div>
     <% end %>
