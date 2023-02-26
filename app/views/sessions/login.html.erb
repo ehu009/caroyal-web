@@ -15,8 +15,21 @@
         <div class="col-md-3 col-sm-12 form-field">
             <%= label_tag "Phone number or email" %>
         </div>
-        <div class="col-md-6 col-sm-12 form-field">
-            <%= text_field_tag :string, "", class: "hidden-arrows", style: "width:100%;" %>
+        <div class="col-md-6 col-sm-12 form-field" style="padding-right:0px">
+
+            <div class="container-fluid row" style="padding:0px;">
+                <div class="col-sm-5 col-md-4">
+                    
+                <%= select_tag :phone_code, [],  {id: "user_phone_code", name: 'phone_code',class: "wide-select", style: "padding:1px 2px;height:100%"} %>
+
+
+                </div>
+
+                <div class="col-sm-7 col-md-8" style="padding:0px;">
+                    <%= text_field_tag :string, "", class: "hidden-arrows", style: "width:100%;" %>
+                </div>
+            </div>
+            
         </div>
         <div class="col-md-2 col-sm-0">
         </div>
@@ -47,3 +60,13 @@
     <h5>Don't have an account?</h5>
     <%=link_to 'Create an account here', new_user_path %>
 </p>
+
+
+
+<script>
+    window.onload = function() {
+                
+        phoneData = getJSONData('/country_phones.json', phoneDataSuccess);
+        initPhoneSelector("user_phone_code", "-");
+    }
+</script>
