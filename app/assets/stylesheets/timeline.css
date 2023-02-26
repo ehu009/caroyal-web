@@ -45,7 +45,7 @@
   bottom: 0;
   width: 400px;
   padding: 15px;
-  background: #b6a14d;
+  background: #c4a141;
   border-radius:25px;
 
 }
@@ -63,7 +63,7 @@
 .timeline ul li:nth-child(odd) div::before {
   left: -15px;
   border-width: 8px 26px 8px 0;
-  border-color: transparent #b6a14d transparent transparent;
+  border-color: transparent #c4a141 transparent transparent;
 }
 .timeline ul li:nth-child(even) div {
   left: -439px;
@@ -71,7 +71,7 @@
 .timeline ul li:nth-child(even) div::before {
   right: -15px;
   border-width: 8px 0 8px 26px;
-  border-color: transparent transparent transparent #b6a14d;
+  border-color: transparent transparent transparent #c4a141;
 }
 
 
@@ -80,7 +80,7 @@
   transition: background .5s ease-in-out;
 }
 .timeline ul li.in-view::after {
-  background: #b6a14d;
+  background: #c4a141;
 }
 .timeline ul li div {
   visibility: hidden;
@@ -122,7 +122,7 @@
   .timeline ul li:nth-child(even) div::before {
     left: -15px;
     border-width: 8px 26px 8px 0;
-    border-color: transparent #b6a14d transparent transparent;
+    border-color: transparent #c4a141 transparent transparent;
   }
 
 }
