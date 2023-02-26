@@ -1,11 +1,12 @@
 class ApplicationController < ActionController::Base
-    layout "application_white", only: [:home, :timeline]
     
+    layout "application"
+
     before_action :get_current_user
     before_action :must_login, only: [:account_overview, :first_time_login, :new_producer_questionaire, :new_distributor_questionaire, :fill_producer_questionaire, :fill_distributor_questionaire]
 
     def home
-
+        render layout: "application_white"
     end
 
     def dev
@@ -26,6 +27,7 @@ class ApplicationController < ActionController::Base
 
     def timeline
         @events = TimelineEvent.all.order :number
+        render layout: "application_white"
     end
 
     def confirm_email
