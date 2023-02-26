@@ -7,16 +7,7 @@
             Sustainable Management of Supply Networks
         </i>
     </h1>
-    <div class="container-fluid row">
-    <div class="col-5"></div>
-    <div class="col-2">
-    <div class="logo-wall-btn text-center gold-bg white-text button-like" onclick="window.location.href='<%= new_user_path %>'">
-        <strong class="white-text">
-            Sign up
-        </strong>
-        </div>
-    </div>
-    </div>
+    
     <!--
     <div class="logo-wall-btn text-center gold-bg white-text button-like" onclick="window.location.href='<%= new_user_path %>'">
         <strong class="white-text">
@@ -25,10 +16,20 @@
     </div>
     -->
 </div>
+<div class="container-fluid text-center logo-wall-btn-container">
+    <!--<div class="col-5"></div>
+    <div class="col-2 ">-->
+    <div class="logo-wall-btn text-center gold-bg white-text button-like" onclick="window.location.href='<%= new_user_path %>'">
+        <strong class="white-text">
+            Sign up
+        </strong>
+        </div>
+    <!--</div>-->
+    </div>
 </div>
 
 <div style="z-index:4;bottom:0px;right:0px;margin-bottom:15px;margin-right:15px;position:absolute;max-width:130px;min-width:110px;">
 Registered users
-<%= pie_chart user_stats_path, width: "100%", height: "140px", colors: ['#b6a14d', '#0B2C59'], legend: "bottom" %>
+<%= pie_chart user_stats_path, width: "100%", height: "140px", colors: ['#c4a141', '#0B2C59'], legend: "bottom" %>
 
 </div>
