@@ -7,9 +7,13 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 if Rails.env.development? then
-    User.create!([{email: "admin@person.com", password: "qwerqwer", administrator: true, first_name:"Admin", last_name: "McAdminson", tax_identification_number: '0',name_prefix: 'Mr.',phone_number: '0',country: 'Nowhere',city: 'Noville',company_name: 'Caroyal',company_address: '0', company_city: "Tromsø", company_country: "NO"} ])
+    begin
+        User.create!([{email: "admin@person.com", password: "qwerqwer", administrator: true, first_name:"Admin", last_name: "McAdminson", tax_identification_number: '0',name_prefix: 'Mr.',phone_number: '0',country: 'Nowhere',city: 'Noville',company_name: 'Caroyal',company_address: '0', company_city: "Tromsø", company_country: "NO"} ])
+    rescue ActiveRecord::RecordInvalid
+    end
 end
 
+begin
 events = []
 events[0] = {
     :time => DateTime.new(2023, 1, 15),
@@ -116,7 +120,8 @@ events[9] = {
     :number => 10
 }
 TimelineEvent.create(events)
-
+rescue ActiveRecord::RecordInvalid
+end
 
 def fake_user p, d
     phone = (0...5).map { rand(9) }.join
@@ -135,5 +140,9 @@ end
     end
 
     u = fake_user is_producer, is_distributor
-    u.save
+    begin
+        u.save
+    rescue ActiveRecord::RecordInvalid
+
+    end
 end
