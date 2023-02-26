@@ -115,8 +115,25 @@ events[9] = {
     beyond.",
     :number => 10
 }
-
-
 TimelineEvent.create(events)
 
 
+def fake_user p, d
+    phone = (0...5).map { rand(9) }.join
+    User.new({producer: p, distributor: d, password: "asdfF87asdf", administrator: false, first_name:"Fishy", last_name: "McFish", tax_identification_number: '0',name_prefix: 'Mr.',phone_number: phone,country: 'Nowhere',city: 'Noville',company_name: 'FishFishFish',company_address: '0', company_city: "Tromsø", company_country: "NO"})
+end
+
+(0..12).each do |n|
+    is_producer = false
+    is_distributor = false
+
+    if rand(100) > 50 then
+        is_producer = true
+    end
+    if rand(100) > 50 then
+        is_distributor = true
+    end
+
+    u = fake_user is_producer, is_distributor
+    u.save
+end
