@@ -1,9 +1,10 @@
 class User < ApplicationRecord
+
     has_secure_password
     validates :password_digest, presence: true
 
-    validates :phone_number, uniqueness: true, presence: true
     validates :phone_code, presence: true
+    validates :phone_number, presence: true, uniqueness: { scope: [:phone_code] } 
     validate :check_email
 
     validates :first_name, presence: true
