@@ -8,18 +8,37 @@
             <%= f.label :phone_number %>
             <span style="right:0px; color: red">*</span>
         </div>
-        <div class="col-md-8 col-sm-12 form-field">
-            <%= f.number_field :phone_number, value: session[:create_params]["phone_number"], style: "width:100%;", class: "hidden-arrows" %>
+        <div class="col-md-8 col-sm-12 form-field" style="padding-right:0px;">
+            <div class="container-fluid row" style="padding:0px;">
+                <div class="col-sm-5 col-md-3">
+                    
+                <%= f.select :phone_code, [], {}, {class: "wide-select", style: "padding:1px 2px;height:100%"} %>
+
+
+                </div>
+
+                <div class="col-sm-7 col-md-9" style="padding:0px;">
+                    <%= f.number_field :phone_number, value: session[:create_params]["phone_number"], style: "width:100%", class: "hidden-arrows" %>
+                </div>
+            </div>
         </div>
         <div class="col-md-4 col-sm-12 form-field">
             <label>Confirm</label><span style="right:0px; color: red">*</span>
         </div>
-        <div class="col-md-8 col-sm-12 form-field">
-            <input id="phone-confirm" style="width:100%;" class="hidden-arrows" type="number">
+        <div class="col-md-8 col-sm-12 form-field" style="padding-right:0px">
+            <div class="container-fluid row" style="padding:0px;">
+                <div class="col-3">
+                    
+                </div>
+
+                <div class="col-9" style="padding:0px;">
+                    <input id="phone-confirm" style="width:100%;" class="hidden-arrows" type="number">
+                </div>
+            </div>
         </div>
         <div class="col-md-4 col-sm-0 form-field">
         </div>
-        <div class="col-md-8 col-sm-12 form-field">
+        <div class="col-md-8 col-sm-12 form-field">        
             <i id="phone-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">phone numbers must match</span>
         </div>
 
