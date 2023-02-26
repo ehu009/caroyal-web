@@ -68,6 +68,9 @@ function open_nav(id) {
 var cityData = null;
 var cityDataAvailable = new Event("city-data-available");
 
+var phoneData = null;
+var phoneDataAvailable = new Event("phone-data-available");
+
 function getCityData(data_url) {
     
     var getJSON = function(url, callback) {
@@ -83,7 +86,6 @@ function getCityData(data_url) {
         };
         xhr.send();
     };
-    var dataset = {};
     getJSON(data_url,
         function(err, data) {
             if (err !== null) {
@@ -94,16 +96,38 @@ function getCityData(data_url) {
                 dispatchEvent(cityDataAvailable);
             }
         });
-        /*
-    console.log(dataset[4])
-    return dataset;*/
 }
 
+function getPhoneData(data_url) {
+    
+    var getJSON = function(url, callback) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);
+        xhr.onload = function() {
+        var status = xhr.status;
+        if (status === 200) {
+            callback(null, xhr.response);
+        } else {
+            callback(status, xhr.response);
+        }
+        };
+        xhr.send();
+    };
+    getJSON(data_url,
+        function(err, data) {
+            if (err !== null) {
+                alert('Something went wrong while loading city data: ' + err);
+            } else {
+
+                phoneData = JSON.parse(data);
+                dispatchEvent(phoneDataAvailable);
+            }
+        });
+}
 
 function initCitySelect(elem) {
   var opt = document.createElement("option");
   opt.disabled = true;
-  opt.classList.add('wide-select')
   opt.text = "Select a country first";
   elem.appendChild(opt);
 }
@@ -162,6 +186,48 @@ function initSelectorWith(elem, value, print) {
             break;
         }
     }
+}
+
+
+
+
+
+
+
+
+function initPhoneSelect(elem) {
+  var opt = document.createElement("option");
+  opt.disabled = true;
+  opt.text = "-";
+  elem.appendChild(opt);
+}
+function addPhoneSelectOption(elem, option, text) {
+  var opt = document.createElement("option");
+  opt.value = option;
+  opt.text = text;
+  elem.appendChild(opt);
+}
+function populatePhoneSelect(elem) {
+  for (e of phoneData) {
+      var dial = e['dial_code'];
+      var text = e['code'] + ": " + dial;
+      addPhoneSelectOption(elem, dial, text);
+  }
+}
+
+function initPhoneSelector(phoneCodeSelectId, initCountry) {
+  var phone_code_field = document.getElementById(phoneCodeSelectId);
+
+  initPhoneSelect(phone_code_field);
+  
+  addEventListener("phone-data-available",
+      () => { 
+          populatePhoneSelect(phone_code_field);
+          if (initCountry != "") {
+              initSelectorWith(phone_code_field, initCountry, false);
+          }
+      },
+  false);
 }
 
 
