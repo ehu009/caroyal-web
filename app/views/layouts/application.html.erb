@@ -43,6 +43,7 @@ window.addEventListener("load", callbackFunc);
 window.addEventListener("scroll", callbackFunc);
 
 
+
 function open_nav(id) {
     var e = document.getElementById(id);
     e.classList.add('nav-veil-fadein');
@@ -68,7 +69,19 @@ function open_nav(id) {
 var cityData = null;
 var cityDataAvailable = new Event("city-data-available");
 
-function getCityData(data_url) {
+var phoneData = null;
+var phoneDataAvailable = new Event("phone-data-available");
+
+
+function cityDataSuccess(data) {
+  cityData = JSON.parse(data);
+  dispatchEvent(cityDataAvailable);
+}
+function phoneDataSuccess(data) {
+  phoneData = JSON.parse(data);
+  dispatchEvent(phoneDataAvailable);
+}
+function getJSONData(data_url, success) {
     
     var getJSON = function(url, callback) {
         var xhr = new XMLHttpRequest();
@@ -83,39 +96,42 @@ function getCityData(data_url) {
         };
         xhr.send();
     };
-    var dataset = {};
     getJSON(data_url,
         function(err, data) {
             if (err !== null) {
                 alert('Something went wrong while loading city data: ' + err);
             } else {
-
-                cityData = JSON.parse(data);
-                dispatchEvent(cityDataAvailable);
+              success(data);
             }
         });
-        /*
-    console.log(dataset[4])
-    return dataset;*/
 }
 
 
-function initCitySelect(elem) {
-  var opt = document.createElement("option");
-  opt.disabled = true;
-  opt.classList.add('wide-select')
-  opt.text = "Select a country first";
-  elem.appendChild(opt);
-}
-function resetCitySelect(elem) {
-  elem.innerHTML = '';
-  initCitySelect(elem);
-}
-function addCitySelectOption(elem, option) {
+function addSelectOption(elem, option, text) {
   var opt = document.createElement("option");
   opt.value = option;
-  opt.text = option;
+  opt.text = text;
   elem.appendChild(opt);
+}
+function initSelect(elem, text) {
+  var opt = document.createElement("option");
+  opt.disabled = true;
+  opt.text = text;
+  elem.appendChild(opt);
+  elem.selectedIndex = 0;
+}
+function resetSelect(elem, text) {
+  elem.innerHTML = '';
+  initSelect(elem, text);
+}
+function initSelectorWith(elem, value, print) {
+    for (let i = 0; i < elem.options.length; i += 1) {
+        var e = elem.options.item(i);
+        if (e.value == value) {
+            elem.selectedIndex = i;
+            break;
+        }
+    }
 }
 
 function populateCitySelect(elem, countryCode) {
@@ -125,7 +141,7 @@ function populateCitySelect(elem, countryCode) {
       l.push(e['name']);
   }
   for (e of l.sort()) {
-      addCitySelectOption(elem, e);
+      addSelectOption(elem, e, e);
   }
 }
 
@@ -133,7 +149,8 @@ function initCitySelector(countrySelectId, citySelectId, initCountry, initCity) 
   var country_field = document.getElementById(countrySelectId);
   var city_field = document.getElementById(citySelectId);
 
-  initCitySelect(city_field);
+  var text = "Select a country first";
+  initSelect(city_field, text);
   
   addEventListener("city-data-available",
       () => {      
@@ -146,7 +163,7 @@ function initCitySelector(countrySelectId, citySelectId, initCountry, initCity) 
               }
           }
           country_field.onchange = function () {
-              resetCitySelect(city_field);
+              resetSelect(city_field, text);
               populateCitySelect(city_field, country_field.value);
           };
       },
@@ -154,16 +171,30 @@ function initCitySelector(countrySelectId, citySelectId, initCountry, initCity) 
 }
 
 
-function initSelectorWith(elem, value, print) {
-    for (let i = 0; i < elem.options.length; i += 1) {
-        var e = elem.options.item(i);
-        if (e.value == value) {
-            elem.selectedIndex = i;
-            break;
-        }
-    }
+
+
+function populatePhoneSelect(elem) {
+  for (e of phoneData) {
+      var dial = e['dial_code'];
+      var text = e['code'] + ": " + dial;
+      addSelectOption(elem, dial, text);
+  }
 }
 
+function initPhoneSelector(phoneCodeSelectId, initCountry) {
+  var phone_code_field = document.getElementById(phoneCodeSelectId);
+
+  initSelect(phone_code_field, "-");
+  
+  addEventListener("phone-data-available",
+      () => { 
+          populatePhoneSelect(phone_code_field);
+          if (initCountry != "") {
+              initSelectorWith(phone_code_field, initCountry, false);
+          }
+      },
+  false);
+}
 
 </script>
   </head>
