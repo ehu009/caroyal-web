@@ -13,6 +13,29 @@ if Rails.env.development? then
     end
 end
 
+
+def fake_user p, d
+    is_producer = false
+    if rand(100) > 50 then
+        is_producer = true
+    end
+    is_distributor = false
+    if rand(100) > 50 then
+        is_distributor = true
+    end
+    phone = (0...5).map { rand(9) }.join
+    User.new({producer: is_producer, distributor: is_distributor, password: "asdfF87asdf", administrator: false, first_name:"Fishy", last_name: "McFish", tax_identification_number: '0',name_prefix: 'Mr.',phone_number: phone,country: 'Nowhere',city: 'Noville',company_name: 'FishFishFish',company_address: '0', company_city: "Tromsø", company_country: "NO"})
+end
+
+(0..12).each do |n|
+    u = fake_user
+    begin
+        u.save
+    rescue ActiveRecord::RecordInvalid
+    end
+end
+
+
 begin
 events = []
 events[0] = {
@@ -121,28 +144,4 @@ events[9] = {
 }
 TimelineEvent.create(events)
 rescue ActiveRecord::RecordInvalid
-end
-
-def fake_user p, d
-    phone = (0...5).map { rand(9) }.join
-    User.new({producer: p, distributor: d, password: "asdfF87asdf", administrator: false, first_name:"Fishy", last_name: "McFish", tax_identification_number: '0',name_prefix: 'Mr.',phone_number: phone,country: 'Nowhere',city: 'Noville',company_name: 'FishFishFish',company_address: '0', company_city: "Tromsø", company_country: "NO"})
-end
-
-(0..12).each do |n|
-    is_producer = false
-    is_distributor = false
-
-    if rand(100) > 50 then
-        is_producer = true
-    end
-    if rand(100) > 50 then
-        is_distributor = true
-    end
-
-    u = fake_user is_producer, is_distributor
-    begin
-        u.save
-    rescue ActiveRecord::RecordInvalid
-
-    end
 end
