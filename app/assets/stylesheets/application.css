@@ -249,9 +249,3 @@
   border-color:darkred;
 }
 
-.policy-link-container {
-  z-index:2;
-  
-  position:absolute;
-  top: 25px;
-}

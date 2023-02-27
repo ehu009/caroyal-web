@@ -1,9 +1,15 @@
 <footer class="dark-blue-bg white-text footer">
-    <div class="container-fluid text-center">
-        ©2023 Caroyal Group AS
+
+    <div class="container-fluid row">
+        <div class="col-xs-12 col-sm-5">
+            <div class="policy-link-container">
+                <%= link_to "privacy policy", privacy_policy_path %>
+            </div>
+        </div>
         
-        <div class="policy-link-container">
-            <%= link_to "privacy policy", privacy_policy_path %>
+        <div class="col-12 text-center">
+            ©2023 Caroyal Group AS
+        </div>
         </div>
     </div>
 </footer>
