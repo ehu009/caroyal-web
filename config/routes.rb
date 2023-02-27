@@ -39,4 +39,6 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy'
 
 
+  resources :newsletter_subscriber, only: [:new, :create, :destroy]
+
 end
