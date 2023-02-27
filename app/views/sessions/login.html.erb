@@ -1,60 +1,43 @@
 
+<h2>
+    Log in
+</h2>
 <%= form_tag '/login' do |f| %>
 
-    <div class="container-fluid row">
-        <!--<div class="col-md-3 col-sm-0">
-        </div>-->
-        <div class="col-12">
-            
-    <h2>
-        Log in
-    </h2>
-        </div>
-        <!--
-        <div class="col-lg-0 col-xs-0">
-        </div>
-        -->
-        <div class="col-lg-4 col-xs-12 form-field">
-            <%= label_tag "Phone number or email" %>
-        </div>
-        <div class="col-lg-8 col-xs-12 form-field" style="padding-right:0px;">
-
-            <div class="container-fluid row" style="padding:0px;">
-                <div class="col-xs-4 col-sm-4">
-                    
+<div class="container-fluid row">
+    <div class="col-lg-4 col-xs-12 form-field">
+        <%= label_tag "Phone number or email" %>
+    </div>
+    <div class="col-lg-8 col-xs-12 form-field" style="padding-right:0px;">
+        <div class="container-fluid row" style="padding:0px;">
+        
+            <div class="col-xs-4 col-sm-4">                
                 <%= select_tag :phone_code, [],  {id: "user_phone_code", name: 'phone_code',class: "wide-select", style: "padding:1px 2px;height:100%"} %>
-
-
-                </div>
-
-                <div class="col-xs-12 col-sm-8" style="padding:0px;">
-                    <%= text_field_tag :string, "", class: "hidden-arrows", style: "width:100%;" %>
-                </div>
             </div>
-            
-        </div>
-        
-        <div class="col-lg-4 col-xs-12 form-field">
-            <%= label_tag :password %>
-        </div>
-        <div class="col-lg-8 col-xs-12 form-field">
-            <%= password_field_tag :password, "", style: "width:100%;" %>
-        </div>
-        <!--
-        <div class="col-lg-2 col-sm-0">
-        </div>-->
 
-        <div class="col-12 text-center">
-        
-            <%= submit_tag "Submit", class: "form-btn dark-blue-bg white-text" %>
+            <div class="col-xs-12 col-sm-8" style="padding:0px;">
+                <%= text_field_tag :string, "", class: "hidden-arrows", style: "width:100%;" %>
+            </div>
         </div>
     </div>
+    
+    <div class="col-lg-4 col-xs-12 form-field">
+        <%= label_tag :password %>
+    </div>
+    <div class="col-lg-8 col-xs-12 form-field">
+        <%= password_field_tag :password, "", style: "width:100%;" %>
+    </div>
+    
+    <div class="col-12 text-center">
+        <%= submit_tag "Submit", class: "form-btn dark-blue-bg white-text" %>
+    </div>
+</div>
 <% end %>
-    <hr class="dark-blue-text">
-    <h5>Don't have an account?</h5>
-    <%=link_to 'Create an account here', new_user_path %>
 
+<hr class="dark-blue-text">
 
+<h5>Don't have an account?</h5>
+<%=link_to 'Create an account here', new_user_path %>
 
 <script>
     window.onload = function() {
