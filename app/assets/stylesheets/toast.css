@@ -1,0 +1,30 @@
+
+.veil {
+    background-color: black;
+    z-index: 10;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    position: fixed;
+    visibility: hidden;
+    opacity: 0;
+    top: 0px;
+  }
+  .veil-fadein {
+    animation: fadeInTo60 1s forwards;
+  }
+  .veil-fadeout {
+    animation: fadeOutFrom60 0.8s forwards;
+  }
+  
+  .notice-toast-container {
+    position: fixed;
+    z-index: 11;
+    width:100%;
+    top: 30%;
+  }
+  .notice-toast {
+    width: 100%;
+    height: 100%;
+    z-index:12;
+  }

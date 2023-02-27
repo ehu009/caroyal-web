@@ -1,0 +1,21 @@
+.wide-select {
+    min-width:100%;
+    max-width:100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+.hidden-arrows::-webkit-outer-spin-button,
+.hidden-arrows::-webkit-inner-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+.form-field {
+margin-top:8px;
+margin-bottom: 8px;
+}
+.form-indicator-text {
+font-size: small;
+color: gray;
+font-style: italic;
+}
