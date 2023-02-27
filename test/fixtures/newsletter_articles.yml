@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  issue_number: 1
+  dispatched: false
+
+two:
+  title: MyString
+  issue_number: 1
+  dispatched: false
