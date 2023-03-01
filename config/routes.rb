@@ -10,7 +10,11 @@ Rails.application.routes.draw do
   get 'products', to: 'application#products', as: :products
   get 'contact', to: 'application#contact', as: :contact
   get 'timeline', to: 'application#timeline', as: :timeline
+  get 'blog', to: 'blog#lander', as: :blog
+  get 'market', to: 'market#lander', as: :market
+
   get 'privacy_policy', to: 'application#privacy_policy', as: :privacy_policy
+
 
   get '/dev', to: 'application#dev'
 
