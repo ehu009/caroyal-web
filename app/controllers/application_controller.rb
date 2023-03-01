@@ -11,6 +11,8 @@ class ApplicationController < ActionController::Base
 
     def dev
         @users = User.all
+        @sub = NewsletterSubscriber.new
+        @subs = NewsletterSubscriber.all
     end
 
     def about

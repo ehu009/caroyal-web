@@ -1,4 +1,22 @@
 this is the dev page
+<p>
+<hr>
+<p>
+<%= form_for @sub, url: create_newsletter_subscription_path do |t| %>
+    <%= t.text_field :email %>
+    <%= t.submit "Subscribe" %>
+
+<% end %>
+</p>
+subscribers <br>
+<% @subs.each do |s| %>
+<p>
+<%= s.email %>, <%= link_to "unsub", unsubscribe_newsletter_path(s.unsubscribe_token), method: :delete %>
+</p>
+<% end %>
+
+<hr>
+</p>
 <br>
 <br>
 account creation: <%= link_to "hahafdf", new_user_path%>
