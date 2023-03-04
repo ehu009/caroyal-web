@@ -209,10 +209,12 @@
 <script>
     window.onload = function() {
         
-        cityData = getCityData("https://raw.githubusercontent.com/lutangar/cities.json/master/cities.json");
+        cityData = getJSONData("/country_cities.json", cityDataSuccess);
         
         initCitySelector("user_country", "user_city", "<%= session[:create_params]['country'] %>", "<%= session[:create_params]['city'] %>");
-        initCitySelector("user_company_country", "user_company_city", "<%= session[:create_params]['company_country'] %>", "<%= session[:create_params]['company_country'] %>");
+        initCitySelector("user_company_country", "user_company_city", "<%= session[:create_params]['company_country'] %>", "<%= session[:create_params]['company_city'] %>");
         
+        phoneData = getJSONData('/country_phones.json', phoneDataSuccess);
+        initPhoneSelector("user_phone_code", "<%= session[:create_params]['phone_code'] %>");
     }
 </script>
