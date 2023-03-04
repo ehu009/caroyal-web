@@ -48,7 +48,7 @@ Rails.application.routes.draw do
   scope 'newsletter' do
     get 'subscribe', to: 'newsletter_subscriber#new', as: :new_newsletter_subscription
     post 'subscribe', to: 'newsletter_subscriber#create', as: :create_newsletter_subscription
-    post 'unsubscribe/:unsubscribe_token', to: 'newsletter_subscriber#destroy', as: :unsubscribe_newsletter
+    get 'unsubscribe/:unsubscribe_token', to: 'newsletter_subscriber#destroy', as: :unsubscribe_newsletter
   end
 
 end
