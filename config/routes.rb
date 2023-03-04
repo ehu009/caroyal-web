@@ -43,7 +43,9 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy'
 
 
-  resources :newsletter_subscriber, only: [:new, :create, :destroy]
+  resources :newsletter do
+    get 'dispatch/:id', to: 'newsletter#dispatch_latest', as: :newsletter_dispatch
+  end
 
   scope 'newsletter' do
     get 'subscribe', to: 'newsletter_subscriber#new', as: :new_newsletter_subscription
