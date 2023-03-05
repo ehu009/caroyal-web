@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
     before_action :must_login, only: [:account_overview, :first_time_login, :new_producer_questionaire, :new_distributor_questionaire, :fill_producer_questionaire, :fill_distributor_questionaire]
 
     def home
+        @sub = NewsletterSubscriber.new
         render layout: "application_white"
     end
 

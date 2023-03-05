@@ -7,7 +7,7 @@
                 Sustainable Management of Supply Networks
             </i>
         </h1>
-    </div>
+    
 
     <div class="container-fluid text-center logo-wall-btn-container">
         <div class="logo-wall-btn text-center gold-bg white-text button-like" onclick="window.location.href='<%= new_user_path %>'">
@@ -16,6 +16,7 @@
             </strong>
         </div>
     </div>
+    </div>
     <!--
     <div class="logo-wall-btn text-center gold-bg white-text button-like" onclick="window.location.href='<%= new_user_path %>'">
         <strong class="white-text">
@@ -23,9 +24,35 @@
         </strong>
     </div>
     -->
-</div>
+
 
 <div class="home-pie">
     Registered users
     <%= pie_chart user_stats_path, width: "100%", height: "140px", colors: ['#c4a141', '#0B2C59'], legend: "bottom" %>
 </div>
+</div>
+
+<div class="container-fluid row gold-bg" style="width:100%;margin:0px;padding:0px;overflow:hidden">
+
+<div class="col-7 blue-bg white-text" style="padding:35px;" >
+<h2>
+Subscribe to our newsletter
+</h2>
+<p>
+Stay up to date with our progress -
+</p>
+<p>
+We're a company in it's upstart-phase, there's a lot of things to be done. Subscribing to our newsletter will allow you to stay informed regarding our latest improvements and our future endeavours.
+</p>
+</div>
+
+<div class="col-5 center-wall text-center">
+
+<%= form_for @sub, url: create_newsletter_subscription_path do |t| %>
+    <%= t.text_field :email, placeholder: "Email address", style: "margin:20px 0px 20px 0px" %><br>
+    <%= t.submit "Subscribe", class: "logo-wall-btn text-center blue-bg white-text button-like" %>
+<% end %>
+</div>
+</div>
+
+
