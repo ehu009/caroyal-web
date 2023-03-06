@@ -12,13 +12,13 @@
             <div class="container-fluid row" style="padding:0px;">
                 <div class="col-sm-5 col-md-4">
                     
-                <%= f.select :phone_code, [], {}, {class: "wide-select", style: "padding:1px 2px;height:100%"} %>
+                <%= f.select :phone_code, [], {}, {class: "wide-select", style: "padding:1px 2px;height:100%", autocomplete: "tel-country-code"} %>
 
 
                 </div>
 
                 <div class="col-sm-7 col-md-8" style="padding:0px;">
-                    <%= f.number_field :phone_number, value: session[:create_params]["phone_number"], style: "width:100%", class: "hidden-arrows" %>
+                    <%= f.number_field :phone_number, value: session[:create_params]["phone_number"], style: "width:100%", class: "hidden-arrows", autocomplete: "tel-national" %>
                 </div>
             </div>
         </div>
@@ -48,7 +48,7 @@
             <span style="right:0px; color: red">*</span>
         </div>
         <div class="col-md-8 col-sm-12 form-field">
-            <%= f.password_field :password, style: "width:100%;" %>
+            <%= f.password_field :password, style: "width:100%;", autocomplete: "new-password" %>
         </div>
         <div class="col-md-4 col-sm-12 form-field">
             <label>Confirm</label>
@@ -159,13 +159,13 @@
             <span style="right:0px; color: red">*</span>
         </div>
         <div class="col-md-8 col-sm-12 form-field">
-            <%= f.text_field :company_name, value: session[:create_params]["company_name"], style: "width:100%;" %>
+            <%= f.text_field :company_name, value: session[:create_params]["company_name"], style: "width:100%;", autocomplete: "company" %>
         </div>
         <div class="col-md-4 col-sm-12 form-field">
             <%= f.label :email %>
         </div>
         <div class="col-md-8 col-sm-12 form-field">
-            <%= f.text_field :email, value: session[:create_params]["email"], style: "width:100%;" %>
+            <%= f.text_field :email, value: session[:create_params]["email"], style: "width:100%;", autocomplete: "email" %>
         </div>
         <div class="col-md-4 col-sm-12 form-field">
             <%= f.label :company_address %>
@@ -227,7 +227,7 @@
             <span style="right:0px; color: red">*</span>
         </div>
         <div class="col-md-8 col-sm-12 form-field">
-            <%= f.select :name_prefix, ["Mr", "Mrs", "Ms"], value: session["create_params"][:name_prefix] %>
+            <%= f.select :name_prefix, ["Mr", "Mrs", "Ms"], value: session["create_params"][:name_prefix], autocomplete: "honorific-prefix" %>
         </div>
         
         <div class="col-md-4 col-sm-12 form-field">
@@ -235,20 +235,20 @@
             <span style="right:0px; color: red">*</span>
         </div>
         <div class="col-md-8 col-sm-12 form-field">
-            <%= f.text_field :first_name, value: session[:create_params]["first_name"], style: "width:100%;" %>
+            <%= f.text_field :first_name, value: session[:create_params]["first_name"], style: "width:100%;", autocomplete: "given-name" %>
         </div>
         <div class="col-md-4 col-sm-12 form-field">
             <%= f.label :last_name, "Surname"%>
             <span style="right:0px; color: red">*</span>
         </div>
         <div class="col-md-8 col-sm-12 form-field">
-            <%= f.text_field :last_name, value: session[:create_params]["last_name"], style: "width:100%;" %>
+            <%= f.text_field :last_name, value: session[:create_params]["last_name"], style: "width:100%;", autocomplete: "family-name" %>
         </div>
         <div class="col-md-4 col-sm-12 form-field">
             <%= f.label :date_of_birth %>
         </div>
         <div class="col-md-8 col-sm-12 form-field">
-            <%= f.date_field :date_of_birth, value: session[:create_params]["date_of_birth"] %>
+            <%= f.date_field :date_of_birth, value: session[:create_params]["date_of_birth"],autocomplete: "bday" %>
         </div>
 
 
