@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
     end
 
     def about
-        
+        render layout: "application_white"
     end
 
     def contact
