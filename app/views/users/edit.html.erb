@@ -7,18 +7,49 @@
     <br>
     <%= form_for @user do |f| %>
     <div class="container-fluid row">
+
+
         <div class="col-md-4 col-sm-12 form-field">
             <%= f.label :phone_number %>
             <span style="right:0px; color: red">*</span>
         </div>
-        <div class="col-md-8 col-sm-12 form-field">
-            <%= f.number_field :phone_number, style: "width:100%;", class: "hidden-arrows" %>
+        <div class="col-md-8 col-sm-12 form-field" style="padding-right:0px;">
+            <div class="row" style="padding:0px;">
+                <div class="col-sm-5 col-md-4">
+                    
+                <%= f.select :phone_code, [], {}, {class: "wide-select", style: "padding:1px 2px;height:100%", autocomplete: "tel-country-code"} %>
+
+
+                </div>
+
+                <div class="col-sm-7 col-md-8" style="padding:0px;">
+                    <%= f.number_field :phone_number, style: "width:100%", class: "hidden-arrows", autocomplete: "tel-national" %>
+                </div>
+            </div>
         </div>
-        
-        <div class="col-md-4 col-sm-0">
+        <div class="col-md-4 col-sm-12 form-field">
+            <label>Confirm</label><span style="right:0px; color: red">*</span>
         </div>
-        <div class="col-md-8 col-sm-12">
+        <div class="col-md-8 col-sm-12 form-field" style="padding-right:0px">
+            <div class="row">
+                <div class="col-sm-5 col-md-4">
+                    
+                </div>
+
+                <div class="col-sm-7 col-md-8" style="padding:0px;">
+                    <input id="phone-confirm" style="width:100%;" class="hidden-arrows" type="number">
+                </div>
+            </div>
+            </div>
+            <div class="col-md-8 col-sm-12 text-center">
             <%= f.submit  "Update phone number", class: "form-btn white-text blue-bg" %>
+            </div>
+        
+        
+        <div class="col-md-4 col-sm-0 form-field">
+        </div>
+        <div class="col-md-8 col-sm-12 form-field">        
+            <i id="phone-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">phone numbers must match</span>
         </div>
     </div>
     <% end %>
@@ -30,18 +61,123 @@
     <h5>Change password</h5>
     <br>
     <%= form_for @user do |f| %>
-    <div class="container-fluid row">
+    <div class="row">
         <div class="col-md-4 col-sm-12 form-field">
-            <%= f.label :password %>
+            <%= f.label :password, "Current password" %>
             <span style="right:0px; color: red">*</span>
         </div>
         <div class="col-md-8 col-sm-12 form-field">
-            <%= f.password_field :password, style: "width:100%" %>
+            <%= f.password_field :password, style: "width:100%", autocomplete: "current-password" %>
+        </div>
+        <div class="col-md-4 col-sm-12 form-field">
+            <%= f.label :new_password, "New password" %>
+            <span style="right:0px; color: red">*</span>
+        </div>
+        <div class="col-md-8 col-sm-12 form-field">
+            <%= f.password_field :new_password, style: "width:100%", autocomplete: "new-password" %>
+        </div>
+        <div class="col-md-4 col-sm-12 form-field">
+            <%= f.label :confirm_password, "Confirm" %>
+            <span style="right:0px; color: red">*</span>
+        </div>
+        <div class="col-md-8 col-sm-12 form-field">
+            <%= f.password_field :confirm_password, style: "width:100%" %>
         </div>
         <div class="col-md-4 col-sm-0">
         </div>
-        <div class="col-md-8 col-sm-12">
+        <div class="col-md-8 col-sm-12 text-center">
             <%= f.submit  "Update password", class: "form-btn white-text blue-bg" %>
+        </div>
+        <div class="col-md-4 col-sm-0 form-field">
+        </div>
+        <div class="col-md-8 col-sm-12 form-field">
+            <i id="pwd-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">passwords must match</span><br>
+            <i id="length-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">must be at least 10 characters long</span><br>
+            <i id="lower-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">must contain lower case</span><br>
+            <i id="upper-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">must contain upper case</span><br>
+            <i id="number-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">must contain a number</span>
+            
+            <script>
+            
+            function compare(elemA, elemB, indicator) {
+                
+                if (elemA.value === elemB.value) {
+                    indicator.style.visibility = "visible";
+                    return true;
+                }
+                else {
+                    indicator.style.visibility = "hidden";
+                    return false;
+                }
+            }
+            function pwdRequirements(elem, length_i, number_i, lower_i, upper_i) {
+                var length = false;
+                var number = false;
+                var lower = false;
+                var upper = false;
+                
+                length_i.style.visibility = "hidden";
+                number_i.style.visibility = "hidden";
+                lower_i.style.visibility = "hidden";
+                upper_i.style.visibility = "hidden";
+
+
+                var s = elem.value;
+                var i=0;
+                var character='';
+                while (i <= s.length){
+                    if (i >= 8) {
+                        length = true;
+                        length_i.style.visibility = "visible";
+                    }
+                    character = s.charAt(i);
+                    if (!isNaN(character * 1)){
+                        number = true;
+                        number_i.style.visibility = "visible";
+                    }else{
+                        if (character == character.toUpperCase()) {
+                            upper = true;
+                            upper_i.style.visibility = "visible";
+                        }
+                        if (character == character.toLowerCase()){
+                            lower = true;
+                            lower_i.style.visibility = "visible";
+                        }
+                    }
+                    i++;
+                    if (length && number && lower && upper) {
+                        break;
+                    }
+                }
+                return (length && number && lower && upper);
+            }
+            
+            
+            document.getElementById("new_user").onchange = function(){
+                var p = document.getElementById("user_phone_number")
+                var pC = document.getElementById("phone-confirm");
+                var pwd = document.getElementById("user_password")
+                var pwdC = document.getElementById("password-confirm");
+
+                var allow = false;
+                var phone_i = document.getElementById("phone-indicate");
+                var pwd_i = document.getElementById("pwd-indicate");
+                var length_i = document.getElementById("length-indicate");
+                var number_i = document.getElementById("number-indicate");
+                var lower_i = document.getElementById("lower-indicate");
+                var upper_i = document.getElementById("upper-indicate");
+                allow |= compare(p, pC, phone_i);
+                allow &= compare(pwd, pwdC, pwd_i);
+                allow &= pwdRequirements(pwd, length_i, number_i, lower_i, upper_i);
+                if (allow) {
+                    document.getElementById('user_submit').disabled = false;
+                }                
+            };
+
+
+            </script>
+
+
         </div>
     </div>
     <% end %>
@@ -53,7 +189,7 @@
 
 
 <%= form_for @user do |f| %>
-<div class="container-fluid row">
+<div class="row">
 <p> 
 
 
@@ -65,7 +201,13 @@
         <span style="right:0px; color: red">*</span>
     </div>
     <div class="col-md-8 col-sm-12 form-field">
-        <%= f.text_field :company_name, style: "width:100%;" %>
+        <%= f.text_field :company_name, style: "width:100%;", autocomplete: "company" %>
+    </div>
+    <div class="col-md-4 col-sm-12 form-field">
+        <%= f.label :email %>
+    </div>
+    <div class="col-md-8 col-sm-12 form-field">
+        <%= f.text_field :email, style: "width:100%", autocomplete: "email" %>
     </div>
     <div class="col-md-4 col-sm-12 form-field">
         <%= f.label :company_address %>
@@ -78,13 +220,13 @@
         <%= f.label :company_country %>
     </div>
     <div class="col-md-8 col-sm-12 form-field">
-        <%= f.country_select :company_country, include_blank: 'Select a country' %>
+        <%= f.country_select :company_country, include_blank: 'Select a country', class:"wide-select" %>
     </div>
     <div class="col-md-4 col-sm-12 form-field">
         <%= f.label :company_city %>
     </div>
     <div class="col-md-8 col-sm-12 form-field">
-        <%= f.select :company_city, [], style: "width:100%" %>
+        <%= f.select :company_city, [], style: "width:100%", class:"wide-select" %>
     </div>
     <div class="col-md-4 col-sm-12 form-field">
         <%= f.label :tax_identification_number, "TIN (tax ID)" %>
@@ -93,19 +235,19 @@
     <div class="col-md-8 col-sm-12 form-field">
         <%= f.number_field :tax_identification_number, style: "width:100%;", class: "hidden-arrows" %>
     </div>
-    <div class="col-md-3 col-sm-6">
-        <%= f.label :producer %>
-    </div>
-    <div class="col-md-3 col-sm-6">
-        <%= f.check_box :producer, class: "form-check-input" %>
-    </div>
-    
-    <div class="col-md-3 col-sm-6">
-        <%= f.label :distributor %>
-    </div>
-    <div class="col-md-3 col-sm-6">
-        <%= f.check_box :distributor, class: "form-check-input" %>
-    </div>
+    <div class="col-md-3 col-sm-6 form-field">
+            <%= f.label :producer %>
+        </div>
+        <div class="col-md-3 col-sm-6 form-field">
+            <%= f.check_box :producer, class: "form-check-input" %>
+        </div>
+        
+        <div class="col-md-3 col-sm-6 form-field">
+            <%= f.label :distributor %>
+        </div>
+        <div class="col-md-3 col-sm-6 form-field">
+            <%= f.check_box :distributor, class: "form-check-input" %>
+        </div>
     
     
     </p>
@@ -118,7 +260,7 @@
         <span style="right:0px; color: red">*</span>
     </div>
     <div class="col-md-8 col-sm-12 form-field">
-        <%= f.select :name_prefix, ["Mr", "Mrs", "Ms"] %>
+        <%= f.select :name_prefix, ["Mr", "Mrs", "Ms"], autocomplete: "honorific-prefix" %>
     </div>
     
     <div class="col-md-4 col-sm-12 form-field">
@@ -126,28 +268,23 @@
         <span style="right:0px; color: red">*</span>
     </div>
     <div class="col-md-8 col-sm-12 form-field">
-        <%= f.text_field :first_name, style: "width:100%;" %>
+        <%= f.text_field :first_name, style: "width:100%;", autocomplete: "given-name" %>
     </div>
     <div class="col-md-4 col-sm-12 form-field">
         <%= f.label :last_name, "Surname"%>
         <span style="right:0px; color: red">*</span>
     </div>
     <div class="col-md-8 col-sm-12 form-field">
-        <%= f.text_field :last_name, style: "width:100%;" %>
+        <%= f.text_field :last_name, style: "width:100%;", autocomplete: "family-name" %>
     </div>
     <div class="col-md-4 col-sm-12 form-field">
         <%= f.label :date_of_birth %>
     </div>
     <div class="col-md-8 col-sm-12 form-field">
-        <%= f.date_field :date_of_birth %>
+        <%= f.date_field :date_of_birth, autocomplete: "bday" %>
     </div>
 
-    <div class="col-md-4 col-sm-12 form-field">
-        <%= f.label :email %>
-    </div>
-    <div class="col-md-8 col-sm-12 form-field">
-        <%= f.text_field :email, style: "width:100%" %>
-    </div>
+    
     <div class="col-md-4 col-sm-12 form-field">
         <%= f.label :address %>
     </div>
@@ -158,13 +295,13 @@
         <%= f.label :country %>
     </div>
     <div class="col-md-8 col-sm-12 form-field">
-        <%= f.country_select :country, include_blank: 'Select a country' %>
+        <%= f.country_select :country, include_blank: 'Select a country', class:"wide-select" %>
     </div>
     <div class="col-md-4 col-sm-12 form-field">
         <%= f.label :city %>
     </div>
     <div class="col-md-8 col-sm-12 form-field">
-        <%= f.select :city, [], style: "width:100%" %>
+        <%= f.select :city, [], style: "width:100%", class:"wide-select" %>
     </div>
 
 
@@ -173,7 +310,7 @@
     <p>
         <div class="col-md-4 col-sm-0">
         </div>
-        <div class="col-md-8 col-sm-12">
+        <div class="col-md-8 col-sm-12 text-center">
             <%= f.submit  "Update account information", class: "form-btn white-text blue-bg" %>
         </div>
         </div>
@@ -199,7 +336,7 @@
 
         <div class="col-md-4 col-sm-0">
         </div>
-        <div class="col-md-8 col-sm-12">
+        <div class="col-md-8 col-sm-12 text-center">
             <%= f.submit "Delete user account", class: "account-delete-btn white-text blue-bg form-btn" %>
         </div>
     </div>
@@ -215,6 +352,7 @@
         initCitySelector("user_company_country", "user_company_city", "<%= session[:create_params]['company_country'] %>", "<%= session[:create_params]['company_city'] %>");
         
         phoneData = getJSONData('/country_phones.json', phoneDataSuccess);
+        phoneFlags = getJSONData('https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/by-code.json', phoneFlagsSuccess);
         initPhoneSelector("user_phone_code", "<%= session[:create_params]['phone_code'] %>");
     }
 </script>
