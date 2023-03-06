@@ -167,7 +167,7 @@
                 var lower_i = document.getElementById("lower-indicate");
                 var upper_i = document.getElementById("upper-indicate");
                 
-                allow &= compare(a, b, pwd_i);
+                allow |= compare(a, b, pwd_i);
                 allow &= pwdRequirements(a, length_i, number_i, lower_i, upper_i);
                 if (allow) {
                     document.getElementById('passwd_change').disabled = false;
