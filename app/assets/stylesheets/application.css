@@ -29,6 +29,18 @@
   
 }
 
+.parallax-2 {
+
+  background-image: url("/_DSC5781.jpg");
+  ;
+
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
 .logo-top {
   margin-top: 20px;
   margin-bottom: 20px;
