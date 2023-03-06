@@ -10,7 +10,7 @@
     </div>
     <div class="col-lg-8 col-xs-12 form-field" style="padding-right:0px;">
         <div class="container-fluid row" style="padding:0px;">
-        
+
             <div class="col-xs-4 col-sm-4">                
                 <%= select_tag :phone_code, [],  {id: "user_phone_code", name: 'phone_code',class: "wide-select", style: "padding:1px 2px;height:100%"} %>
             </div>
@@ -43,6 +43,7 @@
     window.onload = function() {
                 
         phoneData = getJSONData('/country_phones.json', phoneDataSuccess);
+        phoneFlags = getJSONData('https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/by-code.json', phoneFlagsSuccess);
         initPhoneSelector("user_phone_code", "-");
     }
 </script>

@@ -291,6 +291,7 @@
         initCitySelector("user_company_country", "user_company_city", "<%= session[:create_params]['company_country'] %>", "<%= session[:create_params]['company_city'] %>");
         
         phoneData = getJSONData('/country_phones.json', phoneDataSuccess);
+        phoneFlags = getJSONData('https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/by-code.json', phoneFlagsSuccess);
         initPhoneSelector("user_phone_code", "<%= session[:create_params]['phone_code'] %>");
     }
 </script>
