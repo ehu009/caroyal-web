@@ -185,129 +185,71 @@ function initCitySelector(countrySelectId, citySelectId, initCountry, initCity) 
   false);
 }
 
+function selectPhoneCode(elem, value, hiddenField) {
+  var url = ""
+  for (e of elem.childNodes) { 
+    e.classList.remove("active")
+    if (e.textContent == value) {
+      e.classList.add("active");
+      url = e.firstChild.style.backgroundImage.split('"')[1]
+    }
+  }
+
+  var tt = document.getElementById("user_phone_code_indicator");
+  tt.src = url;
+  console.log(url)
+  console.log(tt)
+
+  hiddenField.value = value;
+  console.log("DICKS");
+  console.log(hiddenField.value);
+}
 
 
 
-function populatePhoneSelect(elem) {
+function populatePhoneSelect(elem, hiddenField) {
   for (e of phoneData) {
       
-      var dial = e['dial_code'];
-      var country = phoneFlags[e['code']];
+      let dial = e['dial_code'];
+      let country = phoneFlags[e['code']];
 
-      var opt = document.createElement("option");
-      opt.value = dial;
+      let opt = document.createElement("li");
+      let a = document.createElement("a");
+      a.classList.add("dropdown-item", "flag-dropdown", "text-center");
+      a.appendChild(document.createTextNode(dial));
+      a.href = "#"
       
-      /*
-      var flag_obj = document.createElement("i");
-      
-      flag_obj.classList.add("em", "em-flag-"+e['code'].toLowerCase())
-      */
-      var symbol = "&nbsp;"
       if (country != undefined) {
-        
-        //symbol = "url("+country['emoji']+")";
-        symbol = country['emoji']
-        /*
-        var symbol = country['unicode'].split(" ");
-        var s = ""
-        for (e of symbols) {
-          e = e.toLowerCase()
-          e = e.replace("u+", "&#x") + ";"
-          s += e;
-        }
-        symbol = s;
-        //flag_obj.style.height="15px";
-        //flag_obj.style.width="20px";
-        /*
-        flag_obj.style.position="relative";
-        flag_obj.style.right="0px";
-        */
-        //flag_obj.style.backgroundColor="green;"
-        
-
-        
-      //  opt.style.backgroundImage = "url("+country['image']+")";
-        /*
-        opt.style.backgroundSize = "contain";
-        opt.style.backgroundRepeat = "no-repeat";
-*/
-//        opt.appendChild(flag_obj);
-//opt.setAttribute("data-image",country['image'])
+        a.style.backgroundImage = "url("+country['image']+")";
       }
-      /*
-      var span = document.createElement("div");
-      span.style.position = "relative";
-      span.style.right = "0px";
-      span.innerHTML = dial;
-      opt.appendChild(span);
-      */
-
-      //opt.innerHTML = symbol+" "+ dial;
-      
-      //opt.appendChild(document.createTextNode(symbol + " " + dial));
-      //opt.innerHTML = symbol+" "+ dial;
-      
-//      opt.appendChild(flag_obj)
-
-      opt.appendChild(document.createTextNode(symbol + " " + dial));
+      a.onclick = function () {
+        console.log(elem);
+        console.log(dial);
+        console.log(hiddenField);
+        selectPhoneCode(elem, dial, hiddenField)
+      };
+      opt.appendChild(a);
       elem.appendChild(opt);
       
   }
 }
 
-function initPhoneSelector(phoneCodeSelectId, initCountry) {
+function initPhoneSelector(phoneCodeSelectId, initCountry, hiddenField) {
   var phone_code_field = document.getElementById(phoneCodeSelectId);
+  var hidden_field = document.getElementById(hiddenField);
+  console.log(hidden_field)
 
-  initSelect(phone_code_field, "-");
-  
   addEventListener("phone-data-available",
       () => {
         addEventListener("phone-flags-available", () => {
-          populatePhoneSelect(phone_code_field);
+          populatePhoneSelect(phone_code_field, hidden_field);
           if (initCountry != "") {
-              initSelectorWith(phone_code_field, initCountry, false);
+              selectPhoneCode(phone_code_field, initCountry, hidden_field);
           }
         }, false);
       },
   false);
 }
-
-
-$(document).ready(function(){
-
-});
-
-jQuery().ready(function() {   
-    /* Custom select design */     
-    jQuery('.drop-down').append('<div class="button"></div>');     
-    jQuery('.drop-down').append('<ul class="select-list"></ul>');     
-    jQuery('.drop-down select option').each(function() {   
-    var bg = jQuery(this).css('background-image');     
-    jQuery('.select-list').append('<li class="clsAnchor"><span value="' + jQuery(this).val() + '" class="' + jQuery(this).attr('class') + '" style=background-image:' + bg + '>' + jQuery(this).text() + '</span></li>');    
-    });     
-    jQuery('.drop-down .button').html('<span style=background-image:' + jQuery('.drop-down select').find(':selected').css('background-image') + '>' + jQuery('.drop-down select').find(':selected').text() + '</span>' + '<a href="javascript:void(0);" class="select-list-link">Arrow</a>');    
-    jQuery('.drop-down ul li').each(function() {    
-    if (jQuery(this).find('span').text() == jQuery('.drop-down select').find(':selected').text()) {   
-    jQuery(this).addClass('active');        
-    }       
-    });      
-    jQuery('.drop-down .select-list span').click( function() 
-    {           
-    var dd_text = jQuery(this).text();   
-    var dd_img = jQuery(this).css('background-image');  
-    var dd_val = jQuery(this).attr('value');    
-    jQuery('.drop-down .button').html('<span style=background-image:' + dd_img + '>' + dd_text + '</span>' + '<a href="javascript:void(0);" class="select-list-link">Arrow</a>');       
-    jQuery('.drop-down .select-list span').parent().removeClass('active');     
-    jQuery(this).parent().addClass('active');      
-    $('.drop-down select[name=options]').val( dd_val );  
-    $('.drop-down .select-list li').slideUp();      
-    });        
-    jQuery('.drop-down .button').click(function() 
-    {       
-    jQuery('.drop-down ul li').slideToggle();   
-    });      
-/* End */        
-}); 
 
 </script>
 
