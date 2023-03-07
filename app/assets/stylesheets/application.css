@@ -41,6 +41,16 @@
 
 }
 
+.dropdown-menu {
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+.flag-dropdown {
+padding-left:50px;
+background-repeat:no-repeat;
+}
+
 .logo-top {
   margin-top: 20px;
   margin-bottom: 20px;
