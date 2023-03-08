@@ -258,7 +258,7 @@ function initPhoneSelector(phoneCodeSelectId, initCountry, hiddenField) {
     <%= render "account_pill" %>
     
     <div class="fish-wall wall">
-      <%= render "top_logo", present: true, color: 'white' %>
+      <%= render partial: "top_logo", locals: {present: true, color: 'white'} %>
 
       <div class="container-fluid row" style="padding-bottom:25px;">
         <div class="col-md-3 col-sm-2"></div>
