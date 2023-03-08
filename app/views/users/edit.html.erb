@@ -91,6 +91,7 @@
         <div class="col-md-4 col-sm-0 form-field">
         </div>
         <div class="col-md-8 col-xs-12 form-field">
+            <i id="cpwd-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">must provide current password</span><br>
             <i id="pwd-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">passwords must match</span><br>
             <i id="length-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">must be at least 8 characters long</span><br>
             <i id="lower-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">must contain lower case</span><br>
@@ -121,12 +122,14 @@
                     return false;
                 }
             }
-            function pwdRequirements(elem, length_i, number_i, lower_i, upper_i) {
+            function pwdRequirements(elem, length_i, number_i, lower_i, upper_i, cpwd_i, cpwd_elem) {
                 var length = false;
                 var number = false;
                 var lower = false;
                 var upper = false;
-                
+                var current = false;
+
+                cpwd_i.style.visibility = "hidden";
                 length_i.style.visibility = "hidden";
                 number_i.style.visibility = "hidden";
                 lower_i.style.visibility = "hidden";
@@ -145,7 +148,6 @@
                     if (character != ""){
                     if (!isNaN(character * 1)){
                         number = true;
-                        console.log('"'+character+'"'+ " : " + character*1)
                         number_i.style.visibility = "visible";
                     }else{
                         if (character == character.toUpperCase()) {
@@ -163,7 +165,11 @@
                         break;
                     }
                 }
-                return (length && number && lower && upper);
+                if (!(cpwd_elem.value == null || cpwd_elem.value == "")) {
+                    current = true;
+                    cpwd_i.style.visibility = "visible";
+                }
+                return (length && number && lower && upper && current);
             }
             
             
@@ -173,6 +179,7 @@
 
                 var allow = false;
                 
+                var cpwd_i = document.getElementById("cpwd-indicate");
                 var pwd_i = document.getElementById("pwd-indicate");
                 var length_i = document.getElementById("length-indicate");
                 var number_i = document.getElementById("number-indicate");
@@ -180,7 +187,7 @@
                 var upper_i = document.getElementById("upper-indicate");
                 
                 allow |= compare(a, b, pwd_i);
-                allow &= pwdRequirements(a, length_i, number_i, lower_i, upper_i);
+                allow &= pwdRequirements(a, length_i, number_i, lower_i, upper_i, cpwd_i, c);
                 if (c.value == null || c.value=="") {
                     return;
                 }
