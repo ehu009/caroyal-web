@@ -367,6 +367,6 @@
         
         phoneData = getJSONData('/country_phones.json', phoneDataSuccess);
         phoneFlags = getJSONData('https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/by-code.json', phoneFlagsSuccess);
-        initPhoneSelector("user_phone_code_dropdown", "+"+"<%= @user.phone_code %>", "user_phone_code");
+        initPhoneSelector("user_phone_code_dropdown", "<%= @user.phone_code %>", "user_phone_code");
     }
 </script>
