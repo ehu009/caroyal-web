@@ -310,12 +310,16 @@
     function checkPasswdChange(c, a, b){
         var allow = false;
         
-        var cpwd_i = document.getElementById("cpwd-indicate");
-        var pwd_i = document.getElementById("pwd-indicate");
-        var length_i = document.getElementById("length-indicate");
-        var number_i = document.getElementById("number-indicate");
-        var lower_i = document.getElementById("lower-indicate");
-        var upper_i = document.getElementById("upper-indicate");
+        function fu(id) {
+            return document.getElementById(id+"-indicate")
+        }
+
+        var cpwd_i = fu("cpwd");
+        var pwd_i = fu("pwd");
+        var length_i = fu("length");
+        var number_i = fu("number");
+        var lower_i = fu("lower");
+        var upper_i = fu("upper");
         
         if (!(a.value == null || a.value == "")){
             allow |= compare(a, b, pwd_i);

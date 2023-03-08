@@ -11,12 +11,8 @@
         <div class="col-md-8 col-sm-12 form-field" style="padding-right:0px;">
             <div class="container-fluid row" style="padding:0px;">
                 <div class="col-sm-5 col-md-4">
-                    
-                <%= f.select :phone_code, [], {}, {class: "wide-select", style: "padding:1px 2px;height:100%", autocomplete: "tel-country-code"} %>
-
-
+                    <%= f.select :phone_code, [], {}, {class: "wide-select", style: "padding:1px 2px;height:100%", autocomplete: "tel-country-code"} %>
                 </div>
-
                 <div class="col-sm-7 col-md-8" style="padding:0px;">
                     <%= f.number_field :phone_number, value: session[:create_params]["phone_number"], style: "width:100%", class: "hidden-arrows", autocomplete: "tel-national" %>
                 </div>
@@ -28,9 +24,7 @@
         <div class="col-md-8 col-sm-12 form-field" style="padding-right:0px">
             <div class="container-fluid row" style="padding:0px;">
                 <div class="col-sm-5 col-md-4">
-                    
                 </div>
-
                 <div class="col-sm-7 col-md-8" style="padding:0px;">
                     <input id="phone-confirm" style="width:100%;" class="hidden-arrows" type="number">
                 </div>
@@ -41,8 +35,6 @@
         <div class="col-md-8 col-sm-12 form-field">        
             <i id="phone-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">phone numbers must match</span>
         </div>
-
-
         <div class="col-md-4 col-sm-12 form-field">
             <%= f.label :password %>
             <span style="right:0px; color: red">*</span>
@@ -65,100 +57,11 @@
             <i id="lower-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">must contain lower case</span><br>
             <i id="upper-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">must contain upper case</span><br>
             <i id="number-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">must contain a number</span>
-            
-            <script>
-            
-            function compare(elemA, elemB, indicator) {
-                
-                if (elemA.value === elemB.value) {
-                    indicator.style.visibility = "visible";
-                    return true;
-                }
-                else {
-                    indicator.style.visibility = "hidden";
-                    return false;
-                }
-            }
-            function pwdRequirements(elem, length_i, number_i, lower_i, upper_i) {
-                var length = false;
-                var number = false;
-                var lower = false;
-                var upper = false;
-                
-                length_i.style.visibility = "hidden";
-                number_i.style.visibility = "hidden";
-                lower_i.style.visibility = "hidden";
-                upper_i.style.visibility = "hidden";
-
-
-                var s = elem.value;
-                var i=0;
-                var character='';
-                while (i <= s.length){
-                    if (i >= 8) {
-                        length = true;
-                        length_i.style.visibility = "visible";
-                    }
-                    character = s.charAt(i);
-                    if (character != "") {
-                    if (!isNaN(character * 1)){
-                        number = true;
-                        number_i.style.visibility = "visible";
-                    }else{
-                        if (character == character.toUpperCase()) {
-                            upper = true;
-                            upper_i.style.visibility = "visible";
-                        }
-                        if (character == character.toLowerCase()){
-                            lower = true;
-                            lower_i.style.visibility = "visible";
-                        }
-                    }
-                    }
-                    i++;
-                    if (length && number && lower && upper) {
-                        break;
-                    }
-                }
-                return (length && number && lower && upper);
-            }
-            
-            
-            document.getElementById("new_user").onchange = function(){
-                var p = document.getElementById("user_phone_number")
-                var pC = document.getElementById("phone-confirm");
-                var pwd = document.getElementById("user_password")
-                var pwdC = document.getElementById("password-confirm");
-
-                var allow = false;
-                var phone_i = document.getElementById("phone-indicate");
-                var pwd_i = document.getElementById("pwd-indicate");
-                var length_i = document.getElementById("length-indicate");
-                var number_i = document.getElementById("number-indicate");
-                var lower_i = document.getElementById("lower-indicate");
-                var upper_i = document.getElementById("upper-indicate");
-                if (!(p.value== null || p.value == "")){
-                    allow |= compare(p, pC, phone_i);
-                }
-                if (!(pdw.value== null || pdw.value == "")){
-                allow &= compare(pwd, pwdC, pwd_i);
-                }
-                allow &= pwdRequirements(pwd, length_i, number_i, lower_i, upper_i);
-                if (allow) {
-                    document.getElementById('user_submit').disabled = false;
-                }                
-            };
-
-
-            </script>
-
-
         </div>
     </p>
     <hr class="dark-blue-text">
 
     <h5>Business details</h5>
-
     <p>
         <div class="col-md-4 col-sm-12 form-field">
             <%= f.label :company_name %>
@@ -180,9 +83,6 @@
         <div class="col-md-8 col-sm-12 form-field">
             <%= f.text_field :company_address, value: session[:create_params]["company_address"], style: "width:100%;" %>
         </div>
-
-        
-        
         <div class="col-md-4 col-sm-12 form-field">
             <%= f.label :company_country %>
             <span style="right:0px; color: red">*</span>
@@ -197,8 +97,6 @@
         <div class="col-md-8 col-sm-12 form-field">
             <%= f.select :company_city, [], {}, {class: "wide-select"} %>
         </div>
-
-
         <div class="col-md-4 col-sm-12 form-field">
             <%= f.label :tax_identification_number, "TIN (tax ID)" %>
             <span style="right:0px; color: red">*</span>
@@ -212,22 +110,17 @@
         <div class="col-md-3 col-sm-6 form-field">
             <%= f.check_box :producer, checked: session[:create_params]["producer"], class: "form-check-input" %>
         </div>
-        
         <div class="col-md-3 col-sm-6 form-field">
             <%= f.label :distributor %>
         </div>
         <div class="col-md-3 col-sm-6 form-field">
             <%= f.check_box :distributor, checked: session[:create_params]["distributor"], class: "form-check-input" %>
         </div>
-        
-    
     </p>
     <hr class="dark-blue-text">
     
     <h5>Personal details</h5>
     <p>
-
-
         <div class="col-md-4 col-sm-12 form-field">
             <%= f.label :name_prefix %>
             <span style="right:0px; color: red">*</span>
@@ -235,7 +128,6 @@
         <div class="col-md-8 col-sm-12 form-field">
             <%= f.select :name_prefix, ["Mr", "Mrs", "Ms"], value: session["create_params"][:name_prefix], autocomplete: "honorific-prefix" %>
         </div>
-        
         <div class="col-md-4 col-sm-12 form-field">
             <%= f.label :first_name %>
             <span style="right:0px; color: red">*</span>
@@ -256,8 +148,6 @@
         <div class="col-md-8 col-sm-12 form-field">
             <%= f.date_field :date_of_birth, value: session[:create_params]["date_of_birth"],autocomplete: "bday" %>
         </div>
-
-
         <div class="col-md-4 col-sm-12 form-field">
             <%= f.label :address %>
         </div>
@@ -289,6 +179,94 @@
 <% end %>
 
 <script>
+    function compare(elemA, elemB, indicator) {
+        if (elemA.value === elemB.value) {
+            indicator.style.visibility = "visible";
+            return true;
+        } else {
+            indicator.style.visibility = "hidden";
+            return false;
+        }
+    }
+
+    function pwdRequirements(elem, length_i, number_i, lower_i, upper_i) {
+        var length = false;
+        var number = false;
+        var lower = false;
+        var upper = false;
+        
+        length_i.style.visibility = "hidden";
+        number_i.style.visibility = "hidden";
+        lower_i.style.visibility = "hidden";
+        upper_i.style.visibility = "hidden";
+
+        var s = elem.value;
+        var i=0;
+        var character='';
+        while (i <= s.length){
+            if (i >= 8) {
+                length = true;
+                length_i.style.visibility = "visible";
+            }
+            character = s.charAt(i);
+            if (character != "") {
+                if (!isNaN(character * 1)){
+                    number = true;
+                    number_i.style.visibility = "visible";
+                } else {
+                    if (character == character.toUpperCase()) {
+                        upper = true;
+                        upper_i.style.visibility = "visible";
+                    }
+                    if (character == character.toLowerCase()){
+                        lower = true;
+                        lower_i.style.visibility = "visible";
+                    }
+                }
+            }
+            i++;
+            if (length && number && lower && upper) {
+                break;
+            }
+        }
+        return (length && number && lower && upper);
+    }
+    
+    
+    document.getElementById("new_user").onchange = function() {
+        function fu(id) {
+            return document.getElementById(id);
+        }
+        function fu2(id) {
+            return document.getElementById(id+"-indicate");
+        }
+
+        var p = fu("user_phone_number")
+        var pC = fu("phone-confirm");
+        var pwd = fu("user_password")
+        var pwdC = fu("password-confirm");
+
+        var allow = false;
+        
+        var phone_i = fu2("phone");
+        var pwd_i = fu2("pwd");
+        var length_i = fu2("length");
+        var number_i = fu2("number");
+        var lower_i = fu2("lower");
+        var upper_i = fu2("upper");
+
+        if (!(p.value== null || p.value == "")){
+            allow |= compare(p, pC, phone_i);
+        }
+        if (!(pdw.value== null || pdw.value == "")){
+        allow &= compare(pwd, pwdC, pwd_i);
+        }
+        allow &= pwdRequirements(pwd, length_i, number_i, lower_i, upper_i);
+        if (allow) {
+            document.getElementById('user_submit').disabled = false;
+        }                
+    };
+
     window.onload = function() {
         
         cityData = getJSONData("/country_cities.json", cityDataSuccess);
