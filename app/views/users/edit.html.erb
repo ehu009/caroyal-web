@@ -4,7 +4,7 @@
 
 <p>
     <h5>Change login information</h5>
-    <br>
+    <p>
     <%= form_for @user , url: user_change_phone_path(@user) , html: {id: "phone_change_form"} do |f| %>
     <div class="container-fluid row">
         <div class="col-md-4 col-xs-12 form-field">
@@ -15,7 +15,6 @@
             <div class="row" style="padding:0px;display:flex; justify-content:center;align-items: center;">
                 <div class="col-sm-5 col-md-4" style="padding:0px;display:flex; justify-content:center;align-items: center;">
                    <%= f.hidden_field :phone_code %>
-                    <%#= f.select :phone_code, [], {}, {class: "wide-select", style: "padding:1px 2px;height:100%", autocomplete: "tel-country-code"} %>
                     <div class="dropdown" style="vertical-align:center">
                     <button type="button" class="dropdown-toggle" data-bs-toggle="dropdown" style="vertical-align:center">
                         &nbsp;-&nbsp;
@@ -35,15 +34,13 @@
         <div class="col-md-8 col-xs-12 form-field" style="padding-right:0px">
             <div class="row">
                 <div class="col-sm-5 col-md-4">
-                    
                 </div>
 
                 <div class="col-sm-7 col-md-8" style="padding:0px;">
                     <input id="user_phone_confirm" style="width:100%;" class="hidden-arrows" type="number" name="user[phone_number_confirm]">
                 </div>
             </div>
-            </div>
-            
+        </div>
         
         <div class="col-md-4 col-xs-0 form-field">
         </div>
@@ -54,6 +51,7 @@
             <%= f.submit  "Update phone number", disabled: "disabled", id: "phone_change", class: "form-btn white-text blue-bg" %>
             </div>
     </div>
+    </p>
     <% end %>
 
     <hr class="white-text">
@@ -61,7 +59,7 @@
 
 <p>
     <h5>Change password</h5>
-    <br>
+    <p>
     <%= form_for @user, url: user_change_password_path(@user), html: {id: "pass_change_form"} do |f| %>
     <div class="row">
         <div class="col-md-4 col-xs-12 form-field">
@@ -77,7 +75,6 @@
         </div>
         <div class="col-md-8 col-xs-12 form-field">
             <input type="password" id="user_new_password" name="user[new_password]" style="width:100%" autocomplete="new-password"> 
-            <%#= f.password_field :new_password, style: "width:100%", autocomplete: "new-password" %>
         </div>
         <div class="col-md-4 col-xs-12 form-field">
             <%= f.label :confirm_password, "Confirm" %>
@@ -85,7 +82,6 @@
         </div>
         <div class="col-md-8 col-xs-12 form-field">
         <input type="password" id="user_confirm_password" name="user[password_confirm]" style="width:100%"> 
-            <%#= f.password_field :confirm_password, style: "width:100%" %>
         </div>
         
         <div class="col-md-4 col-sm-0 form-field">
@@ -97,143 +93,25 @@
             <i id="lower-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">must contain lower case</span><br>
             <i id="upper-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">must contain upper case</span><br>
             <i id="number-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">must contain a number</span>
-            
-
-
         </div>
+
         <div class="col-xs-12 text-center form-field">
             <%= f.submit  "Update password", disabled: "disabled", id: "passwd_change", class: "form-btn white-text blue-bg" %>
         </div>
     </div>
     <% end %>
 
+    </p>
     <hr class="white-text">
-
-
-            <script>
-            
-            function compare(elemA, elemB, indicator) {
-                if (elemA.value === elemB.value) {
-                    indicator.style.visibility = "visible";
-                    return true;
-                }
-                else {
-                    indicator.style.visibility = "hidden";
-                    return false;
-                }
-            }
-            function pwdRequirements(elem, length_i, number_i, lower_i, upper_i, cpwd_i, cpwd_elem) {
-                var length = false;
-                var number = false;
-                var lower = false;
-                var upper = false;
-                var current = false;
-
-                cpwd_i.style.visibility = "hidden";
-                length_i.style.visibility = "hidden";
-                number_i.style.visibility = "hidden";
-                lower_i.style.visibility = "hidden";
-                upper_i.style.visibility = "hidden";
-
-
-                var s = elem.value;
-                var i=0;
-                var character='';
-                while (i <= s.length){
-                    if (i >= 8) {
-                        length = true;
-                        length_i.style.visibility = "visible";
-                    }
-                    character = s.charAt(i);
-                    if (character != ""){
-                    if (!isNaN(character * 1)){
-                        number = true;
-                        number_i.style.visibility = "visible";
-                    }else{
-                        if (character == character.toUpperCase()) {
-                            upper = true;
-                            upper_i.style.visibility = "visible";
-                        }
-                        if (character == character.toLowerCase()){
-                            lower = true;
-                            lower_i.style.visibility = "visible";
-                        }
-                    }
-                    }
-                    i++;
-                    if (length && number && lower && upper) {
-                        break;
-                    }
-                }
-                if (!(cpwd_elem.value == null || cpwd_elem.value == "")) {
-                    current = true;
-                    cpwd_i.style.visibility = "visible";
-                }
-                return (length && number && lower && upper && current);
-            }
-            
-            
-  
-            
-            function checkPasswdChange(c, a, b){
-
-                var allow = false;
-                
-                var cpwd_i = document.getElementById("cpwd-indicate");
-                var pwd_i = document.getElementById("pwd-indicate");
-                var length_i = document.getElementById("length-indicate");
-                var number_i = document.getElementById("number-indicate");
-                var lower_i = document.getElementById("lower-indicate");
-                var upper_i = document.getElementById("upper-indicate");
-                
-                if (!(a.value == null || a.value == "")){
-                allow |= compare(a, b, pwd_i);
-                }
-                allow &= pwdRequirements(a, length_i, number_i, lower_i, upper_i, cpwd_i, c);
-                if (c.value == null || c.value=="") {
-                    return;
-                }
-                if (allow) {
-                    document.getElementById('passwd_change').disabled = false;
-                }
-            }
-
-
-            function checkPhone(a, b){
-                
-                var phone_i = document.getElementById("phone-indicate");
-                if (!(a.value==null || a.value=="")){
-                if (compare(a, b, phone_i))
-                {
-                    document.getElementById('phone_change').disabled = false;
-                }
-                }
-            }
-
-            var cpwd = document.getElementById("user_password");
-            var pwd = document.getElementById("user_new_password");
-            var pwdC = document.getElementById("user_confirm_password");
-            var p = document.getElementById("user_phone_number")
-            var pC = document.getElementById("user_phone_confirm");
-
-            document.getElementById("pass_change_form").oninput = function(){checkPasswdChange(cpwd,pwd,pwdC)};
-            document.getElementById("phone_change_form").oninput = function(){checkPhone(p,pC)};
-
-            </script>
-
 </p>
-
-
 
 
 <%= form_for @user do |f| %>
 <div class="row">
-<p> 
+    <p>
 
-
-<h5>Business details</h5>
-
-<p>
+    <h5>Business details</h5>
+    <p>
     <div class="col-md-4 col-xs-12 form-field">
         <%= f.label :company_name %>
         <span style="right:0px; color: red">*</span>
@@ -286,13 +164,12 @@
         <div class="col-md-3 col-sm-6 form-field">
             <%= f.check_box :distributor, class: "form-check-input" %>
         </div>
-    
-    
     </p>
-<hr class="white-text">
-<h5>Personal details</h5>
+    <hr class="white-text">
+</p>
 <p>
-
+    <h5>Personal details</h5>
+    <p>
     <div class="col-md-4 col-xs-12 form-field">
         <%= f.label :name_prefix %>
         <span style="right:0px; color: red">*</span>
@@ -300,7 +177,6 @@
     <div class="col-md-8 col-xs-12 form-field">
         <%= f.select :name_prefix, ["Mr", "Mrs", "Ms"], autocomplete: "honorific-prefix" %>
     </div>
-    
     <div class="col-md-4 col-xs-12 form-field">
         <%= f.label :first_name %>
         <span style="right:0px; color: red">*</span>
@@ -321,8 +197,6 @@
     <div class="col-md-8 col-xs-12 form-field">
         <%= f.date_field :date_of_birth, autocomplete: "bday" %>
     </div>
-
-    
     <div class="col-md-4 col-xs-12 form-field">
         <%= f.label :address %>
     </div>
@@ -341,26 +215,20 @@
     <div class="col-md-8 col-xs-12 form-field">
         <%= f.select :city, [], style: "width:100%", class:"wide-select" %>
     </div>
-
-
-
-</p>
-    <p>
-        <div class="col-xs-12 text-center">
+    
+    <div class="col-xs-12 text-center">
             <%= f.submit  "Update account information", class: "form-btn white-text blue-bg" %>
-        </div>
-        </div>
-        <hr class="white-text">
-    </p>
-<% end %>
+    </div>
 </p>
+<hr class="white-text">
+</p>        
+<% end %>
+</div>
+
 
 <p>
-<h5>
-    Account termination
-    </h5>
-    <br>
-    
+    <h5>Account termination</h5>
+    <p>
     <%= form_for @user, method: :delete, html: {id: "account_delete_form"} do |f| %>
     <div class="container-fluid row">
         <div class="col-md-4 col-sm-6">
@@ -375,11 +243,119 @@
         </div>
     </div>
     <% end %>
-    
+    </p>
 </p>
-<script>
+
+<script>    
+    function compare(elemA, elemB, indicator) {
+        if (elemA.value === elemB.value) {
+            indicator.style.visibility = "visible";
+            return true;
+        }
+        else {
+            indicator.style.visibility = "hidden";
+            return false;
+        }
+    }
+
+    function pwdRequirements(elem, length_i, number_i, lower_i, upper_i, cpwd_i, cpwd_elem) {
+        var length = false;
+        var number = false;
+        var lower = false;
+        var upper = false;
+        var current = false;
+
+        cpwd_i.style.visibility = "hidden";
+        length_i.style.visibility = "hidden";
+        number_i.style.visibility = "hidden";
+        lower_i.style.visibility = "hidden";
+        upper_i.style.visibility = "hidden";
+
+        var s = elem.value;
+        var i=0;
+        var character='';
+        while (i <= s.length){
+            if (i >= 8) {
+                length = true;
+                length_i.style.visibility = "visible";
+            }
+            character = s.charAt(i);
+            if (character != "") {
+                if (!isNaN(character * 1)) {
+                    number = true;
+                    number_i.style.visibility = "visible";
+                } else {
+                    if (character == character.toUpperCase()) {
+                        upper = true;
+                        upper_i.style.visibility = "visible";
+                    }
+                    if (character == character.toLowerCase()){
+                        lower = true;
+                        lower_i.style.visibility = "visible";
+                    }
+                }
+            }
+            i++;
+            if (length && number && lower && upper) {
+                break;
+            }
+        }
+        if (!(cpwd_elem.value == null || cpwd_elem.value == "")) {
+            current = true;
+            cpwd_i.style.visibility = "visible";
+        }
+        return (length && number && lower && upper && current);
+    }
+    
+    function checkPasswdChange(c, a, b){
+        var allow = false;
+        
+        var cpwd_i = document.getElementById("cpwd-indicate");
+        var pwd_i = document.getElementById("pwd-indicate");
+        var length_i = document.getElementById("length-indicate");
+        var number_i = document.getElementById("number-indicate");
+        var lower_i = document.getElementById("lower-indicate");
+        var upper_i = document.getElementById("upper-indicate");
+        
+        if (!(a.value == null || a.value == "")){
+            allow |= compare(a, b, pwd_i);
+        }
+        allow &= pwdRequirements(a, length_i, number_i, lower_i, upper_i, cpwd_i, c);
+        if (c.value == null || c.value=="") {
+            return;
+        }
+        if (allow) {
+            document.getElementById('passwd_change').disabled = false;
+        }
+    }
+
+    function checkPhone(a, b){
+        var phone_i = document.getElementById("phone-indicate");
+        if (!(a.value==null || a.value=="")){
+            if (compare(a, b, phone_i))
+            {
+                document.getElementById('phone_change').disabled = false;
+            }
+        }
+    }
+
+
     window.onload = function() {
         
+        {
+            function fu(id) {
+                return document.getElementById("user_" + id);
+            }
+            var cpwd = fu("password");
+            var pwd = fu("new_password");
+            var pwdC = fu("confirm_password");
+            var p = fu("phone_number");
+            var pC = fu("phone_confirm");
+
+            document.getElementById("pass_change_form").oninput = function(){checkPasswdChange(cpwd,pwd,pwdC)};
+            document.getElementById("phone_change_form").oninput = function(){checkPhone(p,pC)};
+        }
+
         cityData = getJSONData("/country_cities.json", cityDataSuccess);
         
         initCitySelector("user_country", "user_city", "<%= @user.country %>", "<%= @user.city %>");
