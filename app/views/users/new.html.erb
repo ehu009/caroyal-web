@@ -100,6 +100,7 @@
                         length_i.style.visibility = "visible";
                     }
                     character = s.charAt(i);
+                    if (character != "") {
                     if (!isNaN(character * 1)){
                         number = true;
                         number_i.style.visibility = "visible";
@@ -112,6 +113,7 @@
                             lower = true;
                             lower_i.style.visibility = "visible";
                         }
+                    }
                     }
                     i++;
                     if (length && number && lower && upper) {
