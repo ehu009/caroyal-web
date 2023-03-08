@@ -135,8 +135,12 @@
                 var number_i = document.getElementById("number-indicate");
                 var lower_i = document.getElementById("lower-indicate");
                 var upper_i = document.getElementById("upper-indicate");
-                allow |= compare(p, pC, phone_i);
+                if (!(p.value== null || p.value == "")){
+                    allow |= compare(p, pC, phone_i);
+                }
+                if (!(pdw.value== null || pdw.value == "")){
                 allow &= compare(pwd, pwdC, pwd_i);
+                }
                 allow &= pwdRequirements(pwd, length_i, number_i, lower_i, upper_i);
                 if (allow) {
                     document.getElementById('user_submit').disabled = false;

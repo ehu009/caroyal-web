@@ -186,7 +186,9 @@
                 var lower_i = document.getElementById("lower-indicate");
                 var upper_i = document.getElementById("upper-indicate");
                 
+                if (!(a.value == null || a.value == "")){
                 allow |= compare(a, b, pwd_i);
+                }
                 allow &= pwdRequirements(a, length_i, number_i, lower_i, upper_i, cpwd_i, c);
                 if (c.value == null || c.value=="") {
                     return;
@@ -200,9 +202,11 @@
             function checkPhone(a, b){
                 
                 var phone_i = document.getElementById("phone-indicate");
+                if (!(a.value==null || a.value=="")){
                 if (compare(a, b, phone_i))
                 {
                     document.getElementById('phone_change').disabled = false;
+                }
                 }
             }
 
