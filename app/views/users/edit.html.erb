@@ -43,15 +43,16 @@
                 </div>
             </div>
             </div>
-            <div class="col-xs-12 text-center">
-            <%= f.submit  "Update phone number", disabled: "disabled", id: "phone_change", class: "form-btn white-text blue-bg" %>
-            </div>
+            
         
         <div class="col-md-4 col-xs-0 form-field">
         </div>
         <div class="col-md-8 col-xs-12 form-field">
             <i id="phone-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">phone numbers must match</span>
         </div>
+        <div class="col-xs-12 text-center">
+            <%= f.submit  "Update phone number", disabled: "disabled", id: "phone_change", class: "form-btn white-text blue-bg" %>
+            </div>
     </div>
     <% end %>
 
@@ -86,9 +87,7 @@
         <input type="password" id="user_confirm_password" name="user[password_confirm]" style="width:100%"> 
             <%#= f.password_field :confirm_password, style: "width:100%" %>
         </div>
-        <div class="col-xs-12 text-center form-field">
-            <%= f.submit  "Update password", disabled: "disabled", id: "passwd_change", class: "form-btn white-text blue-bg" %>
-        </div>
+        
         <div class="col-md-4 col-sm-0 form-field">
         </div>
         <div class="col-md-8 col-xs-12 form-field">
@@ -100,6 +99,9 @@
             
 
 
+        </div>
+        <div class="col-xs-12 text-center form-field">
+            <%= f.submit  "Update password", disabled: "disabled", id: "passwd_change", class: "form-btn white-text blue-bg" %>
         </div>
     </div>
     <% end %>
