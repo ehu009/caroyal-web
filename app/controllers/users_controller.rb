@@ -39,7 +39,7 @@ class UsersController < ApplicationController
     end
 
     def show
-        @user = User.find(params[:id])
+        @user = User.find(params[:user_id])
     end
 
     def edit
@@ -69,6 +69,121 @@ class UsersController < ApplicationController
             @user = User.find(params[:id])
         end
     end
+
+    def change_pwd       
+        allow = false
+        message = "You cannot edit account info without first logging in."
+        redir = login_path
+        
+        c_id = session[:user_id]
+        current_user = nil
+
+        if c_id != nil then
+            current_user = User.find_by_id c_id
+            message = "Only administrators may edit an account they do not own."
+            redir = edit_user_path(c_id)
+            
+            if c_id.to_s == params[:user_id] then
+                allow = true
+            else
+                if current_user.administrator then
+                    allow = true                    
+                end
+            end
+                
+        end
+        if allow == false then
+            redirect_to redir, notice: message
+        else
+            @user = User.find(params[:user_id])
+        end
+
+        redir = edit_user_path(@user.id)
+        if allow then
+            p = params.require(:user).permit(:password, :new_password, :password_confirm)
+            message = "Provide a new password."
+            if p[:new_password] != nil then
+                allow = false
+                message = "New password and confirmation do not match."
+                if p[:new_password] == p[:password_confirm]
+                    message = "You must provide your current password."
+                    if p[:password] != nil && @user.authenticate(p[:password]) != false then
+                        @user.password = p[:new_password]
+                        message = "Password successfully updated."
+                        allow = true
+                    end
+                end
+            end
+            if allow then
+                if @user.save
+                    redir = account_overview_path
+                else
+                    message = @user.errors.messages
+                end
+            end
+        end
+        redirect_to redir, notice: message
+    end
+
+    def change_phone
+        allow = false
+        message = "You cannot edit account info without first logging in."
+        redir = login_path
+        
+        c_id = session[:user_id]
+        current_user = nil
+
+        if c_id != nil then
+            current_user = User.find_by_id c_id
+            message = "Only administrators may edit an account they do not own."
+            redir = edit_user_path(c_id)
+            if c_id.to_s == params[:user_id] then
+                allow = true
+            else
+                if current_user.administrator then
+                    allow = true                    
+                end
+            end
+        end
+        if allow == false then
+            puts "niggers"
+            redirect_to redir, notice: message
+            return
+        else
+            @user = User.find(params[:user_id])
+
+        end
+
+        redir = edit_user_path(@user.id)
+        if allow then
+            message = "Provide a new phone number."
+            p = params.require(:user).permit(:phone_number, :phone_number_confirm, :phone_code)
+            if p[:phone_number] != nil then
+                allow = false
+                message = "New phone number and confirmation do not match."
+                if p[:phone_number] == p[:phone_number_confirm]
+                    
+                    if p[:phone_code] != nil then
+                        current_user.phone_code = p[:phone_code]
+                    end
+                    @user.phone_number = p[:phone_number]
+                    
+                    message = "Phone number successfully updated."
+                    allow = true
+                end
+            end
+            if allow then
+                if @user.save
+                    redir = account_overview_path
+                else
+                    message = @user.errors.messages
+                end
+            end
+        end
+        redirect_to redir, notice: message
+    end
+    
+
 
     def update
         

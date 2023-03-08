@@ -27,7 +27,10 @@ Rails.application.routes.draw do
 
   get 'confirm_email', to: 'application#confirm_email', as: :confirm_email
   
-  resources :users, only: [:index, :new, :create, :edit, :update, :show, :destroy]
+  resources :users, only: [:index, :new, :create, :edit, :update, :show, :destroy] do
+    patch 'change_password', to: "users#change_pwd", as: :change_password
+    patch 'change_phone', to: "users#change_phone", as: :change_phone
+  end
 
   get 'welcome', to: 'application#first_time_login', as: :first_time_login
   get 'producer_questionaire', to: 'application#new_producer_questionaire', as: :new_producer_questionaire

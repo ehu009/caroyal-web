@@ -3,10 +3,9 @@
 </h2>
 
 <p>
-<input type="hidden" id="custId" name="custId" value="">
     <h5>Change login information</h5>
     <br>
-    <%= form_for @user , html: {id: "phone_change_form"} do |f| %>
+    <%= form_for @user , url: user_change_phone_path(@user) , html: {id: "phone_change_form"} do |f| %>
     <div class="container-fluid row">
         <div class="col-md-4 col-xs-12 form-field">
             <%= f.label :phone_number %>
@@ -22,11 +21,9 @@
                         &nbsp;-&nbsp;
                     </button>
                     <ul class="dropdown-menu" id="user_phone_code_dropdown"></ul>
-                    
                     </div>
                     <img id="user_phone_code_indicator" src="" style="height:50px;">
                 </div>
-
                 <div class="col-sm-7 col-md-8" style="padding:0px;vertical-align:bottom">
                     <%= f.number_field :phone_number, style: "width:100%", class: "hidden-arrows", autocomplete: "tel-national" %>
                 </div>
@@ -42,7 +39,7 @@
                 </div>
 
                 <div class="col-sm-7 col-md-8" style="padding:0px;">
-                    <input id="user_phone_confirm" style="width:100%;" class="hidden-arrows" type="number">
+                    <input id="user_phone_confirm" style="width:100%;" class="hidden-arrows" type="number" name="user[phone_number_confirm]">
                 </div>
             </div>
             </div>
@@ -64,7 +61,7 @@
 <p>
     <h5>Change password</h5>
     <br>
-    <%= form_for @user, html: {id: "pass_change_form"} do |f| %>
+    <%= form_for @user, url: user_change_password_path(@user), html: {id: "pass_change_form"} do |f| %>
     <div class="row">
         <div class="col-md-4 col-xs-12 form-field">
             <%= f.label :password, "Current password" %>
@@ -78,14 +75,16 @@
             <span style="right:0px; color: red">*</span>
         </div>
         <div class="col-md-8 col-xs-12 form-field">
-            <%= f.password_field :new_password, style: "width:100%", autocomplete: "new-password" %>
+            <input type="password" id="user_new_password" name="user[new_password]" style="width:100%" autocomplete="new-password"> 
+            <%#= f.password_field :new_password, style: "width:100%", autocomplete: "new-password" %>
         </div>
         <div class="col-md-4 col-xs-12 form-field">
             <%= f.label :confirm_password, "Confirm" %>
             <span style="right:0px; color: red">*</span>
         </div>
         <div class="col-md-8 col-xs-12 form-field">
-            <%= f.password_field :confirm_password, style: "width:100%" %>
+        <input type="password" id="user_confirm_password" name="user[password_confirm]" style="width:100%"> 
+            <%#= f.password_field :confirm_password, style: "width:100%" %>
         </div>
         <div class="col-xs-12 text-center form-field">
             <%= f.submit  "Update password", disabled: "disabled", id: "passwd_change", class: "form-btn white-text blue-bg" %>
@@ -165,9 +164,12 @@
             
   
             
-            function checkPasswd(a, b){
+            function checkPasswdChange(c, a, b){
 
                 var allow = false;
+                if (c.value == null || c.value=="") {
+                    return;
+                }
                 var pwd_i = document.getElementById("pwd-indicate");
                 var length_i = document.getElementById("length-indicate");
                 var number_i = document.getElementById("number-indicate");
@@ -191,12 +193,13 @@
                 }
             }
 
+            var cpwd = document.getElementById("user_password");
             var pwd = document.getElementById("user_new_password");
             var pwdC = document.getElementById("user_confirm_password");
             var p = document.getElementById("user_phone_number")
             var pC = document.getElementById("user_phone_confirm");
 
-            document.getElementById("pass_change_form").oninput = function(){checkPasswd(pwd,pwdC)};
+            document.getElementById("pass_change_form").oninput = function(){checkPasswdChange(cpwd,pwd,pwdC)};
             document.getElementById("phone_change_form").oninput = function(){checkPhone(p,pC)};
 
             </script>
