@@ -25,7 +25,7 @@
 </div>
 
 <div class="row gold-bg" style="width:100%;margin:0px;padding:0px;">
-    <div class="col-7 blue-bg white-text" style="padding:35px;" >
+    <div class="col-xs-12 col-md-7 blue-bg white-text" style="padding:35px;" >
         <h2>
         Subscribe to our newsletter
         </h2>
@@ -37,10 +37,10 @@
         </p>
     </div>
 
-    <div class="col-5 center-wall text-center">
+    <div class="col-xs-12 col-md-5 center-wall text-center">
     <%= form_for @sub, url: create_newsletter_subscription_path do |t| %>
-        <%= t.text_field :email, placeholder: "Email address", style: "margin:20px 0px 20px 0px" %><br>
-        <%= t.submit "Subscribe", class: "logo-wall-btn text-center blue-bg white-text button-like" %>
+        <%= t.text_field :email, placeholder: "Email address", style: "margin-top:20px" %><br>
+        <%= t.submit "Subscribe", class: "logo-wall-btn text-center blue-bg white-text button-like", style: "margin-bottom:20px;margin-top:20px;" %>
     <% end %>
     </div>
 </div>
