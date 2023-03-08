@@ -142,8 +142,10 @@
                         length_i.style.visibility = "visible";
                     }
                     character = s.charAt(i);
+                    if (character != ""){
                     if (!isNaN(character * 1)){
                         number = true;
+                        console.log('"'+character+'"'+ " : " + character*1)
                         number_i.style.visibility = "visible";
                     }else{
                         if (character == character.toUpperCase()) {
@@ -154,6 +156,7 @@
                             lower = true;
                             lower_i.style.visibility = "visible";
                         }
+                    }
                     }
                     i++;
                     if (length && number && lower && upper) {
@@ -169,9 +172,7 @@
             function checkPasswdChange(c, a, b){
 
                 var allow = false;
-                if (c.value == null || c.value=="") {
-                    return;
-                }
+                
                 var pwd_i = document.getElementById("pwd-indicate");
                 var length_i = document.getElementById("length-indicate");
                 var number_i = document.getElementById("number-indicate");
@@ -180,6 +181,9 @@
                 
                 allow |= compare(a, b, pwd_i);
                 allow &= pwdRequirements(a, length_i, number_i, lower_i, upper_i);
+                if (c.value == null || c.value=="") {
+                    return;
+                }
                 if (allow) {
                     document.getElementById('passwd_change').disabled = false;
                 }
