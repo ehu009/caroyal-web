@@ -84,13 +84,6 @@
             <%= f.text_field :email, value: session[:create_params]["email"], style: "width:100%;", autocomplete: "email" %>
         </div>
         <div class="col-md-4 col-xs-12 form-field">
-            <%= f.label :company_address %>
-            <span style="right:0px; color: red">*</span>
-        </div>
-        <div class="col-md-8 col-xs-12 form-field">
-            <%= f.text_field :company_address, value: session[:create_params]["company_address"], style: "width:100%;" %>
-        </div>
-        <div class="col-md-4 col-xs-12 form-field">
             <%= f.label :company_country %>
             <span style="right:0px; color: red">*</span>
         </div>
@@ -103,6 +96,13 @@
         </div>
         <div class="col-md-8 col-xs-12 form-field">
             <%= f.select :company_city, [], {}, {class: "wide-select"} %>
+        </div>
+        <div class="col-md-4 col-xs-12 form-field">
+            <%= f.label :company_address %>
+            <span style="right:0px; color: red">*</span>
+        </div>
+        <div class="col-md-8 col-xs-12 form-field">
+            <%= f.text_field :company_address, value: session[:create_params]["company_address"], style: "width:100%;" %>
         </div>
         <div class="col-md-4 col-xs-12 form-field">
             <%= f.label :tax_identification_number, "TIN (tax ID)" %>
@@ -156,12 +156,6 @@
             <%= f.date_field :date_of_birth, value: session[:create_params]["date_of_birth"],autocomplete: "bday" %>
         </div>
         <div class="col-md-4 col-xs-12 form-field">
-            <%= f.label :address %>
-        </div>
-        <div class="col-md-8 col-xs-12 form-field">
-            <%= f.text_field :address, value: session[:create_params]["address"], style: "width:100%;" %>
-        </div>
-        <div class="col-md-4 col-xs-12 form-field">
             <%= f.label :country %>
         </div>
         <div class="col-md-8 col-xs-12 form-field">
@@ -172,6 +166,12 @@
         </div>
         <div class="col-md-8 col-xs-12 form-field">
             <%= f.select :city, [], {}, {class: "wide-select"} %>
+        </div>
+        <div class="col-md-4 col-xs-12 form-field">
+            <%= f.label :address %>
+        </div>
+        <div class="col-md-8 col-xs-12 form-field">
+            <%= f.text_field :address, value: session[:create_params]["address"], style: "width:100%;" %>
         </div>
     </p>
 

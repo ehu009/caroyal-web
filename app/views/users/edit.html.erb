@@ -126,13 +126,6 @@
         <%= f.text_field :email, style: "width:100%", autocomplete: "email" %>
     </div>
     <div class="col-md-4 col-xs-12 form-field">
-        <%= f.label :company_address %>
-        <span style="right:0px; color: red">*</span>
-    </div>
-    <div class="col-md-8 col-xs-12 form-field">
-        <%= f.text_field :company_address, style: "width:100%;" %>
-    </div>
-    <div class="col-md-4 col-xs-12 form-field">
         <%= f.label :company_country %>
     </div>
     <div class="col-md-8 col-xs-12 form-field">
@@ -143,6 +136,13 @@
     </div>
     <div class="col-md-8 col-xs-12 form-field">
         <%= f.select :company_city, [], style: "width:100%", class:"wide-select" %>
+    </div>
+    <div class="col-md-4 col-xs-12 form-field">
+        <%= f.label :company_address %>
+        <span style="right:0px; color: red">*</span>
+    </div>
+    <div class="col-md-8 col-xs-12 form-field">
+        <%= f.text_field :company_address, style: "width:100%;" %>
     </div>
     <div class="col-md-4 col-xs-12 form-field">
         <%= f.label :tax_identification_number, "TIN (tax ID)" %>
@@ -198,12 +198,6 @@
         <%= f.date_field :date_of_birth, autocomplete: "bday" %>
     </div>
     <div class="col-md-4 col-xs-12 form-field">
-        <%= f.label :address %>
-    </div>
-    <div class="col-md-8 col-xs-12 form-field">
-        <%= f.text_field :address, style: "width:100%;" %>
-    </div>
-    <div class="col-md-4 col-xs-12 form-field">
         <%= f.label :country %>
     </div>
     <div class="col-md-8 col-xs-12 form-field">
@@ -215,7 +209,13 @@
     <div class="col-md-8 col-xs-12 form-field">
         <%= f.select :city, [], style: "width:100%", class:"wide-select" %>
     </div>
-    
+    <div class="col-md-4 col-xs-12 form-field">
+        <%= f.label :address %>
+    </div>
+    <div class="col-md-8 col-xs-12 form-field">
+        <%= f.text_field :address, style: "width:100%;" %>
+    </div>
+
     <div class="col-xs-12 text-center">
             <%= f.submit  "Update account information", class: "form-btn white-text blue-bg" %>
     </div>
