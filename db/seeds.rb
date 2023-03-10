@@ -8,7 +8,7 @@
 
 if Rails.env.development? then
     begin
-        User.create!([{email: "admin@person.com", password: "qwerqwer", administrator: true, first_name:"Admin", last_name: "McAdminson", tax_identification_number: '0',name_prefix: 'Mr.',phone_number: '0',country: 'Nowhere',city: 'Noville',company_name: 'Caroyal',company_address: '0', company_city: "Tromsø", company_country: "NO", phone_code: '47'} ])
+        User.create!([{email: "admin@person.com", password: "qwerqwer", administrator: true, first_name:"Admin", last_name: "McAdminson", tax_identification_number: '0',name_prefix: 'Mr.',phone_number: '0',country: 'Nowhere',city: 'Noville',company_name: 'Caroyal',company_address: '0', company_city: "Tromsø", company_country: "NO", phone_code: '+47'} ])
     rescue ActiveRecord::RecordInvalid
     end
 end
@@ -24,7 +24,7 @@ def fake_user
         is_distributor = true
     end
     phone = (0...5).map { rand(9) }.join
-    User.new({producer: is_producer, distributor: is_distributor, password: "asdfF87asdf", administrator: false, first_name:"Fishy", last_name: "McFish", tax_identification_number: '0',name_prefix: 'Mr.',phone_number: phone,country: 'Nowhere',city: 'Noville',company_name: 'FishFishFish',company_address: '0', company_city: "Tromsø", company_country: "NO", phone_code: '47'})
+    User.new({producer: is_producer, distributor: is_distributor, password: "asdfF87asdf", administrator: false, first_name:"Fishy", last_name: "McFish", tax_identification_number: '0',name_prefix: 'Mr.',phone_number: phone,country: 'Nowhere',city: 'Noville',company_name: 'FishFishFish',company_address: '0', company_city: "Tromsø", company_country: "NO", phone_code: '+47'})
 end
 
 (0..12).each do |n|
