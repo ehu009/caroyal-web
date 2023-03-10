@@ -7,6 +7,14 @@ class ApplicationController < ActionController::Base
 
     def home
         @sub = NewsletterSubscriber.new
+        if @current_user != nil then
+            if @current_user.email != nil then
+                s = NewsletterSubscriber.find_by email: @current_user.email
+                if s != nil then
+                    @sub = s
+                end
+            end
+        end
         render layout: "application_white"
     end
 
