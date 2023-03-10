@@ -26,7 +26,7 @@
 <hr>
 
 If you would like to stop receiving email newletters from us - <br>
-Have no fear, we've provided a clickable link <%= link_to "right here", unsubscribe_newsletter_path(s.unsubscribe_token) %>
+Have no fear, we've provided a clickable link <%= link_to "right here", unsubscribe_newsletter_url(@s.unsubscribe_token) %>
 </div>
   </body>
 </html>

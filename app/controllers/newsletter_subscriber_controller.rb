@@ -13,8 +13,8 @@ class NewsletterSubscriberController < ApplicationController
     message = "Something went wrong."
     redir = root_path
     if sub.save then
-      NewsletterMailer.welcome_newsletter_to(sub).deliver_now
-      message = "Thanks for signing up! We've dispatched a welcome email."
+      NewsletterMailer.welcome_newsletter_to(sub.email).deliver_now
+      message = "Thanks for signing up to our newsletter! We've dispatched a welcome email."
     else
       message = sub.errors.messages
     end
