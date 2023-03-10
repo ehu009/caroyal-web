@@ -1,7 +1,47 @@
 
-<div class="wall">
 
+<div class="wall container-fluid">
+    <h3> Contact form </h3>
+    <p>
+    
+    <%= form_for @inq do |f| %>
+    <div class="row">
+    <div class="col-xs-12 col-md-3">
+        <%= f.label :email, class: "form-field" %>
+    </div>
+    <div class="col-xs-12 col-md-9">
+        <% mail = "" %>
+        <% if @current_user != nil then %>
+            <% mail = @current_user.email %>
+        <% end %>
+        <%= f.text_field :email, value: mail, style: "width:100%" %>
+    </div>
+    <div class="col-xs-12 col-md-3">
+        <%= f.label "Your role", class: "form-field" %>
+    </div>
+    <div class="col-xs-12 col-md-9">
+        <%= f.text_field :role, style: "width:100%", class: "form-field" %>
+    </div>
+    <div class="col-xs-12 col-md-3">
+        <%= f.label "Inquiry", class: "form-field" %>
+    </div>
+    <div class="col-xs-12 col-md-9" >
+        <%= f.text_area :body, style: "width:100%;", class: "form-field" %>
+    </div>
+
+    <div class="col-xs-12 text-center">
+        <%= f.submit "Send inquiry", class: "form-btn blue-bg white-text" %>
+    </div>
+    <% end %>
+    <!--</div>-->
+    </p>
+    <p>
+    <hr class="dark-blue-text">
+    </p>
+
+    <p>
     <%= render 'construction' %>
+    </p>
     
 
 </div>

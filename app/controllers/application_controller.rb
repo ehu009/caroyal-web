@@ -29,7 +29,8 @@ class ApplicationController < ActionController::Base
     end
 
     def contact
-
+        @inq = Inquiry.new
+        render :contact, layout: "application_fishy"
     end
 
     def products
