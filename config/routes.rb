@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
@@ -55,5 +56,7 @@ Rails.application.routes.draw do
     post 'subscribe', to: 'newsletter_subscriber#create', as: :create_newsletter_subscription
     get 'unsubscribe/:unsubscribe_token', to: 'newsletter_subscriber#destroy', as: :unsubscribe_newsletter
   end
+
+  resources :inquiries, except: [:new]
 
 end
