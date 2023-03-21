@@ -12,10 +12,8 @@
         </h4>
 
         <div class="container-fluid text-center logo-wall-btn-container" style="margin-top:20px;">
-            <div class="logo-wall-btn text-center gold-bg white-text button-like" onclick="window.location.href='<%= new_user_path %>'">
-                <strong class="white-text">
-                    Sign up
-                </strong>
+            <div class="logo-wall-btn text-center button-like button-like_gold" onclick="window.location.href='<%= new_user_path %>'">
+                Sign up
             </div>
         </div>
     </div>
@@ -43,7 +41,7 @@
     <div class="col-xs-12 col-md-5 center-wall text-center">
     <%= form_for @sub, url: create_newsletter_subscription_path do |t| %>
         <%= t.text_field :email, placeholder: "Email address", style: "margin-top:20px" %><br>
-        <%= t.submit "Subscribe", class: "logo-wall-btn text-center blue-bg white-text button-like", style: "margin-bottom:20px;margin-top:20px;" %>
+        <%= t.submit "Subscribe", class: "logo-wall-btn text-center button-like button-like_blue", style: "margin: 20px auto;" %>
     <% end %>
     </div>
 </div>
@@ -61,14 +59,10 @@
             <h3 style="margin: 20px 0px 20px 0px">
             We are building a B2B e-commerce platform designed to enhance product affordability and food security through market accessibility for producers, distributors and consumers.
             </h3>
-            <div class="text-center">
-                <div class="logo-wall-btn text-center blue-bg white-text button-like" onclick="window.location.href='<%= about_path %>'">
-                    <strong class="white-text">
-                        Read more
-                    </strong>
+                <div class="logo-wall-btn text-center button-like button-like_blue" onclick="window.location.href='<%= about_path %>'">
+                    Read more
                 </div>
 
-            </div>
         </div>
 
     </div>
