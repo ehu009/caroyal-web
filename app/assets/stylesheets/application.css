@@ -83,6 +83,8 @@ background-repeat:no-repeat;
 .blurred-box {
   /* box-shadow: 0 0 10px 10px white; */
   background-color: rgba(255, 255, 255, .95);
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
 }
 .gold-blurred-box {
   box-shadow: 0 0 3px 3px #c4a141;
