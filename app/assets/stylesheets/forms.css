@@ -16,18 +16,22 @@ margin: 8px auto;
 width: 100%;
 max-width: 325px;
 }
+.form-field label {
+  color: #0B2C59;
+}
 .form-field_wide {
   max-width: 475px;
 }
 .form-indicator-text {
 font-size: small;
-color: gray;
+color: #0B2C59;
 font-style: italic;
 }
 .new_newsletter_subscriber {
   width: 100%;
 }
-.text-input {
+.text-input,
+.name-prefix select {
   display: block;
   width: 100%;
   max-width: 325px;
@@ -39,6 +43,8 @@ font-style: italic;
 }
 .text-input_large {
   height: 100px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 .text-input_wide {
   max-width: 475px;
@@ -55,4 +61,57 @@ font-style: italic;
   font-size: 40px;
   text-align: center;
   color: #0B2C59;
+}
+
+.dropdown-menu {
+  width: 100%;
+  max-width: 325px;
+}
+
+.form-group_dir-row {
+  display: flex;
+  justify-content: space-between;
+  max-width: 325px;
+  margin: auto;
+}
+.form-group_dir-row .form-field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  margin-left: 0;
+  margin-right: 0;
+}
+.form-group_dir-row .form-field .form-check-input {
+  width: 25px;
+  height: 25px;
+  border-radius: 0;
+}
+
+
+
+@media (min-width: 1200px) {
+  .form-field_wide-1200 {
+    max-width: 475px;
+  }
+  .text-input_wide-1200 {
+    max-width: 475px;
+  }
+  .input-form {
+    max-width: 1000px;
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 340px;
+  }
+  .form-group-2 {
+    height: 430px;
+  }
+  .form-group_dir-row {
+    justify-content: start;
+    gap: 45px;
+    max-width: 475px;
+  }
 }

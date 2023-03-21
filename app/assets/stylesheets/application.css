@@ -125,3 +125,8 @@ background-repeat:no-repeat;
   font-style: italic;
   color: gray;
 }
+
+.heading-style {
+  color: #0B2C59;
+  text-align: center;
+}
