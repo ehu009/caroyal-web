@@ -1,43 +1,38 @@
 
-<h2>
+<h2 class="heading-style">
     Log in
 </h2>
 <%= form_tag '/login' do |f| %>
 
-<div class="container-fluid row">
-    <div class="col-lg-4 col-xs-12 form-field">
+<div>
+    <div class="form-field">
         <%= label_tag "Phone number or email" %>
     </div>
-    <div class="col-lg-8 col-xs-12 form-field" style="padding-right:0px;">
-        <div class="container-fluid row" style="padding:0px;">
+    <div class="form-field">
+        <%= select_tag :phone_code, [],  {id: "user_phone_code", name: 'phone_code',class: "wide-select text-input", autocomplete: "tel-phone-code"} %>
 
-            <div class="col-xs-4 col-sm-4">                
-                <%= select_tag :phone_code, [],  {id: "user_phone_code", name: 'phone_code',class: "wide-select", style: "padding:1px 2px;height:100%", autocomplete: "tel-phone-code"} %>
-            </div>
-
-            <div class="col-xs-12 col-sm-8" style="padding:0px;">
-                <%= text_field_tag :string, "", class: "hidden-arrows text-input", style: "width:100%;",autocomplete: "tel-national" %>
-            </div>
+        <div class="mt" style="padding:0px;">
+            <%= text_field_tag :string, "", class: "hidden-arrows text-input", style: "width:100%;",autocomplete: "tel-national" %>
         </div>
     </div>
     
-    <div class="col-lg-4 col-xs-12 form-field">
+    <div class="form-field">
         <%= label_tag :password %>
     </div>
-    <div class="col-lg-8 col-xs-12 form-field">
+    <div class="form-field">
         <%= password_field_tag :password, "", style: "width:100%;", class: "text-input" %>
     </div>
     
-    <div class="col-12 text-center">
-        <%= submit_tag "Submit", class: "form-btn dark-blue-bg white-text" %>
-    </div>
+    <%= submit_tag "Submit", class: "button-like button-like_blue button-like_center mt" %>
 </div>
 <% end %>
 
 <hr class="dark-blue-text">
 
-<h5>Don't have an account?</h5>
-<%=link_to 'Create an account here', new_user_path %>
+<div class="no-account-container blue-text">
+    <span class="text-center">Don't have an account?</span>
+    <%=link_to 'Create an account here', new_user_path %>
+</div>
 
 <script>
     window.onload = function() {
