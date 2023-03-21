@@ -41,14 +41,22 @@
   .button-like_blue:hover {
     background-color: #0B2C59;
   }
-  .button-like_blue-inverse {
+  .button-like_transparent-inverse {
     border: 2px solid white;
-    background-color: #0B2C59;
+    background-color: unset;
     color: white;
   }
-  .button-like_blue-inverse:hover {
+  .button-like_transparent-inverse:hover {
     background-color: white;
     color: #0B2C59;
+  }
+  .button-like_transparent {
+    background-color: unset;
+    border: 2px solid #0B2C59;
+    color: #0B2C59;
+  }
+  .button-like_transparent:hover {
+    background-color: #0B2C59;
   }
   .button-like_small {
     height: 35px;
