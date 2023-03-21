@@ -29,7 +29,11 @@ font-style: italic;
   margin: auto;
   padding: 0 15px;
   background-color: white;
+  border: 2px solid #0B2C59;
 }
 .text-input_large {
   height: 100px;
+}
+.text-input_thin {
+  border: 1px solid #0B2C59;
 }
