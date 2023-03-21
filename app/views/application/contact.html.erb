@@ -1,47 +1,38 @@
+<h3 class="input-form-header"> Contact form </h3>
+<p>
 
+<%= form_for @inq do |f| %>
+<div class="row">
+<div>
+    <%= f.label :email, class: "form-field form-field_wide" %>
 
-<div class="wall container-fluid">
-    <h3> Contact form </h3>
-    <p>
-    
-    <%= form_for @inq do |f| %>
-    <div class="row">
-    <div class="col-xs-12 col-md-3">
-        <%= f.label :email, class: "form-field" %>
-    </div>
-    <div class="col-xs-12 col-md-9">
-        <% mail = "" %>
-        <% if @current_user != nil then %>
-            <% mail = @current_user.email %>
-        <% end %>
-        <%= f.text_field :email, value: mail, style: "width:100%", class: "text-input" %>
-    </div>
-    <div class="col-xs-12 col-md-3">
-        <%= f.label "Your role", class: "form-field" %>
-    </div>
-    <div class="col-xs-12 col-md-9">
-        <%= f.text_field :role, style: "width:100%", class: "form-field text-input" %>
-    </div>
-    <div class="col-xs-12 col-md-3">
-        <%= f.label "Inquiry", class: "form-field" %>
-    </div>
-    <div class="col-xs-12 col-md-9" >
-        <%= f.text_area :body, style: "width:100%;", class: "form-field text-input text-input_large" %>
-    </div>
-
-    <div class="col-xs-12 text-center">
-        <%= f.submit "Send inquiry", class: "button-like button-like_blue button-like_center" %>
-    </div>
+    <% mail = "" %>
+    <% if @current_user != nil then %>
+        <% mail = @current_user.email %>
     <% end %>
-    <!--</div>-->
-    </p>
-    <p>
-    <hr class="dark-blue-text">
-    </p>
-
-    <p>
-    <%= render 'construction' %>
-    </p>
-    
-
+    <%= f.text_field :email, value: mail, style: "width:100%", class: "text-input text-input_wide" %>
 </div>
+<div>
+    <%= f.label "Your role", class: "form-field form-field_wide" %>
+
+    <%= f.text_field :role, style: "width:100%", class: "form-field text-input text-input_wide" %>
+</div>
+<div>
+    <%= f.label "Inquiry", class: "form-field form-field_wide" %>
+
+    <%= f.text_area :body, style: "width:100%;", class: "form-field text-input text-input_large text-input_wide" %>
+</div>
+
+<div class="text-center">
+    <%= f.submit "Send inquiry", class: "button-like button-like_blue button-like_center button-like_mt" %>
+</div>
+<% end %>
+<!--</div>-->
+</p>
+<p>
+<hr class="dark-blue-text">
+</p>
+
+<p>
+<%= render 'construction' %>
+</p>

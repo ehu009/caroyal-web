@@ -11,8 +11,13 @@
 margin: 0;
 }
 .form-field {
-margin-top:8px;
-margin-bottom: 8px;
+display: block;
+margin: 8px auto;
+width: 100%;
+max-width: 325px;
+}
+.form-field_wide {
+  max-width: 475px;
 }
 .form-indicator-text {
 font-size: small;
@@ -23,17 +28,31 @@ font-style: italic;
   width: 100%;
 }
 .text-input {
+  display: block;
   width: 100%;
   max-width: 325px;
   height: 45px;
   margin: auto;
   padding: 0 15px;
   background-color: white;
-  border: 2px solid #0B2C59;
+  border: 1px solid #0B2C59;
 }
 .text-input_large {
   height: 100px;
 }
-.text-input_thin {
-  border: 1px solid #0B2C59;
+.text-input_wide {
+  max-width: 475px;
+}
+
+.input-form {
+  margin: auto;
+  margin-top: 35px;
+  max-width: 700px;
+  padding: 35px;
+  outline: 2px solid #051933;
+}
+.input-form-header {
+  font-size: 40px;
+  text-align: center;
+  color: #0B2C59;
 }
