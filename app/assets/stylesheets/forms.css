@@ -22,3 +22,14 @@ font-style: italic;
 .new_newsletter_subscriber {
   width: 100%;
 }
+.text-input {
+  width: 100%;
+  max-width: 325px;
+  height: 45px;
+  margin: auto;
+  padding: 0 15px;
+  background-color: white;
+}
+.text-input_large {
+  height: 100px;
+}

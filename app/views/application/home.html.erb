@@ -40,7 +40,7 @@
 
     <div class="col-xs-12 col-md-5 center-wall text-center">
     <%= form_for @sub, url: create_newsletter_subscription_path do |t| %>
-        <%= t.text_field :email, placeholder: "Email address", style: "margin-top:20px" %><br>
+        <%= t.text_field :email, placeholder: "Email address", style: "margin-top:20px", class: "text-input" %><br>
         <%= t.submit "Subscribe", class: "logo-wall-btn text-center button-like button-like_blue", style: "margin: 20px auto;" %>
     <% end %>
     </div>
