@@ -25,7 +25,7 @@
 </div>
 
 <% if @sub.email == nil || @sub.email == "" %>
-<div class="row gold-bg" style="width:100%;margin:0px;padding:0px;">
+<div class="row gold-bg page-section" style="width:100%;margin:0px;padding:0px;">
     <div class="col-xs-12 col-md-7 blue-bg white-text" style="padding:35px;" >
         <h2>
         Subscribe to our newsletter
@@ -48,18 +48,16 @@
 <% end %>
 
 <div class="parallax-2">
-    <div class=" row" style="max-width:100vw;min-height:100vh;padding:50px 0px 50px 0px;">
+    <div class=" row" style="max-width:100vw;min-height:100vh;padding:50px 0px 50px 0px;margin:0;">
 
-        <div class="col-sm-3 col-md-4">
-        </div>
-        <div class="col-sm-9 col-md-8 center-wall white-bg dark-blue-text blurred-box" style="padding:35px; opacity:0.85;">
+        <div class="center-wall dark-blue-text blurred-box" style="padding:35px;">
             <h1 class="text-center">
             About us
             </h1>
             <h3 style="margin: 20px 0px 20px 0px">
             We are building a B2B e-commerce platform designed to enhance product affordability and food security through market accessibility for producers, distributors and consumers.
             </h3>
-                <div class="logo-wall-btn text-center button-like button-like_blue" onclick="window.location.href='<%= about_path %>'">
+                <div class="logo-wall-btn text-center button-like button-like_transparent" onclick="window.location.href='<%= about_path %>'">
                     Read more
                 </div>
 

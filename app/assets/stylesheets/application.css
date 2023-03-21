@@ -81,10 +81,15 @@ background-repeat:no-repeat;
 }
 
 .blurred-box {
-  box-shadow: 0 0 10px 10px white;
+  /* box-shadow: 0 0 10px 10px white; */
+  background-color: rgba(255, 255, 255, .95);
 }
 .gold-blurred-box {
   box-shadow: 0 0 3px 3px #c4a141;
+}
+
+.page-section {
+  border-bottom: 3px solid white;
 }
 
 
@@ -110,7 +115,6 @@ background-repeat:no-repeat;
 
 .info-box {
   padding:35px 35px 35px 35px;
-  opacity:0.85;
 }
 
 .employee-list li {

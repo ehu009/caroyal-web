@@ -8,7 +8,7 @@
         <% path = account_overview_path %>
     <% end %>
 
-    <div class="account-pill text-center button-like button-like_blue-inverse button-like_small" onclick="window.location.href='<%= path %>'">
+    <div class="account-pill text-center button-like button-like_small button-like_transparent-inverse" onclick="window.location.href='<%= path %>'">
     <% if @current_user != nil then %>
         <i class="fa-regular fa-user white-text" style="margin-right:10px;"></i>
         <%= @current_user.first_name %>
