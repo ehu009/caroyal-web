@@ -78,6 +78,7 @@ background-repeat:no-repeat;
   background-image: url('/Stockfish_Lofoten_2009.jfif');
   background-size:100vw;
   padding-top: 85px;
+  padding-bottom: 25px;
 }
 
 .blurred-box {
@@ -96,10 +97,25 @@ background-repeat:no-repeat;
 
 
 .footer {
+  display: flex;
   bottom: 0px;
   width: 100%;
   padding: 25px;
   position: relative;
+  justify-content: space-between;
+}
+.social-links-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+  gap: 15px;
+}
+.policy-link-container a {
+  color: white;
+}
+.policy-link-container a:hover {
+  color: white;
 }
 
 .home-pie {
@@ -152,6 +168,14 @@ background-repeat:no-repeat;
 .large-heading {
   font-size: 40px;
   font-weight: 700;
+}
+
+
+
+@media (min-width: 440px) {
+  .social-links-container {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
 }
 
 
