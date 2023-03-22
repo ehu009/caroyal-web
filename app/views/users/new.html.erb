@@ -247,7 +247,7 @@
         if (!(p.value== null || p.value == "")){
             allow |= compare(p, pC, phone_i);
         }
-        if (!(pdw.value== null || pdw.value == "")){
+        if (!(pwd.value== null || pwd.value == "")){
         allow &= compare(pwd, pwdC, pwd_i);
         }
         allow &= pwdRequirements(pwd, length_i, number_i, lower_i, upper_i);
