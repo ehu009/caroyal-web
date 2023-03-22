@@ -1,41 +1,38 @@
 <div class="parallax">
-<div class="container-fluid text-center" style="z-index:2;">
-    <%= link_to root_path do %>
-    <img class="logo-top" src="/Caroyal transparent PNG-02.png">
-    <% end %>
-</div>
-
-<section class="timeline">
-<ul>
-<% @events.each do |t| %>
-
-
-<% time = t.time %>
-
-<% if t.text == nil && time == nil then%>
-<li class="timeline-era">
-    <div class="white-text">
-    <h2 class="timeline-title">
-        <%= t[:title] %>
-    </h2>
+    
+    <section class="timeline">
+    <ul>
+    <% @events.each do |t| %>
+    
+    
+    <% time = t.time %>
+    
+    <% if t.text == nil && time == nil then%>
+    <li class="timeline-era">
+        <div class="white-text timeline-box timeline-box_blue">
+        <h2 class="timeline-title">
+            <%= t[:title] %>
+        </h2>
+        <img class="box-corner box-corner_blue" src="box-corner-blue.svg">
+        </div>
+    <% else %>
+    <li class="timeline-event">
+    <div class="white-text timeline-box timeline-box_white">
+        <h2 class="timeline-time">
+            <%= Date::MONTHNAMES[time.month] %> <%= time.year %>
+        </h2>
+        <span class="timeline-title">
+            <%= t[:title] %>
+        </span><br>
+        <span class="timeline-text">
+            <%= t[:text] %>
+        </span>
+        <img class="box-corner" src="box-corner.svg">
     </div>
-<% else %>
-<li class="timeline-event">
-<div class="white-text gold-blurred-box">
-    <h2 class="timeline-time">
-        <%= Date::MONTHNAMES[time.month] %> <%= time.year %>
-    </h2>
-    <span class="timeline-title">
-        <%= t[:title] %>
-    </span><br>
-    <span class="timeline-text">
-        <%= t[:text] %>
-    </span>
-</div>
-<% end %>
-
-</li>
-<% end %>
-</ul>
-</section>
-</div>
+    <% end %>
+    
+    </li>
+    <% end %>
+    </ul>
+    </section>
+    </div>
