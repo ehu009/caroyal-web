@@ -100,9 +100,11 @@ background-repeat:no-repeat;
   display: flex;
   bottom: 0px;
   width: 100%;
-  padding: 25px;
+  padding: 0 25px;
   position: relative;
   justify-content: space-between;
+  align-items: center;
+  height: 80px;
 }
 .social-links-container {
   display: grid;
