@@ -78,11 +78,13 @@ background-repeat:no-repeat;
   background-image: url('/Stockfish_Lofoten_2009.jfif');
   background-size:100vw;
   padding-top: 85px;
+  padding-bottom: 25px;
 }
 
 .blurred-box {
   /* box-shadow: 0 0 10px 10px white; */
   background-color: rgba(255, 255, 255, .95);
+  outline: 2px solid #051933;
 }
 .gold-blurred-box {
   box-shadow: 0 0 3px 3px #c4a141;
@@ -95,10 +97,27 @@ background-repeat:no-repeat;
 
 
 .footer {
+  display: flex;
   bottom: 0px;
   width: 100%;
-  padding: 25px;
+  padding: 0 25px;
   position: relative;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+}
+.social-links-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+  gap: 15px;
+}
+.policy-link-container a {
+  color: white;
+}
+.policy-link-container a:hover {
+  color: white;
 }
 
 .home-pie {
@@ -116,12 +135,65 @@ background-repeat:no-repeat;
 .info-box {
   padding:35px 35px 35px 35px;
 }
+.info-box_small {
+  margin: 50px auto;
+  max-width: 650px;
+}
+.about-container {
+  padding-top: 75px;
+  padding-bottom: 5px;
+}
+.about-text {
+  font-size: 18px;
+  word-spacing: 1px;
+}
 
+.employee-list {
+  padding: 0;
+}
 .employee-list li {
   margin:15px;
   list-style-type: none;
 }
 .employee-role {
   font-style: italic;
-  color: gray;
+  font-weight: 300;
+}
+
+.heading-style {
+  color: #0B2C59;
+  text-align: center;
+}
+.mt {
+  margin-top: 20px;
+}
+.large-heading {
+  font-size: 40px;
+  font-weight: 700;
+}
+
+
+
+@media (min-width: 440px) {
+  .social-links-container {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+
+
+@media (min-width: 1200px) {
+  .about-box-container {
+    display: flex;
+    justify-content: center;
+    gap: 2%;
+    padding: 50px 0;
+  }
+  .info-box_small {
+    width: 30%;
+    margin: 0;
+  }
+  .employee-list {
+    font-size: 20px;
+  }
 }
