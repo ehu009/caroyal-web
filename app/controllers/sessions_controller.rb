@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
     def create
         message = "Error logging in."
         
-        dial = params[:phone_code]
+        dial = params[:user_phone_code]
         login = params[:string]
         @user = User.find_by(phone_number: login, phone_code: dial)
         if @user.nil? then
