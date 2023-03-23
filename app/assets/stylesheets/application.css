@@ -30,10 +30,7 @@
 }
 
 .parallax-2 {
-
   background-image: url("/_DSC5781.jpg");
-  ;
-
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -82,7 +79,6 @@ background-repeat:no-repeat;
 }
 
 .blurred-box {
-  /* box-shadow: 0 0 10px 10px white; */
   background-color: rgba(255, 255, 255, .95);
   outline: 2px solid #051933;
 }
