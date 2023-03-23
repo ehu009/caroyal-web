@@ -1,5 +1,6 @@
 <div class="nav-container">
-    <i class="fa-solid fa-bars nav-burger white-text" onclick="open_nav('nav-veil');"></i>
+    <i id="nav-closer" style="display: none;" class="fa-solid fa-close nav-burger white-text" onclick="burger_toggle('nav-burger', 'nav-closer', 'nav-veil')"></i>
+    <i id="nav-burger" class="fa-solid fa-bars nav-burger white-text" onclick="burger_toggle('nav-burger', 'nav-closer', 'nav-veil')"></i>
 
     <a href="/"><img class="nav-logo" src='/Caroyal transparent PNG-02.png'></a>
 

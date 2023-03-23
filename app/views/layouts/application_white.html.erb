@@ -42,8 +42,8 @@ window.addEventListener("load", callbackFunc);
 window.addEventListener("scroll", callbackFunc);
 
 
-
-function open_nav(id) {
+  
+  function open_nav(id) {
     var e = document.getElementById(id);
     e.classList.add('nav-veil-fadein');
     e.classList.remove('nav-veil-fadeout');
@@ -53,6 +53,32 @@ function open_nav(id) {
     e.classList.remove('nav-veil-fadein');
     e.classList.add('nav-veil-fadeout');
   }
+  function burger_toggle(burger_id, closer_id, veil_id) {
+    var b = document.getElementById(burger_id);
+    var c = document.getElementById(closer_id);
+    if (c.style.display == "none")
+    {
+      open_nav(veil_id);
+      /*
+      b.style.hidden = true;
+      c.style.hidden = false;
+      */
+      
+      b.style.display = "none";
+      c.style.display = "initial";
+      
+    } else {
+      close_nav(veil_id);
+      /*
+      b.style.hidden = false;
+      c.style.hidden = true;
+      */
+      b.style.display = "initial";
+      c.style.display = "none";
+      
+    }
+  }
+
   function unveil(id) {
     var e = document.getElementById(id);
     e.classList.add('veil-fadeout');
