@@ -161,7 +161,8 @@ function populateCitySelect(elem, countryCode) {
   }
 }
 
-function initCitySelector(countrySelectId, citySelectId, initCountry, initCity) {
+function initCitySelector(countrySelectId, citySelectId, initCountry, initCity, spinner) {
+  document.getElementById(spinner).style.display = "block";
   var country_field = document.getElementById(countrySelectId);
   var city_field = document.getElementById(citySelectId);
 
@@ -179,9 +180,12 @@ function initCitySelector(countrySelectId, citySelectId, initCountry, initCity) 
               }
           }
           country_field.onchange = function () {
+              document.getElementById(spinner).style.display = "block";
               resetSelect(city_field, text);
               populateCitySelect(city_field, country_field.value);
+              document.getElementById(spinner).style.display = "none";
           };
+          document.getElementById(spinner).style.display = "none";
       },
   false);
 }
@@ -235,7 +239,8 @@ function populatePhoneSelect(elem, hiddenField) {
   }
 }
 
-function initPhoneSelector(phoneCodeSelectId, initCountry, hiddenField) {
+function initPhoneSelector(phoneCodeSelectId, initCountry, hiddenField, spinner) {
+  document.getElementById(spinner).style.display = "block";
   var phone_code_field = document.getElementById(phoneCodeSelectId);
   var hidden_field = document.getElementById(hiddenField);
   console.log(hidden_field)
@@ -247,6 +252,7 @@ function initPhoneSelector(phoneCodeSelectId, initCountry, hiddenField) {
           if (initCountry != "") {
               selectPhoneCode(phone_code_field, initCountry, hidden_field);
           }
+          document.getElementById(spinner).style.display = "none";
         }, false);
       },
   false);

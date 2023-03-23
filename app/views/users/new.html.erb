@@ -4,9 +4,14 @@
 <%= form_for @user do |f| %>
     <p>
     <div class="form-group">
-        <div class="form-field">
+        <div class="form-field" style="display: flex; flex-direction: row;">
             <%= f.label :phone_number %>
+            &nbsp;
             <span style="right:0px; color: red">*</span>
+            &nbsp;
+            <span id="phone-spinner" style="display: none;">
+            <i class="fas fa-spin fa-spinner"></i>
+            </span>
         </div>
             <div class="form-field">
                 <div style="padding:0px;display:flex; justify-content:center;align-items: center;">
@@ -82,6 +87,10 @@
         <div class="form-field form-field_wide-1200">
             <%= f.label :company_city %>
             <span style="right:0px; color: red">*</span>
+            &nbsp;
+            <span id="city-spinner" style="margin-left: 10px; display: none;">
+            <i class="fas fa-spin fa-spinner"></i>
+            </span>
         </div>
         <div class="form-field form-field_wide-1200">
             <%= f.select :company_city, [], {}, {class: "wide-select text-input text-input_wide-1200"} %>
@@ -151,6 +160,10 @@
         </div>
         <div class="form-field">
             <%= f.label :city %>
+            &nbsp;
+            <span id="city2-spinner" style="margin-left: 10px; display: none;">
+            <i class="fas fa-spin fa-spinner"></i>
+            </span>
         </div>
         <div class="form-field">
             <%= f.select :city, [], {}, {class: "wide-select text-input"} %>
@@ -260,11 +273,11 @@
         
         cityData = getJSONData("/country_cities.json", cityDataSuccess);
         
-        initCitySelector("user_country", "user_city", "<%= session[:create_params]['country'] %>", "<%= session[:create_params]['city'] %>");
-        initCitySelector("user_company_country", "user_company_city", "<%= session[:create_params]['company_country'] %>", "<%= session[:create_params]['company_city'] %>");
+        initCitySelector("user_country", "user_city", "<%= session[:create_params]['country'] %>", "<%= session[:create_params]['city'] %>", "city-spinner");
+        initCitySelector("user_company_country", "user_company_city", "<%= session[:create_params]['company_country'] %>", "<%= session[:create_params]['company_city'] %>", "city2-spinner");
         
         phoneData = getJSONData('/country_phones.json', phoneDataSuccess);
         phoneFlags = getJSONData('https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/by-code.json', phoneFlagsSuccess);
-        initPhoneSelector("user_phone_code_dropdown", "<%= session[:create_params]['phone_code'] %>", "user_phone_code");
+        initPhoneSelector("user_phone_code_dropdown", "<%= session[:create_params]['phone_code'] %>", "user_phone_code", "phone-spinner");
     }
 </script>
