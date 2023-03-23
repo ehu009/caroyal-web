@@ -4,6 +4,23 @@
         <span class="nav-burger-bg text-center" style="z-index:12">
             <i class="fa-solid fa-close nav-burger white-text" style="z-index:11;"></i>
         </span>
+        <a href="/"><img class="nav-logo" src='/Caroyal transparent PNG-02.png'></a>
+
+        <% path = '/login' %>
+        <% if @current_user != nil then %>
+            <% path = account_overview_path %>
+        <% end %>
+
+        <span>
+        <div style="max-height: 37px; padding:0px 15px 0px 15px; width:100%;" class="account-pill text-center button-like button-like_small button-like_transparent-inverse" onclick="window.location.href='<%= path %>'">
+        <% if @current_user != nil then %>
+            <i class="fa-regular fa-user white-text" style="margin-right:10px;"></i>
+            <%= @current_user.first_name %>
+        <% else %>
+            Log in
+        <% end %>
+        </div>
+        </span>
     </div>
 <!--
     <div class="container-fluid row">
