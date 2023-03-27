@@ -90,6 +90,7 @@ function cityDataSuccess(data) {
 }
 function phoneDataSuccess(data) {
   phoneData = JSON.parse(data);
+  /*
   phoneData.sort(function(a, b) {    
         if (a['dial_code'] > b['dial_code']) {    
             return 1;
@@ -98,6 +99,7 @@ function phoneDataSuccess(data) {
         }    
         return 0;    
     });
+    */
   dispatchEvent(phoneDataAvailable);
 }
 function phoneFlagsSuccess(data) {
