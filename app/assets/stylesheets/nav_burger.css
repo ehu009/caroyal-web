@@ -36,9 +36,10 @@
   height: 100vh;
 }
 .nav-list > li {
-  font-size: 40px;
+  font-size: 36px;
   font-weight: bold;
   transition: 0.7s;
+  cursor: pointer;
 }
 .nav-list>li:hover {
   font-size: 43px;
