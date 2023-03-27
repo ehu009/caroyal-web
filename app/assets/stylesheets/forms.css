@@ -19,6 +19,9 @@ max-width: 325px;
 .form-field label {
   color: #0B2C59;
 }
+.blue-form > .form-field label {
+  color: #fff;
+}
 .form-field_wide {
   max-width: 475px;
 }
@@ -27,6 +30,11 @@ font-size: small;
 color: #0B2C59;
 font-style: italic;
 }
+.form-indicator-text-white {
+  font-size: small;
+  color: #fff;
+  font-style: italic;
+  }
 .new_newsletter_subscriber {
   width: 100%;
 }
