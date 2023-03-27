@@ -7,6 +7,9 @@
 <div>
     <div class="form-field">
         <%= label_tag "Phone number or email" %>
+        <span id="phone-spinner">
+          <i class="fas fa-spin fa-spinner"></i>
+        </span>
     </div>
     <div class="form-field">
         <div class="" style="padding:0px;display:flex; justify-content:center;align-items: center;">
@@ -46,6 +49,6 @@
                 
         phoneData = getJSONData('/country_phones.json', phoneDataSuccess);
         phoneFlags = getJSONData('https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/by-code.json', phoneFlagsSuccess);
-        initPhoneSelector("user_phone_code_dropdown", "-", "user_phone_code");
+        initPhoneSelector("user_phone_code_dropdown", "-", "user_phone_code", "phone-spinner");
     }
 </script>
