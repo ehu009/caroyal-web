@@ -180,7 +180,7 @@ function initCitySelector(countrySelectId, citySelectId, initCountry, initCity, 
   initSelect(city_field, text);
   
   addEventListener("city-data-available",
-      () => {      
+      () => {
           if (initCountry != "") {
 
               initSelectorWith(country_field, initCountry, false);
@@ -230,13 +230,36 @@ function populatePhoneSelect(elem, hiddenField) {
 
       let opt = document.createElement("li");
       let a = document.createElement("a");
-      a.classList.add("dropdown-item", "flag-dropdown", "text-center");
-      a.appendChild(document.createTextNode(dial));
+      a.classList.add("dropdown-item");
       a.href = "#"
-      
+
+      let row = document.createElement("div");
+      let c1 = document.createElement("div");
+      let c2 = document.createElement("div");
+      let c3 = document.createElement("div");
+      row.classList.add("container-fluid", "row");
+      c1.classList.add("col-3");
+      c1.classList.add("dial-code");
+      c1.appendChild(document.createTextNode(dial));
+      row.appendChild(c1);
+    
+      c2.classList.add("col-1");
       if (country != undefined) {
-        a.style.backgroundImage = "url("+country['image']+")";
+        let sp = document.createElement("span");
+        sp.classList.add("flag-dropdown");
+        sp.style.backgroundImage = "url("+country['image']+")";
+        c2.appendChild(sp);
       }
+      row.appendChild(c2);
+
+      c3.classList.add("col-7");
+      let cname = document.createElement("span");
+      cname.appendChild(document.createTextNode(e['name']));
+      c3.appendChild(cname)
+      row.appendChild(c3);
+
+      a.appendChild(row);
+
       a.onclick = function () {
         console.log(elem);
         console.log(dial);

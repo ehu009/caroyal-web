@@ -43,6 +43,10 @@
   overflow-y: auto;
 }
 
+.dial-code {
+  text-align: right;
+}
+
 .flag-dropdown {
 padding-left:50px;
 background-repeat:no-repeat;
