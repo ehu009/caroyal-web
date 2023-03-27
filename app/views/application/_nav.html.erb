@@ -36,6 +36,8 @@
     <%= link "Marketplace", market_path %>
     <%= link "Blog", blog_path %>
     <%= link "Contact", contact_path %>
-  
+    <% if @current_user != nil then %>
+    <%= link "Log out", "/logout" %>
+    <% end %>
   </ul>
 </div>
