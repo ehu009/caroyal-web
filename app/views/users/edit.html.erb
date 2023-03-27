@@ -10,6 +10,9 @@
         <div class="col-md-4 col-xs-12 form-field">
             <%= f.label :phone_number %>
             <span style="right:0px; color: red">*</span>
+            <span id="phone-spinner">
+            <i class="fas fa-spin fa-spinner"></i>
+            </span>
         </div>
         <div class="col-md-8 col-xs-12 form-field" style="padding-right:0px;">
             <div class="row" style="padding:0px;display:flex; justify-content:center;align-items: center;">
@@ -127,12 +130,19 @@
     </div>
     <div class="col-md-4 col-xs-12 form-field">
         <%= f.label :company_country %>
+        <span style="right:0px; color: red">*</span>
+            &nbsp;
     </div>
     <div class="col-md-8 col-xs-12 form-field">
         <%= f.country_select :company_country, include_blank: 'Select a country', class:"wide-select" %>
     </div>
     <div class="col-md-4 col-xs-12 form-field">
         <%= f.label :company_city %>
+        <span style="right:0px; color: red">*</span>
+        &nbsp;
+        <span id="city-spinner">
+          <i class="fas fa-spin fa-spinner"></i>
+        </span>
     </div>
     <div class="col-md-8 col-xs-12 form-field">
         <%= f.select :company_city, [], style: "width:100%", class:"wide-select" %>
@@ -205,6 +215,10 @@
     </div>
     <div class="col-md-4 col-xs-12 form-field">
         <%= f.label :city %>
+        &nbsp;
+        <span id="city2-spinner">
+          <i class="fas fa-spin fa-spinner"></i>
+        </span>
     </div>
     <div class="col-md-8 col-xs-12 form-field">
         <%= f.select :city, [], style: "width:100%", class:"wide-select" %>
@@ -362,11 +376,11 @@
 
         cityData = getJSONData("/country_cities.json", cityDataSuccess);
         
-        initCitySelector("user_country", "user_city", "<%= @user.country %>", "<%= @user.city %>");
-        initCitySelector("user_company_country", "user_company_city", "<%= @user.company_country %>", "<%= @user.company_city %>");
+        initCitySelector("user_country", "user_city", "<%= @user.country %>", "<%= @user.city %>", "city-spinner");
+        initCitySelector("user_company_country", "user_company_city", "<%= @user.company_country %>", "<%= @user.company_city %>", "city2-spinner");
         
         phoneData = getJSONData('/country_phones.json', phoneDataSuccess);
         phoneFlags = getJSONData('https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/by-code.json', phoneFlagsSuccess);
-        initPhoneSelector("user_phone_code_dropdown", "<%= @user.phone_code %>", "user_phone_code");
+        initPhoneSelector("user_phone_code_dropdown", "<%= @user.phone_code %>", "user_phone_code", "phone-spinner");
     }
 </script>
