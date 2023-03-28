@@ -18,4 +18,22 @@ class NoReplyMailer < ApplicationMailer
 
     end
 
+    def password_reset user
+      o = [('a'..'z'), ('A'..'Z')].map(&:to_a).flatten
+      @token = (0...25).map { o[rand(o.length)] }.join
+
+      from = Email.new(email: 'no-reply@caroyal.com')
+      to = Email.new(email: user.email)
+      content = Content.new(type: 'text/html', value: render_to_string(:password_reset))
+
+      mail = SendGrid::Mail.new(from, 'Password reset', to, content)
+      sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
+      response = sg.client.mail._('send').post(request_body: mail.to_json)
+
+      user.reset_token_sent_at = Time.now()
+      user.email_reset_token = @token
+      user.save
+
+    end
+
 end
