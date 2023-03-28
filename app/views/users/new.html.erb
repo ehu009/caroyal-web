@@ -73,6 +73,7 @@
         </div>
         <div class="form-field form-field_wide-1200">
             <%= f.label :email %>
+            <span style="right:0px; color: red">*</span>
         </div>
         <div class="form-field form-field_wide-1200">
             <%= f.text_field :email, value: session[:create_params]["email"], style: "width:100%;", autocomplete: "email", class: "text-input text-input_wide-1200" %>

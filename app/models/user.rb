@@ -5,7 +5,9 @@ class User < ApplicationRecord
 
     validates :phone_code, presence: true
     validates :phone_number, presence: true, uniqueness: { scope: [:phone_code] } 
+    validates :email, presence: true
     validate :check_email
+    
 
     validates :first_name, presence: true
     validates :last_name, presence: true
