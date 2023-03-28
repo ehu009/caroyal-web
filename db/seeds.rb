@@ -59,7 +59,7 @@ events[1] = {
     wish to import stockfish
     products on caroyal.com. Our
     target is to onbaord 500
-    customers by August",
+    customers by August.",
     :number => 2
 }
 events[2] = {
