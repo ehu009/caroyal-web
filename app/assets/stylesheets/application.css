@@ -74,6 +74,14 @@ background-repeat:no-repeat;
   width:100%;
 }
 
+#about-us {
+  
+  font-size: 52px;
+  -webkit-text-stroke: 2px #051933; /* width and color */
+
+
+}
+
 .fish-wall {
   background-repeat: repeat-y;
   background-image: url('/Stockfish_Lofoten_2009.jfif');
@@ -89,12 +97,9 @@ background-repeat:no-repeat;
 .gold-blurred-box {
   box-shadow: 0 0 3px 3px #c4a141;
 }
-
 .page-section {
   border-bottom: 3px solid white;
 }
-
-
 
 .footer {
   display: flex;
