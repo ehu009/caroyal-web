@@ -19,8 +19,8 @@
                 <div class="col-sm-5 col-md-4" style="padding:0px;display:flex; justify-content:center;align-items: center;">
                    <%= f.hidden_field :phone_code %>
                     <div class="dropdown" style="vertical-align:center">
-                    <button type="button" class="dropdown-toggle" data-bs-toggle="dropdown" style="vertical-align:center">
-                        &nbsp;-&nbsp;
+                    <button type="button" id="user_phone_code_dropdown-button" class="dropdown-toggle text-input" data-bs-toggle="dropdown">
+                      <img id="user_phone_code_indicator" src="" style="height:35px;">
                     </button>
                     <ul class="dropdown-menu" id="user_phone_code_dropdown"></ul>
                     </div>
@@ -52,7 +52,7 @@
         </div>
         <div class="col-xs-12 text-center">
             <%= f.submit  "Update phone number", disabled: "disabled", id: "phone_change", class: "form-btn white-text blue-bg" %>
-            </div>
+          </div>
     </div>
     </p>
     <% end %>
