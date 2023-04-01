@@ -1,37 +1,39 @@
-<h3 class="input-form-header"> Contact form </h3>
+<h3 class="input-form-header">
+  Contact form
+</h3>
 <p>
 
-<%= form_for @inq do |f| %>
-<div class="row">
-<div>
-    <%= f.label :email, class: "form-field form-field_wide" %>
+  <%= form_for @inq do |f| %>
+  <div class="row">
+    <div>
+      <%= f.label :email, class: "form-field form-field_wide" %>
 
-    <% mail = "" %>
-    <% if @current_user != nil then %>
+      <% mail = "" %>
+      <% if @current_user != nil then %>
         <% mail = @current_user.email %>
-    <% end %>
-    <%= f.text_field :email, value: mail, style: "width:100%", class: "text-input text-input_wide" %>
-</div>
-<div>
-    <%= f.label "Your role", class: "form-field form-field_wide" %>
+      <% end %>
+      <%= f.text_field :email, value: mail, style: "width:100%", class: "text-input text-input_wide" %>
+    </div>
+    <div>
+      <%= f.label "Your role", class: "form-field form-field_wide" %>
 
-    <%= f.text_field :role, style: "width:100%", class: "form-field text-input text-input_wide" %>
-</div>
-<div>
-    <%= f.label "Inquiry", class: "form-field form-field_wide" %>
+      <%= f.text_field :role, style: "width:100%", class: "form-field text-input text-input_wide" %>
+    </div>
+    <div>
+      <%= f.label "Inquiry", class: "form-field form-field_wide" %>
 
-    <%= f.text_area :body, style: "width:100%;", class: "form-field text-input text-input_large text-input_wide" %>
-</div>
+      <%= f.text_area :body, style: "width:100%;", class: "form-field text-input text-input_large text-input_wide" %>
+    </div>
 
-<div class="text-center">
-    <%= f.submit "Send inquiry", class: "button-like button-like_blue button-like_center mt" %>
-</div>
-<% end %>
-</div>
+    <div class="text-center">
+      <%= f.submit "Send inquiry", class: "button-like button-like_blue button-like_center mt" %>
+    </div>
+  </div>
+  <% end %>
 </p>
 <p>
-<hr class="dark-blue-text">
+  <hr class="dark-blue-text">
 </p>
 <p>
-<%= render 'construction' %>
+  <%= render 'construction' %>
 </p>

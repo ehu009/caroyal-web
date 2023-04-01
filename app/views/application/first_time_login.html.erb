@@ -2,20 +2,21 @@
 <h3>Thanks for signing up!</h3>
 
 <p>
-The rest of the website is mostly under construction still - <br>
-You'll be receiving an email once we are fully operational.
+  The rest of the website is mostly under construction still - <br>
+  You'll be receiving an email once we are fully operational.
 </p>
 
 
 <% if @user.producer || @user.distributor %>
 <h5>In the meantime..</h5>
 <p>
-We'd like you to fill in a questionaire, so that we can better shape our future services to your needs.<br>
-If you don't have time right now, you can fill do at another time.
+  We'd like you to fill in a questionaire, so that we can better shape our future services to your needs.
+  <br>
+  If you don't have time right now, you can fill do at another time.
 </p>
 <% link = new_distributor_questionaire_path %>
 <% if @current_user.producer then %>
-<% link = new_producer_questionaire_path %>
+  <% link = new_producer_questionaire_path %>
 <% end %>
 Click <%= link_to 'here', link %> to fill our questionaire.
 <% end %>

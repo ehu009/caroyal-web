@@ -1,70 +1,69 @@
 <div class="wall center-wall text-center">
     
-    <div class="logo-wall-content">
-        <img class="logo-wall-logo" src='/Caroyal transparent PNG.png'>
-        <h1 class="dark-blue-text text-center">
-            <i>
-                Sustainable Management of Supply Networks
-            </i>
-        </h1>
-        <h5 class="gold-text text-center">
-        Register to buy or sell parts of containerised products
-        </h5>
-        <% if @current_user == nil then%>
-        <div class="container-fluid text-center logo-wall-btn-container" style="margin-top:20px;">
-          <span>
-            <div class="logo-wall-btn text-center button-like button-like_gold" onclick="window.location.href='<%= new_user_path %>'">
-                Sign up
-            </div>
-          </span>
+  <div class="logo-wall-content">
+    <img class="logo-wall-logo" src='/Caroyal transparent PNG.png'>
+    <h1 class="dark-blue-text text-center">
+      <i>
+        Sustainable Management of Supply Networks
+      </i>
+    </h1>
+    <h5 class="gold-text text-center">
+    Register to buy or sell parts of containerised products
+    </h5>
+    <% if @current_user == nil then%>
+    <div class="container-fluid text-center logo-wall-btn-container" style="margin-top:20px;">
+      <span>
+        <div class="logo-wall-btn text-center button-like button-like_gold" onclick="window.location.href='<%= new_user_path %>'">
+          Sign up
         </div>
-        <% end %>
+      </span>
     </div>
+    <% end %>
+  </div>
 
-    <div class="home-pie">
-        Registered users
-        <%= pie_chart user_stats_path, width: "100%", height: "140px", colors: ['#c4a141', '#0B2C59'], legend: "bottom", donut: true %>
-    </div>
+  <div class="home-pie">
+    Registered users
+    <%= pie_chart user_stats_path, width: "100%", height: "140px", colors: ['#c4a141', '#0B2C59'], legend: "bottom", donut: true %>
+  </div>
 </div>
 
 <% if @sub.email == nil || @sub.email == "" %>
 <div class="row dark-blue-bg page-section" style="width:100%;margin:0px;padding:0px;">
-    <div class="col-xs-12 col-md-7 blue-bg white-text" style="padding:35px;" >
-        <h2>
-        Subscribe to our newsletter
-        </h2>
-        <p>
-        Stay in the loop with Caroyal's latest sustainable solutions.
-        </p>
-        <p>
-        Subscribe to our newsletter now and receive exclusive updates on sustainable supply trends, industry insights, and special offers on containerized products.
-        </p>
-    </div>
+  <div class="col-xs-12 col-md-7 blue-bg white-text" style="padding:35px;" >
+    <h2>
+      Subscribe to our newsletter
+    </h2>
+    <p>
+      Stay in the loop with Caroyal's latest sustainable solutions.
+    </p>
+    <p>
+      Subscribe to our newsletter now and receive exclusive updates on sustainable supply trends, industry insights, and special offers on containerized products.
+    </p>
+  </div>
 
-    <div class="col-xs-12 col-md-5 center-wall text-center">
-    <%= form_for @sub, url: create_newsletter_subscription_path do |t| %>
-        <%= t.text_field :email, placeholder: "Email address", style: "margin-top:20px", class: "text-input" %><br>
-        <%= t.submit "Subscribe", class: "logo-wall-btn text-center button-like button-like_blue", style: "margin: 20px auto;" %>
-    <% end %>
-    </div>
+  <div class="col-xs-12 col-md-5 center-wall text-center">
+  <%= form_for @sub, url: create_newsletter_subscription_path do |t| %>
+    <%= t.text_field :email, placeholder: "Email address", style: "margin-top:20px", class: "text-input" %><br>
+    <%= t.submit "Subscribe", class: "logo-wall-btn text-center button-like button-like_blue", style: "margin: 20px auto;" %>
+  <% end %>
+  </div>
 </div>
 <% end %>
 
 <div class="parallax-2">
-    <div class=" row" style="max-width:100vw;min-height:100vh;padding:50px 0px 50px 0px;margin:0;">
+  <div class=" row" style="max-width:100vw;min-height:100vh;padding:50px 0px 50px 0px;margin:0;">
+    <div class="center-wall dark-blue-text blurred-box" style="padding:35px;">
+      <h1 class="text-center">
+        About us
+      </h1>
+      <h3 style="margin: 20px 0px 20px 0px">
+        We are building a B2B e-commerce platform designed to enhance product affordability and food security through market accessibility for producers, distributors and consumers.
+        
+      </h3>
+      <div class="logo-wall-btn text-center button-like button-like_transparent" onclick="window.location.href='<%= about_path %>'">
+        Read more
+      </div>
 
-        <div class="center-wall dark-blue-text blurred-box" style="padding:35px;">
-            <h1 class="text-center">
-            About us
-            </h1>
-            <h3 style="margin: 20px 0px 20px 0px">
-            We are building a B2B e-commerce platform designed to enhance product affordability and food security through market accessibility for producers, distributors and consumers.
-            
-            </h3>
-                <div class="logo-wall-btn text-center button-like button-like_transparent" onclick="window.location.href='<%= about_path %>'">
-                    Read more
-                </div>
-
-        </div>
     </div>
+  </div>
 </div>

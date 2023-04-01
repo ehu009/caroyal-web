@@ -1,54 +1,54 @@
 
 <h2 class="heading-style">
-    Log in
+  Log in
 </h2>
 <%= form_tag '/login' do |f| %>
 
 <div>
-    <div class="form-field">
-        <%= label_tag "Phone number or email" %>
-        <span id="phone-spinner">
-          <i class="fas fa-spin fa-spinner"></i>
-        </span>
+  <div class="form-field">
+      <%= label_tag "Phone number or email" %>
+      <span id="phone-spinner">
+        <i class="fas fa-spin fa-spinner"></i>
+      </span>
+  </div>
+  <div class="form-field">
+    <div class="" style="padding:0px;display:flex; justify-content:center;align-items: center;">
+      <%= hidden_field_tag :user_phone_code %>
+      <button type="button" class="dropdown-toggle text-input" data-bs-toggle="dropdown" style="vertical-align:center">
+        &nbsp;-&nbsp;
+      </button>
+      <ul class="dropdown-menu" id="user_phone_code_dropdown"></ul>
+      <img id="user_phone_code_indicator" src="" style="height:50px;">
     </div>
-    <div class="form-field">
-        <div class="" style="padding:0px;display:flex; justify-content:center;align-items: center;">
-          <%= hidden_field_tag :user_phone_code %>
-              <button type="button" class="dropdown-toggle text-input" data-bs-toggle="dropdown" style="vertical-align:center">
-                  &nbsp;-&nbsp;
-              </button>
-              <ul class="dropdown-menu" id="user_phone_code_dropdown"></ul>
-              <img id="user_phone_code_indicator" src="" style="height:50px;">
-          </div>
 
-        <div class="mt" style="padding:0px;">
-            <%= text_field_tag :string, "", class: "hidden-arrows text-input", style: "width:100%;",autocomplete: "tel-national" %>
-        </div>
+    <div class="mt" style="padding:0px;">
+      <%= text_field_tag :string, "", class: "hidden-arrows text-input", style: "width:100%;",autocomplete: "tel-national" %>
     </div>
+  </div>
     
-    <div class="form-field">
-        <%= label_tag :password %>
-    </div>
-    <div class="form-field">
-        <%= password_field_tag :password, "", style: "width:100%;", class: "text-input" %>
-    </div>
+  <div class="form-field">
+    <%= label_tag :password %>
+  </div>
+  <div class="form-field">
+    <%= password_field_tag :password, "", style: "width:100%;", class: "text-input" %>
+  </div>
     
-    <%= submit_tag "Submit", class: "button-like button-like_blue button-like_center mt" %>
+  <%= submit_tag "Submit", class: "button-like button-like_blue button-like_center mt" %>
 </div>
 <% end %>
 
 <hr class="dark-blue-text">
 
 <div class="no-account-container blue-text">
-    <span class="text-center">Don't have an account?</span>
-    <%=link_to 'Create an account here', new_user_path %>
+  <span class="text-center">Don't have an account?</span>
+  <%=link_to 'Create an account here', new_user_path %>
 </div>
 
 <script>
-    window.onload = function() {
-                
-        phoneData = getJSONData('/country_phones.json', phoneDataSuccess);
-        phoneFlags = getJSONData('https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/by-code.json', phoneFlagsSuccess);
-        initPhoneSelector("user_phone_code_dropdown", "-", "user_phone_code", "phone-spinner");
-    }
+  window.onload = function() {
+              
+    phoneData = getJSONData('/country_phones.json', phoneDataSuccess);
+    phoneFlags = getJSONData('https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/by-code.json', phoneFlagsSuccess);
+    initPhoneSelector("user_phone_code_dropdown", "-", "user_phone_code", "phone-spinner");
+  }
 </script>

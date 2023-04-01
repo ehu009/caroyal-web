@@ -2,283 +2,283 @@
 <h2 class="input-form-header">New User</h2>
 
 <%= form_for @user do |f| %>
-    <p>
-    <div class="form-group">
-        <div class="form-field" style="display: flex; flex-direction: row;">
-            <%= f.label :phone_number %>
-            &nbsp;
-            <span style="right:0px; color: red">*</span>
-            &nbsp;
-            <span id="phone-spinner">
-            <i class="fas fa-spin fa-spinner"></i>
-            </span>
-        </div>
-            <div class="form-field">
-                <div style="padding:0px;display:flex; justify-content:center;align-items: center;">
-                <%= f.hidden_field :phone_code %>
-                    <button type="button" class="dropdown-toggle text-input" data-bs-toggle="dropdown" style="vertical-align:center">
-                        &nbsp;-&nbsp;
-                    </button>
-                    <ul class="dropdown-menu" id="user_phone_code_dropdown"></ul>
-                    <img id="user_phone_code_indicator" src="" style="height:50px;">
-                </div>
-                <div style="margin-top: 10px;">
-                    <%= f.number_field :phone_number, style: "width:100%", class: "hidden-arrows text-input", autocomplete: "tel-national" %>
-                </div>
-            </div>
-            <div class="form-field">
-                <label>Confirm</label><span style="right:0px; color: red">*</span>
-            </div>
-            <div class="form-field" style="padding-right:0px">
-                <div class="" style="padding:0px;">
-                    <input id="phone-confirm" style="width:100%;" class="hidden-arrows text-input" type="number">
-                </div>
-            </div>
-            <div class="form-field">        
-                <i id="phone-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">phone numbers must match</span>
-            </div>
-            <div class="form-field">
-                <%= f.label :password %>
-                <span style="right:0px; color: red">*</span>
-            </div>
-            <div class="form-field">
-                <%= f.password_field :password, style: "width:100%;", autocomplete: "new-password", class: "text-input" %>
-            </div>
-            <div class="form-field">
-                <label>Confirm</label>
-                <span style="right:0px; color: red">*</span>
-            </div>
-            <div class="form-field">
-                <input id="password-confirm" class="text-input" style="width:100%;" type="password">
-            </div>
-            <div class="form-field">
-                <i id="pwd-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">passwords must match</span><br>
-                <i id="length-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">must be at least 8 characters long</span><br>
-                <i id="lower-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">must contain lower case</span><br>
-                <i id="upper-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">must contain upper case</span><br>
-                <i id="number-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">must contain a number</span>
-            </div>
-        </div>
-    </p>
-    <hr class="dark-blue-text">
-
-    <h5 class="heading-style">Business details</h5>
-    <p>
-        <div class="form-field form-field_wide-1200">
-            <%= f.label :company_name %>
-            <span style="right:0px; color: red">*</span>
-        </div>
-        <div class="form-field form-field_wide-1200">
-            <%= f.text_field :company_name, value: session[:create_params]["company_name"], style: "width:100%;", autocomplete: "company", class: "text-input text-input_wide-1200" %>
-        </div>
-        <div class="form-field form-field_wide-1200">
-            <%= f.label :email %>
-            <span style="right:0px; color: red">*</span>
-        </div>
-        <div class="form-field form-field_wide-1200">
-            <%= f.text_field :email, value: session[:create_params]["email"], style: "width:100%;", autocomplete: "email", class: "text-input text-input_wide-1200" %>
-        </div>
-        <div class="form-field form-field_wide-1200">
-            <%= f.label :company_country %>
-            <span style="right:0px; color: red">*</span>
-        </div>
-        <div class="form-field form-field_wide-1200">
-            <%= f.country_select :company_country, {include_blank: 'Select a country'}, {class: "wide-select text-input text-input_wide-1200"} %>
-        </div>
-        <div class="form-field form-field_wide-1200">
-            <%= f.label :company_city %>
-            <span style="right:0px; color: red">*</span>
-            &nbsp;
-            <span id="city-spinner">
-            <i class="fas fa-spin fa-spinner"></i>
-            </span>
-        </div>
-        <div class="form-field form-field_wide-1200">
-            <%= f.select :company_city, [], {}, {class: "wide-select text-input text-input_wide-1200"} %>
-        </div>
-        <div class="form-field form-field_wide-1200">
-            <%= f.label :company_address %>
-            <span style="right:0px; color: red">*</span>
-        </div>
-        <div class="form-field form-field_wide-1200">
-            <%= f.text_field :company_address, value: session[:create_params]["company_address"], style: "width:100%;", class: "text-input text-input_wide-1200" %>
-        </div>
-        <div class="form-field form-field_wide-1200">
-            <%= f.label :tax_identification_number, "TIN (tax ID)" %>
-            <span style="right:0px; color: red">*</span>
-        </div>
-        <div class="form-field form-field_wide-1200">
-            <%= f.number_field :tax_identification_number, value: session["create_params"]["tax_identification_number"], style: "width:100%;", class: "hidden-arrows text-input text-input_wide-1200" %>
-        </div>
-        <div class="form-group_dir-row">
-            <div class="form-field">
-                <%= f.check_box :producer, checked: session[:create_params]["producer"], class: "form-check-input" %>
-                <%= f.label :producer %>
-            </div>
-            <div class="form-field">
-                <%= f.check_box :distributor, checked: session[:create_params]["distributor"], class: "form-check-input" %>
-                <%= f.label :distributor %>
-            </div>
-        </div>
-    </p>
-    <hr class="dark-blue-text">
-    
-    <h5 class="heading-style">Personal details</h5>
-    <p>
-    <div class="form-group form-group-2">
-        <div class="form-field">
-            <%= f.label :name_prefix %>
-            <span style="right:0px; color: red">*</span>
-        </div>
-        <div class="form-field name-prefix">
-            <%= f.select :name_prefix, ["Mr", "Mrs", "Ms"], value: session["create_params"][:name_prefix], autocomplete: "honorific-prefix" %>
-        </div>
-        <div class="form-field">
-            <%= f.label :first_name %>
-            <span style="right:0px; color: red">*</span>
-        </div>
-        <div class="form-field">
-            <%= f.text_field :first_name, value: session[:create_params]["first_name"], style: "width:100%;", autocomplete: "given-name", class: "text-input" %>
-        </div>
-        <div class="form-field">
-            <%= f.label :last_name, "Surname"%>
-            <span style="right:0px; color: red">*</span>
-        </div>
-        <div class="form-field">
-            <%= f.text_field :last_name, value: session[:create_params]["last_name"], style: "width:100%;", autocomplete: "family-name", class: "text-input" %>
-        </div>
-        <div class="form-field">
-            <%= f.label :date_of_birth %>
-        </div>
-        <div class="form-field">
-            <%= f.date_field :date_of_birth, value: session[:create_params]["date_of_birth"],autocomplete: "bday", class: "text-input" %>
-        </div>
-        <div class="form-field">
-            <%= f.label :country %>
-        </div>
-        <div class="form-field">
-            <%= f.country_select :country, {include_blank: 'Select a country'}, {class: "wide-select text-input"} %>
-        </div>
-        <div class="form-field">
-            <%= f.label :city %>
-            &nbsp;
-            <span id="city2-spinner">
-            <i class="fas fa-spin fa-spinner"></i>
-            </span>
-        </div>
-        <div class="form-field">
-            <%= f.select :city, [], {}, {class: "wide-select text-input"} %>
-        </div>
-        <div class="form-field">
-            <%= f.label :address %>
-        </div>
-        <div class="form-field">
-            <%= f.text_field :address, value: session[:create_params]["address"], style: "width:100%;", class: "text-input" %>
-        </div>
+<p>
+  <div class="form-group">
+    <div class="form-field" style="display: flex; flex-direction: row;">
+      <%= f.label :phone_number %>
+      &nbsp;
+      <span style="right:0px; color: red">*</span>
+      &nbsp;
+      <span id="phone-spinner">
+        <i class="fas fa-spin fa-spinner"></i>
+      </span>
     </div>
-    </p>
+    <div class="form-field">
+      <div style="padding:0px;display:flex; justify-content:center;align-items: center;">
+        <%= f.hidden_field :phone_code %>
+        <button type="button" class="dropdown-toggle text-input" data-bs-toggle="dropdown" style="vertical-align:center">
+          &nbsp;-&nbsp;
+        </button>
+        <ul class="dropdown-menu" id="user_phone_code_dropdown"></ul>
+        <img id="user_phone_code_indicator" src="" style="height:50px;">
+      </div>
+      <div style="margin-top: 10px;">
+        <%= f.number_field :phone_number, style: "width:100%", class: "hidden-arrows text-input", autocomplete: "tel-national" %>
+      </div>
+    </div>
+    <div class="form-field">
+      <label>Confirm</label><span style="right:0px; color: red">*</span>
+    </div>
+    <div class="form-field" style="padding-right:0px">
+      <div class="" style="padding:0px;">
+        <input id="phone-confirm" style="width:100%;" class="hidden-arrows text-input" type="number">
+      </div>
+    </div>
+    <div class="form-field">        
+      <i id="phone-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">phone numbers must match</span>
+    </div>
+    <div class="form-field">
+      <%= f.label :password %>
+      <span style="right:0px; color: red">*</span>
+    </div>
+    <div class="form-field">
+      <%= f.password_field :password, style: "width:100%;", autocomplete: "new-password", class: "text-input" %>
+    </div>
+    <div class="form-field">
+      <label>Confirm</label>
+      <span style="right:0px; color: red">*</span>
+    </div>
+    <div class="form-field">
+      <input id="password-confirm" class="text-input" style="width:100%;" type="password">
+    </div>
+    <div class="form-field">
+      <i id="pwd-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">passwords must match</span><br>
+      <i id="length-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">must be at least 8 characters long</span><br>
+      <i id="lower-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">must contain lower case</span><br>
+      <i id="upper-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">must contain upper case</span><br>
+      <i id="number-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">must contain a number</span>
+    </div>
+  </div>
+</p>
+<hr class="dark-blue-text">
 
-    <%= f.submit "Create Account", disabled: "disabled", id: "user_submit", class: "button-like button-like_blue button-like_center" %>
+<h5 class="heading-style">Business details</h5>
+<p>
+  <div class="form-field form-field_wide-1200">
+    <%= f.label :company_name %>
+    <span style="right:0px; color: red">*</span>
+  </div>
+  <div class="form-field form-field_wide-1200">
+    <%= f.text_field :company_name, value: session[:create_params]["company_name"], style: "width:100%;", autocomplete: "company", class: "text-input text-input_wide-1200" %>
+  </div>
+  <div class="form-field form-field_wide-1200">
+    <%= f.label :email %>
+    <span style="right:0px; color: red">*</span>
+  </div>
+  <div class="form-field form-field_wide-1200">
+    <%= f.text_field :email, value: session[:create_params]["email"], style: "width:100%;", autocomplete: "email", class: "text-input text-input_wide-1200" %>
+  </div>
+  <div class="form-field form-field_wide-1200">
+    <%= f.label :company_country %>
+    <span style="right:0px; color: red">*</span>
+  </div>
+  <div class="form-field form-field_wide-1200">
+    <%= f.country_select :company_country, {include_blank: 'Select a country'}, {class: "wide-select text-input text-input_wide-1200"} %>
+  </div>
+  <div class="form-field form-field_wide-1200">
+    <%= f.label :company_city %>
+    <span style="right:0px; color: red">*</span>
+    &nbsp;
+    <span id="city-spinner">
+      <i class="fas fa-spin fa-spinner"></i>
+    </span>
+  </div>
+  <div class="form-field form-field_wide-1200">
+    <%= f.select :company_city, [], {}, {class: "wide-select text-input text-input_wide-1200"} %>
+  </div>
+  <div class="form-field form-field_wide-1200">
+    <%= f.label :company_address %>
+    <span style="right:0px; color: red">*</span>
+  </div>
+  <div class="form-field form-field_wide-1200">
+    <%= f.text_field :company_address, value: session[:create_params]["company_address"], style: "width:100%;", class: "text-input text-input_wide-1200" %>
+  </div>
+  <div class="form-field form-field_wide-1200">
+    <%= f.label :tax_identification_number, "TIN (tax ID)" %>
+    <span style="right:0px; color: red">*</span>
+  </div>
+  <div class="form-field form-field_wide-1200">
+    <%= f.number_field :tax_identification_number, value: session["create_params"]["tax_identification_number"], style: "width:100%;", class: "hidden-arrows text-input text-input_wide-1200" %>
+  </div>
+  <div class="form-group_dir-row">
+    <div class="form-field">
+      <%= f.check_box :producer, checked: session[:create_params]["producer"], class: "form-check-input" %>
+      <%= f.label :producer %>
+    </div>
+    <div class="form-field">
+      <%= f.check_box :distributor, checked: session[:create_params]["distributor"], class: "form-check-input" %>
+      <%= f.label :distributor %>
+    </div>
+  </div>
+</p>
+<hr class="dark-blue-text">
+
+<h5 class="heading-style">Personal details</h5>
+<p>
+  <div class="form-group form-group-2">
+    <div class="form-field">
+      <%= f.label :name_prefix %>
+      <span style="right:0px; color: red">*</span>
+    </div>
+    <div class="form-field name-prefix">
+      <%= f.select :name_prefix, ["Mr", "Mrs", "Ms"], value: session["create_params"][:name_prefix], autocomplete: "honorific-prefix" %>
+    </div>
+    <div class="form-field">
+      <%= f.label :first_name %>
+      <span style="right:0px; color: red">*</span>
+    </div>
+    <div class="form-field">
+      <%= f.text_field :first_name, value: session[:create_params]["first_name"], style: "width:100%;", autocomplete: "given-name", class: "text-input" %>
+    </div>
+    <div class="form-field">
+      <%= f.label :last_name, "Surname"%>
+      <span style="right:0px; color: red">*</span>
+    </div>
+    <div class="form-field">
+      <%= f.text_field :last_name, value: session[:create_params]["last_name"], style: "width:100%;", autocomplete: "family-name", class: "text-input" %>
+    </div>
+    <div class="form-field">
+      <%= f.label :date_of_birth %>
+    </div>
+    <div class="form-field">
+      <%= f.date_field :date_of_birth, value: session[:create_params]["date_of_birth"],autocomplete: "bday", class: "text-input" %>
+    </div>
+    <div class="form-field">
+      <%= f.label :country %>
+    </div>
+    <div class="form-field">
+      <%= f.country_select :country, {include_blank: 'Select a country'}, {class: "wide-select text-input"} %>
+    </div>
+    <div class="form-field">
+      <%= f.label :city %>
+      &nbsp;
+      <span id="city2-spinner">
+        <i class="fas fa-spin fa-spinner"></i>
+      </span>
+    </div>
+    <div class="form-field">
+      <%= f.select :city, [], {}, {class: "wide-select text-input"} %>
+    </div>
+    <div class="form-field">
+      <%= f.label :address %>
+    </div>
+    <div class="form-field">
+      <%= f.text_field :address, value: session[:create_params]["address"], style: "width:100%;", class: "text-input" %>
+    </div>
+  </div>
+</p>
+
+<%= f.submit "Create Account", disabled: "disabled", id: "user_submit", class: "button-like button-like_blue button-like_center" %>
 <% end %>
 
 <script>
-    function compare(elemA, elemB, indicator) {
-        if (elemA.value === elemB.value) {
-            indicator.style.visibility = "visible";
-            return true;
+  function compare(elemA, elemB, indicator) {
+    if (elemA.value === elemB.value) {
+      indicator.style.visibility = "visible";
+      return true;
+    } else {
+      indicator.style.visibility = "hidden";
+      return false;
+    }
+  }
+
+  function pwdRequirements(elem, length_i, number_i, lower_i, upper_i) {
+    var length = false;
+    var number = false;
+    var lower = false;
+    var upper = false;
+    
+    length_i.style.visibility = "hidden";
+    number_i.style.visibility = "hidden";
+    lower_i.style.visibility = "hidden";
+    upper_i.style.visibility = "hidden";
+
+    var s = elem.value;
+    var i=0;
+    var character='';
+    while (i <= s.length){
+      if (i >= 8) {
+        length = true;
+        length_i.style.visibility = "visible";
+      }
+      character = s.charAt(i);
+      if (character != "") {
+        if (!isNaN(character * 1)){
+          number = true;
+          number_i.style.visibility = "visible";
         } else {
-            indicator.style.visibility = "hidden";
-            return false;
+          if (character == character.toUpperCase()) {
+            upper = true;
+            upper_i.style.visibility = "visible";
+          }
+          if (character == character.toLowerCase()){
+            lower = true;
+            lower_i.style.visibility = "visible";
+          }
         }
+      }
+      i++;
+      if (length && number && lower && upper) {
+        break;
+      }
     }
-
-    function pwdRequirements(elem, length_i, number_i, lower_i, upper_i) {
-        var length = false;
-        var number = false;
-        var lower = false;
-        var upper = false;
-        
-        length_i.style.visibility = "hidden";
-        number_i.style.visibility = "hidden";
-        lower_i.style.visibility = "hidden";
-        upper_i.style.visibility = "hidden";
-
-        var s = elem.value;
-        var i=0;
-        var character='';
-        while (i <= s.length){
-            if (i >= 8) {
-                length = true;
-                length_i.style.visibility = "visible";
-            }
-            character = s.charAt(i);
-            if (character != "") {
-                if (!isNaN(character * 1)){
-                    number = true;
-                    number_i.style.visibility = "visible";
-                } else {
-                    if (character == character.toUpperCase()) {
-                        upper = true;
-                        upper_i.style.visibility = "visible";
-                    }
-                    if (character == character.toLowerCase()){
-                        lower = true;
-                        lower_i.style.visibility = "visible";
-                    }
-                }
-            }
-            i++;
-            if (length && number && lower && upper) {
-                break;
-            }
-        }
-        return (length && number && lower && upper);
-    }
+    return (length && number && lower && upper);
+  }
     
     
-    document.getElementById("new_user").oninput = function() {
-        function fu(id) {
-            return document.getElementById(id);
-        }
-        function fu2(id) {
-            return document.getElementById(id+"-indicate");
-        }
-
-        var p = fu("user_phone_number")
-        var pC = fu("phone-confirm");
-        var pwd = fu("user_password")
-        var pwdC = fu("password-confirm");
-
-        var allow = false;
-        
-        var phone_i = fu2("phone");
-        var pwd_i = fu2("pwd");
-        var length_i = fu2("length");
-        var number_i = fu2("number");
-        var lower_i = fu2("lower");
-        var upper_i = fu2("upper");
-
-        if (!(p.value== null || p.value == "")){
-            allow |= compare(p, pC, phone_i);
-        }
-        if (!(pwd.value== null || pwd.value == "")){
-        allow &= compare(pwd, pwdC, pwd_i);
-        }
-        allow &= pwdRequirements(pwd, length_i, number_i, lower_i, upper_i);
-        if (allow) {
-            document.getElementById('user_submit').disabled = false;
-        }                
-    };
-
-    window.onload = function() {
-        
-        cityData = getJSONData("/country_cities.json", cityDataSuccess);
-        
-        initCitySelector("user_country", "user_city", "<%= session[:create_params]['country'] %>", "<%= session[:create_params]['city'] %>", "city-spinner");
-        initCitySelector("user_company_country", "user_company_city", "<%= session[:create_params]['company_country'] %>", "<%= session[:create_params]['company_city'] %>", "city2-spinner");
-        
-        phoneData = getJSONData('/country_phones.json', phoneDataSuccess);
-        phoneFlags = getJSONData('https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/by-code.json', phoneFlagsSuccess);
-        initPhoneSelector("user_phone_code_dropdown", "<%= session[:create_params]['phone_code'] %>", "user_phone_code", "phone-spinner");
+  document.getElementById("new_user").oninput = function() {
+    function fu(id) {
+        return document.getElementById(id);
     }
+    function fu2(id) {
+        return document.getElementById(id+"-indicate");
+    }
+
+    var p = fu("user_phone_number")
+    var pC = fu("phone-confirm");
+    var pwd = fu("user_password")
+    var pwdC = fu("password-confirm");
+
+    var allow = false;
+    
+    var phone_i = fu2("phone");
+    var pwd_i = fu2("pwd");
+    var length_i = fu2("length");
+    var number_i = fu2("number");
+    var lower_i = fu2("lower");
+    var upper_i = fu2("upper");
+
+    if (!(p.value== null || p.value == "")){
+      allow |= compare(p, pC, phone_i);
+    }
+    if (!(pwd.value== null || pwd.value == "")){
+      allow &= compare(pwd, pwdC, pwd_i);
+    }
+    allow &= pwdRequirements(pwd, length_i, number_i, lower_i, upper_i);
+    if (allow) {
+      document.getElementById('user_submit').disabled = false;
+    }                
+  };
+
+  window.onload = function() {
+    
+    cityData = getJSONData("/country_cities.json", cityDataSuccess);
+    
+    initCitySelector("user_country", "user_city", "<%= session[:create_params]['country'] %>", "<%= session[:create_params]['city'] %>", "city-spinner");
+    initCitySelector("user_company_country", "user_company_city", "<%= session[:create_params]['company_country'] %>", "<%= session[:create_params]['company_city'] %>", "city2-spinner");
+    
+    phoneData = getJSONData('/country_phones.json', phoneDataSuccess);
+    phoneFlags = getJSONData('https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/by-code.json', phoneFlagsSuccess);
+    initPhoneSelector("user_phone_code_dropdown", "<%= session[:create_params]['phone_code'] %>", "user_phone_code", "phone-spinner");
+  }
 </script>
