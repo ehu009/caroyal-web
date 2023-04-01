@@ -67,9 +67,6 @@ class ApplicationController < ActionController::Base
         redirect_to redir, notice: message
     end
 
-    def first_time_login
-        @user = @current_user
-    end
 
 
     def account_overview

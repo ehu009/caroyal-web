@@ -33,7 +33,7 @@ Rails.application.routes.draw do
     patch 'change_phone', to: "users#change_phone", as: :change_phone
   end
 
-  get 'welcome', to: 'application#first_time_login', as: :first_time_login
+  get 'welcome', to: 'sessions#first_time_login', as: :first_time_login
   
   scope 'questionaires' do
     get 'producer', to: 'questionaires#new_producer_questionaire', as: :new_producer_questionaire
@@ -41,7 +41,7 @@ Rails.application.routes.draw do
     get 'distributor', to: 'questionaires#new_distributor_questionaire', as: :new_distributor_questionaire
     post 'distributor', to: 'questionaires#fill_distributor_questionaire', as: :fill_distributor_questionaire
   end
-  
+
   get 'account', to: 'application#account_overview', as: :account_overview
 
   get '/login', to: 'sessions#login'

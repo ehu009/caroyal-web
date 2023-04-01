@@ -1,5 +1,12 @@
 class SessionsController < ApplicationController
     layout "application_fishy"
+
+    def first_time_login
+      @user = @current_user
+      
+    end
+
+
     def create
         message = "Error logging in."
         
