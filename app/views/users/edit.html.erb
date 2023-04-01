@@ -5,8 +5,8 @@
 <p>
   <h5>Change login information</h5>
   <p>
-  <%= form_for @user , url: user_change_phone_path(@user) , html: {id: "phone_change_form"} do |f| %>
-    <div class="container-fluid row blue-form">
+    <%= form_for @user , url: user_change_phone_path(@user) , html: {id: "phone_change_form"} do |f| %>
+    <div class="row blue-form">
       <div class="col-md-4 col-xs-12 form-field">
         <%= f.label :phone_number %>
         <span style="right:0px; color: red">*</span>
@@ -66,7 +66,7 @@
   <h5>Change password</h5>
   <p>
     <%= form_for @user, url: user_change_password_path(@user), html: {id: "pass_change_form"} do |f| %>
-    <div class="container-fluid row blue-form">
+    <div class="row blue-form">
       <div class="col-md-4 col-xs-12 form-field">
         <%= f.label :password, "Current password" %>
         <span style="right:0px; color: red">*</span>
@@ -178,77 +178,81 @@
       <div class="col-md-3 col-sm-6 form-field">
         <%= f.check_box :distributor, class: "form-check-input" %>
       </div>
-    </p>
-    <hr class="white-text">
+    </div>
   </p>
-  <p>
-    <h5>Personal details</h5>
-    <p>
-    <div class="col-md-4 col-xs-12 form-field">
-      <%= f.label :name_prefix %>
-      <span style="right:0px; color: red">*</span>
-    </div>
-    <div class="col-md-8 col-xs-12 form-field">
-      <%= f.select :name_prefix, ["Mr", "Mrs", "Ms"], autocomplete: "honorific-prefix" %>
-    </div>
-    <div class="col-md-4 col-xs-12 form-field">
-      <%= f.label :first_name %>
-      <span style="right:0px; color: red">*</span>
-    </div>
-    <div class="col-md-8 col-xs-12 form-field">
-      <%= f.text_field :first_name, style: "width:100%;", autocomplete: "given-name" %>
-    </div>
-    <div class="col-md-4 col-xs-12 form-field">
-      <%= f.label :last_name, "Surname"%>
-      <span style="right:0px; color: red">*</span>
-    </div>
-    <div class="col-md-8 col-xs-12 form-field">
-      <%= f.text_field :last_name, style: "width:100%;", autocomplete: "family-name" %>
-    </div>
-    <div class="col-md-4 col-xs-12 form-field">
-      <%= f.label :date_of_birth %>
-    </div>
-    <div class="col-md-8 col-xs-12 form-field">
-      <%= f.date_field :date_of_birth, autocomplete: "bday" %>
-    </div>
-    <div class="col-md-4 col-xs-12 form-field">
-      <%= f.label :country %>
-    </div>
-    <div class="col-md-8 col-xs-12 form-field">
-      <%= f.country_select :country, include_blank: 'Select a country', class:"wide-select" %>
-    </div>
-    <div class="col-md-4 col-xs-12 form-field">
-      <%= f.label :city %>
-      &nbsp;
-      <span id="city2-spinner">
-        <i class="fas fa-spin fa-spinner"></i>
-      </span>
-    </div>
-    <div class="col-md-8 col-xs-12 form-field">
-      <%= f.select :city, [], style: "width:100%", class:"wide-select" %>
-    </div>
-    <div class="col-md-4 col-xs-12 form-field">
-      <%= f.label :address %>
-    </div>
-    <div class="col-md-8 col-xs-12 form-field">
-      <%= f.text_field :address, style: "width:100%;" %>
-    </div>
+  <hr class="white-text">
+</p>
 
-    <div class="col-xs-12 text-center">
-      <%= f.submit  "Update account information", class: "form-btn white-text blue-bg" %>
+
+<p>
+  <h5>Personal details</h5>
+  <p>
+    <div class="row blue-form">
+      <div class="col-md-4 col-xs-12 form-field">
+        <%= f.label :name_prefix %>
+        <span style="right:0px; color: red">*</span>
+      </div>
+      <div class="col-md-8 col-xs-12 form-field">
+        <%= f.select :name_prefix, ["Mr", "Mrs", "Ms"], autocomplete: "honorific-prefix" %>
+      </div>
+      <div class="col-md-4 col-xs-12 form-field">
+        <%= f.label :first_name %>
+        <span style="right:0px; color: red">*</span>
+      </div>
+      <div class="col-md-8 col-xs-12 form-field">
+        <%= f.text_field :first_name, style: "width:100%;", autocomplete: "given-name" %>
+      </div>
+      <div class="col-md-4 col-xs-12 form-field">
+        <%= f.label :last_name, "Surname"%>
+        <span style="right:0px; color: red">*</span>
+      </div>
+      <div class="col-md-8 col-xs-12 form-field">
+        <%= f.text_field :last_name, style: "width:100%;", autocomplete: "family-name" %>
+      </div>
+      <div class="col-md-4 col-xs-12 form-field">
+        <%= f.label :date_of_birth %>
+      </div>
+      <div class="col-md-8 col-xs-12 form-field">
+        <%= f.date_field :date_of_birth, autocomplete: "bday" %>
+      </div>
+      <div class="col-md-4 col-xs-12 form-field">
+        <%= f.label :country %>
+      </div>
+      <div class="col-md-8 col-xs-12 form-field">
+        <%= f.country_select :country, include_blank: 'Select a country', class:"wide-select" %>
+      </div>
+      <div class="col-md-4 col-xs-12 form-field">
+        <%= f.label :city %>
+        &nbsp;
+        <span id="city2-spinner">
+          <i class="fas fa-spin fa-spinner"></i>
+        </span>
+      </div>
+      <div class="col-md-8 col-xs-12 form-field">
+        <%= f.select :city, [], style: "width:100%", class:"wide-select" %>
+      </div>
+      <div class="col-md-4 col-xs-12 form-field">
+        <%= f.label :address %>
+      </div>
+      <div class="col-md-8 col-xs-12 form-field">
+        <%= f.text_field :address, style: "width:100%;" %>
+      </div>
+
+      <div class="col-xs-12 text-center">
+        <%= f.submit  "Update account information", class: "form-btn white-text blue-bg" %>
+      </div>
     </div>
   </p>
   <hr class="white-text">
 </p>
 <% end %>
-</div>
 
 
 <p>
   <h5>Account termination</h5>
   <p>
     <%= form_for @user, method: :delete, html: {id: "account_delete_form"} do |f| %>
-    <div class="container-fluid row">
+    <div class="row">
       <div class="col-md-4 col-sm-6">
         <label for="confirm-delete"> Confirm</label>
       </div>
