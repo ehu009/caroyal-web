@@ -23,30 +23,9 @@
   <p>
     Select all payment types that you can make:
     <div class="container-fluid row">
-      <div class="col-4">
-        Bank deposit: 
-      </div>
-      <div class="col-8">
-        <%= f.check_box :pays_deposit %>
-      </div>
-      <div class="col-4">
-        Bank wire: 
-      </div>
-      <div class="col-8">
-        <%= f.check_box :pays_wire %>
-      </div>
-      <div class="col-4">
-        Card payment: 
-      </div>
-      <div class="col-8">
-        <%= f.check_box :pays_card %>
-      </div>
-      <div class="col-4">
-        Cryptocurrency: 
-      </div>
-      <div class="col-8">
-        <%= f.check_box :pays_crypto %>
-      </div>
+      
+      <%= render "checkboxes", form: f %>
+
       <div class="col-12 text-center">
         <%= f.submit  "Submit distributor questionaire", class: "form-btn white-text blue-bg" %>
       
