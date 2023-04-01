@@ -9,7 +9,7 @@
 <% dict = [["Bank deposit", :pays_deposit],
       ["Bank wire", :pays_wire],
       ["Card payment",:pays_card],
-      ["pays_crypto", :pays_crypto]]
+      ["Cryptocurrency", :pays_crypto]]
     %>
   <% dict.each do |e| %>
   <% check_box_for(form, e[0], e[1]) %>
