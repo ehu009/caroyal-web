@@ -30,33 +30,34 @@
           <div class="col-sm-7 col-md-8" style="padding:0px;vertical-align:bottom">
             <%= f.number_field :phone_number, style: "width:100%", class: "hidden-arrows", autocomplete: "tel-national" %>
           </div>
+        </div>
+          
+      </div>
+      <div class="col-md-4 col-xs-12 form-field">
+        <label>Confirm</label><span style="right:0px; color: red">*</span>
+      </div>
+      <div class="col-md-8 col-xs-12 form-field" style="padding-right:0px">
+        <div class="row">
+          <div class="col-sm-5 col-md-4">
           </div>
-        </div>
-        <div class="col-md-4 col-xs-12 form-field">
-          <label>Confirm</label><span style="right:0px; color: red">*</span>
-        </div>
-        <div class="col-md-8 col-xs-12 form-field" style="padding-right:0px">
-          <div class="row">
-            <div class="col-sm-5 col-md-4">
-            </div>
 
-            <div class="col-sm-7 col-md-8" style="padding:0px;">
-              <input id="user_phone_confirm" style="width:100%;" class="hidden-arrows" type="number" name="user[phone_number_confirm]">
-            </div>
+          <div class="col-sm-7 col-md-8" style="padding:0px;">
+            <input id="user_phone_confirm" style="width:100%;" class="hidden-arrows" type="number" name="user[phone_number_confirm]">
           </div>
-        </div>
-        
-        <div class="col-md-4 col-xs-0 form-field">
-        </div>
-        <div class="col-md-8 col-xs-12 form-field">
-          <i id="phone-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text-white">phone numbers must match</span>
-        </div>
-        <div class="col-xs-12 text-center">
-          <%= f.submit  "Update phone number", disabled: "disabled", id: "phone_change", class: "form-btn white-text blue-bg" %>
         </div>
       </div>
+        
+      <div class="col-md-4 col-xs-0 form-field">
+      </div>
+      <div class="col-md-8 col-xs-12 form-field">
+        <i id="phone-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text-white">phone numbers must match</span>
+      </div>
+      <div class="col-xs-12 text-center">
+        <%= f.submit  "Update phone number", disabled: "disabled", id: "phone_change", class: "form-btn white-text blue-bg" %>
+      </div>
+      
     </div>
-  <% end %>
+    <% end %>
   </p>
   <hr class="white-text">
 </p>
