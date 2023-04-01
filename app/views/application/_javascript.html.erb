@@ -9,8 +9,6 @@
     );
   }
 
-
-  // code for the isElementInViewport function 
   function callbackFunc() {
     var items = document.querySelectorAll(".timeline li");
     for (var i = 0; i < items.length; i++) {
@@ -41,24 +39,11 @@
     var c = document.getElementById(closer_id);
     if (c.style.display == "none")
     {
-      open_nav(veil_id);
-      /*
-      b.style.hidden = true;
-      c.style.hidden = false;
-      */
-      
       b.style.display = "none";
       c.style.display = "initial";
-      
     } else {
-      close_nav(veil_id);
-      /*
-      b.style.hidden = false;
-      c.style.hidden = true;
-      */
       b.style.display = "initial";
       c.style.display = "none";
-      
     }
   }
 
@@ -90,16 +75,6 @@
   }
   function phoneDataSuccess(data) {
     phoneData = JSON.parse(data);
-    /*
-    phoneData.sort(function(a, b) {    
-          if (a['dial_code'] > b['dial_code']) {    
-              return 1;
-          } else if (a['dial_code'] < b['dial_code']) {    
-              return -1;    
-          }    
-          return 0;    
-      });
-      */
     dispatchEvent(phoneDataAvailable);
   }
   function phoneFlagsSuccess(data) {
@@ -200,95 +175,18 @@
 
   function selectPhoneCode(elem, value, hiddenField, buttonElem) {
     var url = ""
-    var img = ""
     for (e of elem.childNodes) { 
       e.classList.remove("active")
       var c = e.firstChild.firstChild
-      
-
-      
-      //console.log(p);
       if (c.childNodes[0].textContent == value) {
-        console.log("DICKS");
-        img = c.childNodes[1].firstChild.style.backgroundImage;
-        console.log(img)
-        
         url = c.childNodes[1].firstChild.style.backgroundImage.split('"')[1]
-        console.log (url)
-        console.log("break")
         break;
       }
-
-      /*
-      <li>
-        <a>
-          <row>
-            <div1>
-              c1.classList.add("col-3");
-              c1.classList.add("dial-code");
-              c1.appendChild(document.createTextNode(dial));
-            </div1>
-            
-            <div2>
-              c2.classList.add("col-1");
-              if (country != undefined) {
-                let sp = document.createElement("span");
-                sp.classList.add("flag-dropdown");
-                sp.style.backgroundImage = "url("+country['image']+")";
-                c2.appendChild(sp);
-              }
-            </div2>
-            
-            <div3>
-              c3.classList.add("col-7");
-              let cname = document.createElement("span");
-              cname.appendChild(document.createTextNode(e['name']));
-              c3.appendChild(cname)
-            </div3>
-          </row>
-        </a>
-      </li>    
-      
-      elem.appendChild(opt);
-      */
-
-/*
-      if (p.textContent == value) {
-        e.classList.add("active");
-        url = e.firstChild.style.backgroundImage.split('"')[1]
-        img = e.firstChild.style.backgroundImage;
-        break;
-      }
-      */
-    }
-
-    var tt = document.getElementById("user_phone_code_indicator");
     
-    var bb = document.getElementById("user_phone_code_dropdown-button").childNodes[1];
-    
+    var bb = document.getElementById("user_phone_code_dropdown-button").childNodes[1];    
     bb.src = url;
-    //bb.classList.add("flag-dropdown")
-    console.log(url)
-    console.log (bb);
-    //bb.style.backgroundImage = img;
     
-    //bb.style.backgroundRepeat = "no-repeat";
-    //bb.style.backgroundSize = "cover";
-    //bb.style.backgroundOrigin = "border-box"
-
-    //tt.src = url;
-/*
-    
-    console.log(tt)
-*/
-
-
     hiddenField.value = value;
-    console.log("DICKS");
-/*
-    
-    console.log(hiddenField.value);
-    */
   }
 
 
