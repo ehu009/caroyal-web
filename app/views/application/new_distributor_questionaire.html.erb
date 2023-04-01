@@ -8,18 +8,18 @@
   <%= form_for @dist_q, url: fill_distributor_questionaire_path do |f| %>
   <p>
     How many years have you been trading stockfish?
-    
+    <br>
     <%= f.select :length, (1..50) %>
   </p>
   <p>
     What volume (in dollars) do you intend to buy in a year?
     <br>
-    <%= f.number_field :yearly_amount %>
+    <%= f.number_field :yearly_amount, style: "width:80%"  %>
   </p>
   <p>
     What other products do you wish to distribute in the future?
     <br>
-    <%= f.text_area :other_products %>
+    <%= f.text_area :other_products, style: "width:80%" %>
   <p>
     Select all payment types that you can make:
     <div class="container-fluid row">
@@ -47,10 +47,13 @@
       <div class="col-8">
         <%= f.check_box :pays_crypto %>
       </div>
+      <div class="col-12 text-center">
+        <%= f.submit  "Submit distributor questionaire", class: "form-btn white-text blue-bg" %>
+      
     </div>
   </p>
 
-  <%= f.submit  "Submit distributor questionaire", class: "form-btn white-text blue-bg" %>
+  
 
   <% end %>
   <hr class="white-text">

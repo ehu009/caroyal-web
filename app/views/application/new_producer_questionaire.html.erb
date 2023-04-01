@@ -9,44 +9,57 @@
   <p>
     What commodities do you want to export?
     <br>
-    <%= f.text_area :commodities %>
+    <%= f.text_area :commodities, style: "width:80%" %>
   </p>
   <p>
     What volume in kg or tonnes do you intend to export in a year?
     <br>
-    <%= f.number_field :volume %><%= f.select :unit, ['kilos', 'tonnes'] %>
+    <%= f.number_field :volume %>&nbsp;<%= f.select :unit, ['kilos', 'tonnes'] %>
   </p>
+
+
+
+<!--
+<div class="col-lg-4 col-xs-12 col-sm-6">
+        Bank deposit: 
+      </div>
+      <div class="col-lg-8 col-xs-12 col-sm-4">
+        <%= f.check_box :pays_deposit %>
+      </div>
+-->
+
   <p>
     Select all payment types that you can receive:
     <div class="container-fluid row">
-      <div class="col-4">
+      <div class="col-lg-4 col-xs-12 col-sm-6">
         Bank deposit: 
       </div>
-      <div class="col-8">
+      <div class="col-lg-8 col-xs-12 col-sm-4">
         <%= f.check_box :pays_deposit %>
       </div>
-      <div class="col-4">
+      <div class="col-md-4">
         Bank wire: 
       </div>
-      <div class="col-8">
+      <div class="col-md-8">
         <%= f.check_box :pays_wire %>
       </div>
-      <div class="col-4">
+      <div class="col-md-4">
         Card payment: 
       </div>
-      <div class="col-8">
+      <div class="col-md-8">
         <%= f.check_box :pays_card %>
       </div>
-      <div class="col-4">
+      <div class="col-md-4">
         Cryptocurrency: 
       </div>
-      <div class="col-8">
+      <div class="col-md-8">
         <%= f.check_box :pays_crypto %>
+      </div>
+      <div class="col-md-12 text-center">
+        <%= f.submit  "Submit producer questionaire", class: "form-btn white-text blue-bg" %>
       </div>
     </div>
   </p>
-
-  <%= f.submit  "Submit producer questionaire", class: "form-btn white-text blue-bg" %>
       
   <% end %>
   <hr class="white-text">
