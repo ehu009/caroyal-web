@@ -67,6 +67,27 @@ class ApplicationController < ActionController::Base
         redirect_to redir, notice: message
     end
 
+    def password_reset
+      @user = User.find_by confirmation_token: params[:token]
+      message = "Found no user with this confirmation token"
+      redir = root_path
+      if @user != nil then
+          time = Time.now
+          @user.confirmation_token = nil
+          message = "Your email confirmation link has expired.<br>We've dispatched another one to your email address."
+          if ((time - @user.confirmation_sent_at).to_i / (60*60)) > 5 then
+              
+          else
+              @user.confirmed_at = time
+              message = "You email address has been confirmed."
+          end
+          @user.save
+          @current_user = @user
+          redir = account_overview_path
+      end
+      redirect_to redir, notice: message
+  end
+
     def first_time_login
         @user = @current_user
     end
