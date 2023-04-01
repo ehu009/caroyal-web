@@ -74,6 +74,11 @@ font-style: italic;
 .dropdown-menu {
   width: 100%;
   max-width: 325px;
+
+  display: flex;
+  justify-content:center;
+  align-items: center;
+
 }
 
 .form-group_dir-row {
