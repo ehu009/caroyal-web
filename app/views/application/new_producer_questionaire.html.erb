@@ -16,45 +16,28 @@
     <br>
     <%= f.number_field :volume %>&nbsp;<%= f.select :unit, ['kilos', 'tonnes'] %>
   </p>
-
-
-
-<!--
-<div class="col-lg-4 col-xs-12 col-sm-6">
-        Bank deposit: 
-      </div>
-      <div class="col-lg-8 col-xs-12 col-sm-4">
-        <%= f.check_box :pays_deposit %>
-      </div>
--->
-
+  
   <p>
     Select all payment types that you can receive:
     <div class="container-fluid row">
-      <div class="col-lg-4 col-xs-12 col-sm-6">
-        Bank deposit: 
+
+      <% def check_box_for(form, text, symbol) %>
+      <div class="col-lg-6 col-xs-12 col-sm-6">
+        <%= text %>:
       </div>
-      <div class="col-lg-8 col-xs-12 col-sm-4">
-        <%= f.check_box :pays_deposit %>
+      <div class="col-lg-6 col-xs-12 col-sm-4">
+        <%= form.check_box(symbol.to_sym) %>
       </div>
-      <div class="col-md-4">
-        Bank wire: 
-      </div>
-      <div class="col-md-8">
-        <%= f.check_box :pays_wire %>
-      </div>
-      <div class="col-md-4">
-        Card payment: 
-      </div>
-      <div class="col-md-8">
-        <%= f.check_box :pays_card %>
-      </div>
-      <div class="col-md-4">
-        Cryptocurrency: 
-      </div>
-      <div class="col-md-8">
-        <%= f.check_box :pays_crypto %>
-      </div>
+      <% end %>
+
+      <% dict = [["Bank deposit", :pays_deposit],
+          ["Bank wire", :pays_wire],
+          ["Card payment",:pays_card],
+          ["pays_crypto", :pays_crypto]]
+        %>
+      <% dict.each do |e| %>
+      <% check_box_for f, e[0], e[1] %>
+      <% end %>
       <div class="col-md-12 text-center">
         <%= f.submit  "Submit producer questionaire", class: "form-btn white-text blue-bg" %>
       </div>
