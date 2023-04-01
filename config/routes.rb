@@ -34,11 +34,14 @@ Rails.application.routes.draw do
   end
 
   get 'welcome', to: 'application#first_time_login', as: :first_time_login
-  get 'producer_questionaire', to: 'application#new_producer_questionaire', as: :new_producer_questionaire
-  post 'producer_questionaire', to: 'application#fill_producer_questionaire', as: :fill_producer_questionaire
-  get 'distributor_questionaire', to: 'application#new_distributor_questionaire', as: :new_distributor_questionaire
-  post 'distributor_questionaire', to: 'application#fill_distributor_questionaire', as: :fill_distributor_questionaire
-
+  
+  scope 'questionaires' do
+    get 'producer', to: 'questionaires#new_producer_questionaire', as: :new_producer_questionaire
+    post 'producer', to: 'questionaires#fill_producer_questionaire', as: :fill_producer_questionaire
+    get 'distributor', to: 'questionaires#new_distributor_questionaire', as: :new_distributor_questionaire
+    post 'distributor', to: 'questionaires#fill_distributor_questionaire', as: :fill_distributor_questionaire
+  end
+  
   get 'account', to: 'application#account_overview', as: :account_overview
 
   get '/login', to: 'sessions#login'
