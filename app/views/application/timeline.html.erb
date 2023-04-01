@@ -1,38 +1,38 @@
 <div class="parallax-2">
     
-    <section class="timeline">
+  <section class="timeline">
     <ul>
-    <% @events.each do |t| %>
+      <% @events.each do |t| %>
+      
+      
+      <% time = t.time %>
     
-    
-    <% time = t.time %>
-    
-    <% if t.text == nil && time == nil then%>
-    <li class="timeline-era">
+      <% if t.text == nil && time == nil then%>
+      <li class="timeline-era">
         <div class="white-text timeline-box timeline-box_blue">
-        <h2 class="timeline-title">
+          <h2 class="timeline-title">
             <%= t[:title] %>
-        </h2>
-        <img class="box-corner box-corner_blue" src="box-corner-blue.svg">
+          </h2>
+          <img class="box-corner box-corner_blue" src="box-corner-blue.svg">
         </div>
-    <% else %>
-    <li class="timeline-event">
-    <div class="white-text timeline-box timeline-box_white">
-        <h2 class="timeline-time">
+      <% else %>
+      <li class="timeline-event">
+        <div class="white-text timeline-box timeline-box_white">
+          <h2 class="timeline-time">
             <%= Date::MONTHNAMES[time.month] %> <%= time.year %>
-        </h2>
-        <span class="timeline-title">
+          </h2>
+          <span class="timeline-title">
             <%= t[:title] %>
-        </span><br>
-        <span class="timeline-text">
+          </span><br>
+          <span class="timeline-text">
             <%= t[:text] %>
-        </span>
-        <img class="box-corner" src="box-corner.svg">
-    </div>
-    <% end %>
-    
-    </li>
-    <% end %>
+          </span>
+          <img class="box-corner" src="box-corner.svg">
+        </div>
+      <% end %>
+      
+      </li>
+      <% end %>
     </ul>
-    </section>
-    </div>
+  </section>
+</div>

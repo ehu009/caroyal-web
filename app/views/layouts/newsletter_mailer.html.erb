@@ -11,22 +11,22 @@
         width: 70%;
         margin-bottom: 40px;
       }
-.newsletter-content {
-  margin:30px;
-}
+      .newsletter-content {
+        margin:30px;
+      }
     </style>
   </head>
 
   <body>
-  <div class="text-center">
-  <img class="logo" src="http://caroyal.com/Caroyal%20transparent%20PNG.png">
-  </div>
-<div class="newsletter-content">
-    <%= yield %>
-<hr>
+    <div class="text-center">
+      <img class="logo" src="http://caroyal.com/Caroyal%20transparent%20PNG.png">
+    </div>
+    <div class="newsletter-content">
+      <%= yield %>
+      <hr>
 
-If you would like to stop receiving email newletters from us - <br>
-Have no fear, we've provided a clickable link <%= link_to "right here", unsubscribe_newsletter_url(@s.unsubscribe_token) %>
-</div>
+      If you would like to stop receiving email newletters from us - <br>
+      Have no fear, we've provided a clickable link <%= link_to "right here", unsubscribe_newsletter_url(@s.unsubscribe_token) %>
+    </div>
   </body>
 </html>
