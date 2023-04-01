@@ -3,7 +3,11 @@
 
 <%= form_for @user do |f| %>
 <p>
+
   <div class="form-group">
+    <div class="row">
+      <div class="col-6">
+
     <div class="form-field" style="display: flex; flex-direction: row;">
       <%= f.label :phone_number %>
       &nbsp;
@@ -34,6 +38,8 @@
     <div class="form-field">        
       <i id="phone-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">phone numbers must match</span>
     </div>
+    </div>
+    <div class="col-6">
     <div class="form-field">
       <%= f.label :password %>
       <span style="right:0px; color: red">*</span>
@@ -54,6 +60,8 @@
       <i id="lower-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">must contain lower case</span><br>
       <i id="upper-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">must contain upper case</span><br>
       <i id="number-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">must contain a number</span>
+    </div>
+    </div>
     </div>
   </div>
 </p>
