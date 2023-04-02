@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
   layout "application_fishy", only: [:new]
 
+  before_action :must_login, only: [:edit, :update, :change_passwowd, :change_phone, :destroy]
+
+
   def new
     @user = User.new
     if session[:create_params] == nil then
@@ -44,25 +47,20 @@ class UsersController < ApplicationController
 
   def edit
     allow = false
-    message = "You cannot edit account info without first logging in."
-    redir = login_path
-    
     c_id = session[:user_id]
 
-    if c_id != nil then
-      current_user = User.find_by_id c_id
-      message = "Only administrators may edit an account they do not own."
-      redir = account_overview_path
+    current_user = User.find_by_id c_id
+    message = "Only administrators may edit an account they do not own."
+    redir = account_overview_path
 
-      if c_id.to_s == params[:id] then
-        allow = true
-      else
-        if current_user.administrator then
-          allow = true                    
-        end
+    if c_id.to_s == params[:id] then
+      allow = true
+    else
+      if current_user.administrator then
+        allow = true                    
       end
-            
     end
+      
     if allow == false then
       redirect_to redir, notice: message
     else
@@ -72,26 +70,21 @@ class UsersController < ApplicationController
 
   def change_pwd       
     allow = false
-    message = "You cannot edit account info without first logging in."
-    redir = login_path
-    
     c_id = session[:user_id]
     current_user = nil
-
-    if c_id != nil then
-      current_user = User.find_by_id c_id
-      message = "Only administrators may edit an account they do not own."
-      redir = edit_user_path(c_id)
-      
-      if c_id.to_s == params[:user_id] then
-        allow = true
-      else
-        if current_user.administrator then
-          allow = true                    
-        end
+    
+    current_user = User.find_by_id c_id
+    message = "Only administrators may edit an account they do not own."
+    redir = edit_user_path(c_id)
+    
+    if c_id.to_s == params[:user_id] then
+      allow = true
+    else
+      if current_user.administrator then
+        allow = true                    
       end
-            
     end
+
     if allow == false then
       redirect_to redir, notice: message
     else
@@ -127,26 +120,21 @@ class UsersController < ApplicationController
 
   def change_phone
     allow = false
-    message = "You cannot edit account info without first logging in."
-    redir = login_path
-    
     c_id = session[:user_id]
     current_user = nil
 
-    if c_id != nil then
-      current_user = User.find_by_id c_id
-      message = "Only administrators may edit an account they do not own."
-      redir = edit_user_path(c_id)
-      if c_id.to_s == params[:user_id] then
-          allow = true
-      else
-        if current_user.administrator then
-          allow = true                    
-        end
+    current_user = User.find_by_id c_id
+    message = "Only administrators may edit an account they do not own."
+    redir = edit_user_path(c_id)
+    if c_id.to_s == params[:user_id] then
+        allow = true
+    else
+      if current_user.administrator then
+        allow = true                    
       end
     end
+    
     if allow == false then
-      puts "niggers"
       redirect_to redir, notice: message
       return
     else
@@ -173,11 +161,11 @@ class UsersController < ApplicationController
         end
       end
       if allow then
-          if @user.save
-            redir = account_overview_path
-          else
-            message = @user.errors.messages
-          end
+        if @user.save
+          redir = account_overview_path
+        else
+          message = @user.errors.messages
+        end
       end
     end
     redirect_to redir, notice: message
@@ -187,27 +175,22 @@ class UsersController < ApplicationController
 
   def update
       
-    allow = false
-    message = "You cannot edit account info without first logging in."
-    redir = login_path
-    
+    allow = false    
     c_id = session[:user_id]
     current_user = nil
-
-    if c_id != nil then
-      current_user = User.find_by_id c_id
-      message = "Only administrators may edit an account they do not own."
-      redir = edit_user_path(c_id)
-      
-      if c_id.to_s == params[:id] then
-        allow = true
-      else
-        if current_user.administrator then
-          allow = true                    
-        end
+    
+    current_user = User.find_by_id c_id
+    message = "Only administrators may edit an account they do not own."
+    redir = edit_user_path(c_id)
+    
+    if c_id.to_s == params[:id] then
+      allow = true
+    else
+      if current_user.administrator then
+        allow = true                    
       end
-                
     end
+       
     if allow == false then
       redirect_to redir, notice: message
     else
@@ -230,30 +213,25 @@ class UsersController < ApplicationController
 
   def destroy
     allow = false
-    message = "You cannot edit account info without first logging in."
-    redir = login_path
     
     c_id = session[:user_id]
     current_user = nil
+    message = "Please confirm account deletion before committing."
+    redir = edit_user_path(c_id)
 
-    if c_id != nil then
-      message = "Please confirm account deletion before committing."
-      redir = edit_user_path(c_id)
-
-      if params[:confirm_deletion] == "on" then
-        current_user = User.find_by_id c_id
-        message = "Only administrators may edit an account they do not own."
-        
-        if c_id.to_s == params[:id] then
-          allow = true
-        else
-          if current_user.administrator then
-            allow = true                    
-          end
+    if params[:confirm_deletion] == "on" then
+      current_user = User.find_by_id c_id
+      message = "Only administrators may edit an account they do not own."
+      
+      if c_id.to_s == params[:id] then
+        allow = true
+      else
+        if current_user.administrator then
+          allow = true                    
         end
       end
-            
     end
+       
     if allow == true then
       @user = User.find(params[:id])
       message = "Account deletion failed."
@@ -268,7 +246,13 @@ class UsersController < ApplicationController
   end
 
 
-    private
+  private
+
+  def must_login
+    if @current_user.nil?
+      redirect_to login_path, notice: "You must log in to do that."
+    end
+  end
 
   def regular_params
     params.require(:user).permit(:confirm_deletion, :email, :password, :company_name, :producer, :distributor, :company_address, :tax_identification_number, :name_prefix, :first_name, :last_name, :date_of_birth, :phone_number, :phone_code, :address, :country, :city, :company_city, :company_country)
