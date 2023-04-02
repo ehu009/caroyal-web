@@ -34,16 +34,17 @@
   flex-direction: column;
   justify-content: center;
   align-items: center; 
-  height: 100vh;
+  height: 100%;
+  font-size: 200%;
 }
 .nav-list > li {
-  font-size: 28px;
+  
   font-weight: bold;
   transition: 0.7s;
   cursor: pointer;
 }
 .nav-list>li:hover {
-  font-size: 40px;
+  font-size: 120%
 }
 
 
@@ -55,6 +56,7 @@
   visibility: hidden;
   opacity: 0;
   top: 0px;
+  padding: 85px 5px 45px 5px;
 }
 .nav-veil-fadein {
   animation: fadeInTo100 1s forwards;
