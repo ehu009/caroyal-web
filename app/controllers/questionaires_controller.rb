@@ -48,4 +48,12 @@ class QuestionairesController < ApplicationController
     redirect_to redir, notice: message
   end
 
+  private
+  def producer_params
+    params.require(:producer_questionaire).permit(:commodities, :volume, :pays_deposit, :pays_wire, :pays_card, :pays_crypto, :unit)
+  end
+
+  def distributor_params
+    params.require(:distributor_questionaire).permit(:length, :yearly_amount, :other_products, :pays_deposit, :pays_wire, :pays_card, :pays_crypto, :unit)
+  end
 end
