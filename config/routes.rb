@@ -25,7 +25,13 @@ Rails.application.routes.draw do
 
 
   get 'confirm_email', to: 'application#confirm_email', as: :confirm_email
-  
+  scope 'login' do 
+    get 'forgotten', to: 'application#forgotten_password', as: :password_reset
+    post 'forgotten', to: 'application#create_password_reset_token', as: :password_token
+    get 'update/:password_reset_token', to: 'application#edit_password', as: :password_edit
+    post 'update/:password_reset_token', to: 'application#update_password', as: :password_update
+
+  end
   resources :users, only: [:index, :new, :create, :edit, :update, :show, :destroy] do
     patch 'change_password', to: "users#change_pwd", as: :change_password
     patch 'change_phone', to: "users#change_phone", as: :change_phone
@@ -38,7 +44,7 @@ Rails.application.routes.draw do
   get 'welcome', to: 'sessions#first_time_login', as: :first_time_login
   get 'account', to: 'sessions#account_overview', as: :account_overview
 
-  scope 'questionaires' do
+  scope 'questionaire' do
     get 'producer', to: 'questionaires#new_producer_questionaire', as: :new_producer_questionaire
     post 'producer', to: 'questionaires#fill_producer_questionaire', as: :fill_producer_questionaire
     get 'distributor', to: 'questionaires#new_distributor_questionaire', as: :new_distributor_questionaire
@@ -57,5 +63,6 @@ Rails.application.routes.draw do
     post 'subscribe', to: 'newsletter_subscriber#create', as: :create_newsletter_subscription
     get 'unsubscribe/:unsubscribe_token', to: 'newsletter_subscriber#destroy', as: :unsubscribe_newsletter
   end
+
 
 end
