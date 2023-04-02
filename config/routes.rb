@@ -29,7 +29,7 @@ Rails.application.routes.draw do
     get 'forgotten', to: 'application#forgotten_password', as: :password_reset
     post 'forgotten', to: 'application#create_password_reset_token', as: :password_token
     get 'update/:password_reset_token', to: 'application#edit_password', as: :password_edit
-    post 'update/:password_reset_token', to: 'application#update_password', as: :password_update
+    post 'update/:password_reset_token', to: 'application#reset_password', as: :password_update
 
   end
   resources :users, only: [:index, :new, :create, :edit, :update, :show, :destroy] do

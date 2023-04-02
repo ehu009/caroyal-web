@@ -67,39 +67,65 @@ class ApplicationController < ActionController::Base
 
 
   def forgotten_password
-
+    render layout: 'application_fishy'
   end
 
   def create_password_reset_token
-
-  end
-
-  #get 'forgotten', to: 'application#forgotten_password', as: :password_reset
-  #post 'forgotten', to: 'application#create_password_reset_token', as: :password_token
-  #get 'update/:password_reset_token', to: 'application#edit_password', as: :password_edit
-  #post 'update/:password_reset_token', to: 'application#update_password', as: :password_update
-
-  def reset_password
-    @user = User.find_by reset_token: params[:token]
-    message = "Found no user with this reset token"
-    redir = root_path
-    if !@user.nil? then
-      time = Time.now
-      @user.confirmation_token = nil
-      message = "Your email confirmation link has expired.<br>We've dispatched another one to your email address."
-      if ((time - @user.confirmation_sent_at).to_i / (60*60)) > 15 then
-        NoReplyMailer.email_confirmation(@user).send_now
-      else
-        @user.confirmed_at = time
-        message = "You email address has been confirmed."
-      end
+    redir = password_reset_path
+    message = "User not found."
+    @user= User.find_by email: params[:string]
+    unless @user.nil? then
+      o = [('a'..'z'), ('A'..'Z')].map(&:to_a).flatten
+      @token = (0...25).map { o[rand(o.length)] }.join
+      @user.password_reset_token = @token
+      @user.reset_token_sent_at = Time.now
+      puts @user.email
       @user.save
-      @current_user = @user
-      redir = account_overview_path
+      NoReplyMailer.password_reset(@user.email, @token).send_now
+      redir = login_path
+      message = "We've sent you an email that can help you retrieve your account."
     end
     redirect_to redir, notice: message
     
   end
+
+  def edit_password
+    message = "Found no user with this token."
+    @user = User.find_by password_reset_token: params[:password_reset_token]
+    if @user.nil? then
+      redirect_to password_reset_path, notice: message
+      return
+    end
+    @token = params[:password_reset_token]
+  end
+
+
+  def reset_password
+    
+    @user = User.find_by password_reset_token: params[:password_reset_token]
+    message = "Found no user with this token."
+    redir = password_reset_path
+    unless @user.nil? then
+      time = Time.now
+      message = "Your password_reset link has expired."
+      unless ((time - @user.reset_token_sent_at).to_i / (60*60)) > 15 then
+        redir = password_edit_path
+        message = "You must provide a new password."
+        unless params[:password].nil? then
+          message = "New password and confirmation do not match.: "+params[:password] + " vs "+ params[:password_confirm]
+          if params[:password] == params[:password_confirm] then
+            @user.password = params[:password]
+            @user.password_reset_token = nil
+            if @user.save then
+              redir = login_path
+              message = "Your password has been changed."
+            end
+          end
+        end
+      end
+    end
+    redirect_to redir, notice: message
+  end    
 
   private
   def get_current_user
