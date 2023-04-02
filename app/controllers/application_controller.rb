@@ -112,7 +112,7 @@ class ApplicationController < ActionController::Base
         redir = password_edit_path
         message = "You must provide a new password."
         unless params[:password].nil? then
-          message = "New password and confirmation do not match.: "+params[:password] + " vs "+ params[:password_confirm]
+          message = "New password and confirmation do not match."
           if params[:password] == params[:password_confirm] then
             @user.password = params[:password]
             @user.password_reset_token = nil
