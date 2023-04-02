@@ -18,8 +18,8 @@ class QuestionairesController < ApplicationController
           @prod_q = nil
           failure = true
       end
-      unless failure == true then
-          if @current_user.distributor == true then
+      unless failure then
+          if @current_user.distributor then
               redir =  new_distributor_questionaire_path
           else
               message = "Thanks for taking the time to fill out our questionaire."
@@ -41,7 +41,7 @@ class QuestionairesController < ApplicationController
           failure = true
           @dist_q = nil
       end
-      if failure == false then
+      unless failure then
           message = "Thanks for taking the time to fill out our questionaire."
           redir = account_overview_path
       end

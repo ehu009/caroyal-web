@@ -72,9 +72,9 @@ class PricesController < ApplicationController
     def confirm_admin
         id = session[:user_id]
         
-        if id != nil then
+        if !id.nil? then
             user = User.find_by_id id
-            if user.administrator == false then
+            unless user.administrator then
                 redirect_to root_path, notice: "Sorry - that page is for administrators."
             end
         end

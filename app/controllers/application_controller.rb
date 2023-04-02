@@ -7,12 +7,11 @@ class ApplicationController < ActionController::Base
 
     def home
         @sub = NewsletterSubscriber.new
-        if @current_user != nil then
-            if @current_user.email != nil then
-                s = NewsletterSubscriber.find_by email: @current_user.email
-                if s != nil then
-                    @sub = s
-                end
+        if !(@current_user.nil? || !@current_user.email.nil?) then
+            
+            s = NewsletterSubscriber.find_by email: @current_user.email
+            if !s.nil? then
+                @sub = s
             end
         end
         render layout: "application_white"
@@ -50,7 +49,7 @@ class ApplicationController < ActionController::Base
         @user = User.find_by confirmation_token: params[:token]
         message = "Found no user with this confirmation token"
         redir = root_path
-        if @user != nil then
+        if !@user.nil? then
             time = Time.now
             @user.confirmation_token = nil
             message = "Your email confirmation link has expired.<br>We've dispatched another one to your email address."
@@ -74,7 +73,7 @@ class ApplicationController < ActionController::Base
     end
 
     def must_login
-        if @current_user == nil then
+        if @current_user.nil? then
             redirect_to '/login', notice: "You are not logged in."
         end
     end

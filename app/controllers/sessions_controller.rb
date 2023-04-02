@@ -7,14 +7,14 @@ class SessionsController < ApplicationController
     end
 
     def account_overview
-      if @current_user == nil then
+      if @current_user.nil? then
           redirect_to login_path, notice: "You are not logged in."
       else
         @user = @current_user
-        if @user.producer == true then
+        if @user.producer then
           @prod_q = ProducerQuestionaire.where(user: @current_user)
         end
-        if @user.distributor == true then
+        if @user.distributor then
           @dist_q = DistributorQuestionaire.where(user: @current_user)
         end
       end
@@ -44,7 +44,7 @@ class SessionsController < ApplicationController
 
     def destroy
         message = "You were not logged in."
-        if session[:user_id] != nil then
+        if !session[:user_id].nil? then
             session[:user_id] = nil
             message = "Sucessfully logged out."
         end

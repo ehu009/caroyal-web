@@ -25,7 +25,7 @@ class NewsletterSubscriberController < ApplicationController
   def destroy
     user = NewsletterSubscriber.find_by(unsubscribe_token: params[:unsubscribe_token])
     message = "Error unsubscriping from newsletter."
-    if user != nil then
+    if !user.nil? then
       user.destroy
       message = "Successfully unsubcribed from newsletter."
     end
