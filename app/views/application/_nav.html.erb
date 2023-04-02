@@ -25,9 +25,8 @@
   <ul class="nav-list">
   
     <% def link(text, link) %>
-      <li onclick="window.location.href='<%= link %>'">
+      <li onclick="window.location.href='<%= link %>'" class="text-center">
       <%= text %>
-      </li>
     <% end %>
 
     <%= link "Home",root_path %>
