@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
           @dist_q = DistributorQuestionaire.where(user: @current_user)
         end
       end
-      render :application, layout: "application"
+      render :account_overview, layout: "application"
     end
 
     def create
