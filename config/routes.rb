@@ -14,9 +14,7 @@ Rails.application.routes.draw do
   get 'blog', to: 'blog#lander', as: :blog
   get 'market', to: 'market#lander', as: :market
 
-  get 'privacy_policy', to: 'application#privacy_policy', as: :privacy_policy
-
-
+  get 'privacy', to: 'application#privacy_policy', as: :privacy_policy
   get '/dev', to: 'application#dev'
 
   
@@ -27,24 +25,33 @@ Rails.application.routes.draw do
 
 
   get 'confirm_email', to: 'application#confirm_email', as: :confirm_email
-  
+  scope 'login' do 
+    get 'forgotten', to: 'application#forgotten_password', as: :password_reset
+    post 'forgotten', to: 'application#create_password_reset_token', as: :password_token
+    get 'update/:password_reset_token', to: 'application#edit_password', as: :password_edit
+    post 'update/:password_reset_token', to: 'application#update_password', as: :password_update
+
+  end
   resources :users, only: [:index, :new, :create, :edit, :update, :show, :destroy] do
     patch 'change_password', to: "users#change_pwd", as: :change_password
     patch 'change_phone', to: "users#change_phone", as: :change_phone
   end
 
-  get 'welcome', to: 'application#first_time_login', as: :first_time_login
-  get 'producer_questionaire', to: 'application#new_producer_questionaire', as: :new_producer_questionaire
-  post 'producer_questionaire', to: 'application#fill_producer_questionaire', as: :fill_producer_questionaire
-  get 'distributor_questionaire', to: 'application#new_distributor_questionaire', as: :new_distributor_questionaire
-  post 'distributor_questionaire', to: 'application#fill_distributor_questionaire', as: :fill_distributor_questionaire
-
-  get 'account', to: 'application#account_overview', as: :account_overview
-
   get '/login', to: 'sessions#login'
   post '/login', to: 'sessions#create'
   post '/logout', to: 'sessions#destroy'
   get '/logout', to: 'sessions#destroy'
+  get 'welcome', to: 'sessions#first_time_login', as: :first_time_login
+  get 'account', to: 'sessions#account_overview', as: :account_overview
+
+  scope 'questionaire' do
+    get 'producer', to: 'questionaires#new_producer_questionaire', as: :new_producer_questionaire
+    post 'producer', to: 'questionaires#fill_producer_questionaire', as: :fill_producer_questionaire
+    get 'distributor', to: 'questionaires#new_distributor_questionaire', as: :new_distributor_questionaire
+    post 'distributor', to: 'questionaires#fill_distributor_questionaire', as: :fill_distributor_questionaire
+  end
+
+  
 
 
   resources :newsletter do
@@ -57,6 +64,5 @@ Rails.application.routes.draw do
     get 'unsubscribe/:unsubscribe_token', to: 'newsletter_subscriber#destroy', as: :unsubscribe_newsletter
   end
 
-  resources :inquiries, except: [:new]
 
 end

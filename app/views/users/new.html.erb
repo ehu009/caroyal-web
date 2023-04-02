@@ -3,57 +3,66 @@
 
 <%= form_for @user do |f| %>
 <p>
+
   <div class="form-group">
-    <div class="form-field" style="display: flex; flex-direction: row;">
-      <%= f.label :phone_number %>
-      &nbsp;
-      <span style="right:0px; color: red">*</span>
-      &nbsp;
-      <span id="phone-spinner">
-        <i class="fas fa-spin fa-spinner"></i>
-      </span>
-    </div>
-    <div class="form-field">
-      <%= f.hidden_field :phone_code %>
-      <button type="button" id="user_phone_code_dropdown-button" class="dropdown-toggle text-input" data-bs-toggle="dropdown">
-        <img id="user_phone_code_indicator" src="" style="height:35px;">
-      </button>
-      <ul class="dropdown-menu" id="user_phone_code_dropdown"></ul>
-      <div style="margin-top: 10px;">
-        <%= f.number_field :phone_number, style: "width:100%", class: "hidden-arrows text-input", autocomplete: "tel-national" %>
+    <div class="row">
+      <div class="col-6">
+
+        <div class="form-field" style="display: flex; flex-direction: row;">
+          <%= f.label :phone_number %>
+          &nbsp;
+          <span style="right:0px; color: red">*</span>
+          &nbsp;
+          <span id="phone-spinner">
+            <i class="fas fa-spin fa-spinner"></i>
+          </span>
+        </div>
+        <div class="form-field">
+          <%= f.hidden_field :phone_code %>
+          <button type="button" id="user_phone_code_dropdown-button" class="dropdown-toggle text-input" data-bs-toggle="dropdown">
+            <span></span>&nbsp;
+            <img id="user_phone_code_indicator" src="" style="height:35px;">
+          </button>
+          <ul class="dropdown-menu" id="user_phone_code_dropdown"></ul>
+          <div style="margin-top: 10px;">
+            <%= f.number_field :phone_number, style: "width:100%", class: "hidden-arrows text-input", autocomplete: "tel-national" %>
+          </div>
+        </div>
+        <div class="form-field">
+          <label>Confirm</label><span style="right:0px; color: red">*</span>
+        </div>
+        <div class="form-field" style="padding-right:0px">
+          <div class="" style="padding:0px;">
+            <input id="phone-confirm" style="width:100%;" class="hidden-arrows text-input" type="number">
+          </div>
+        </div>
+        <div class="form-field">        
+          <i id="phone-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">phone numbers must match</span>
+        </div>
       </div>
-    </div>
-    <div class="form-field">
-      <label>Confirm</label><span style="right:0px; color: red">*</span>
-    </div>
-    <div class="form-field" style="padding-right:0px">
-      <div class="" style="padding:0px;">
-        <input id="phone-confirm" style="width:100%;" class="hidden-arrows text-input" type="number">
+      <div class="col-6">
+        <div class="form-field">
+          <%= f.label :password %>
+          <span style="right:0px; color: red">*</span>
+        </div>
+        <div class="form-field">
+          <%= f.password_field :password, style: "width:100%;", autocomplete: "new-password", class: "text-input" %>
+        </div>
+        <div class="form-field">
+          <label>Confirm</label>
+          <span style="right:0px; color: red">*</span>
+        </div>
+        <div class="form-field">
+          <input id="password-confirm" class="text-input" style="width:100%;" type="password">
+        </div>
+        <div class="form-field">
+          <i id="pwd-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">passwords must match</span><br>
+          <i id="length-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">must be at least 8 characters long</span><br>
+          <i id="lower-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">must contain lower case</span><br>
+          <i id="upper-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">must contain upper case</span><br>
+          <i id="number-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">must contain a number</span>
+        </div>
       </div>
-    </div>
-    <div class="form-field">        
-      <i id="phone-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">phone numbers must match</span>
-    </div>
-    <div class="form-field">
-      <%= f.label :password %>
-      <span style="right:0px; color: red">*</span>
-    </div>
-    <div class="form-field">
-      <%= f.password_field :password, style: "width:100%;", autocomplete: "new-password", class: "text-input" %>
-    </div>
-    <div class="form-field">
-      <label>Confirm</label>
-      <span style="right:0px; color: red">*</span>
-    </div>
-    <div class="form-field">
-      <input id="password-confirm" class="text-input" style="width:100%;" type="password">
-    </div>
-    <div class="form-field">
-      <i id="pwd-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">passwords must match</span><br>
-      <i id="length-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">must be at least 8 characters long</span><br>
-      <i id="lower-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">must contain lower case</span><br>
-      <i id="upper-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">must contain upper case</span><br>
-      <i id="number-indicate" style="visibility:hidden" class="fa-solid fa-check"></i><span class="form-indicator-text">must contain a number</span>
     </div>
   </div>
 </p>

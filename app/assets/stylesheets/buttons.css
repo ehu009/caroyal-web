@@ -72,7 +72,8 @@
     border-width: 4;
     border-color: #c4a141;
     border-radius: 5px;
-    margin-top: 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     font-weight: bold;
   }
   .account-delete-btn {

@@ -18,7 +18,7 @@ class InquiriesController < ApplicationController
 
     @inq = Inquiry.new create_params
     @inq.status = "todo"
-    if @inq.save == false then
+    unless @inq.save then
       message = @inq.errors.messages
     end
 
