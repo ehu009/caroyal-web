@@ -230,9 +230,6 @@
       a.appendChild(row);
 
       a.onclick = function () {
-          console.log(elem);
-          console.log(dial);
-          console.log(hiddenField);
           selectPhoneCode(elem, dial, hiddenField)
         };
       opt.appendChild(a);
@@ -245,7 +242,6 @@
     document.getElementById(spinner).style.display = "block";
     var phone_code_field = document.getElementById(phoneCodeSelectId);
     var hidden_field = document.getElementById(hiddenField);
-    console.log(hidden_field)
 
     addEventListener("phone-data-available", () => {
         addEventListener("phone-flags-available", () => {
