@@ -35,15 +35,19 @@
     e.classList.add('nav-veil-fadeout');
   }
   function burger_toggle(burger_id, closer_id, veil_id) {
+    
     var b = document.getElementById(burger_id);
     var c = document.getElementById(closer_id);
+    
     if (c.style.display == "none")
     {
       b.style.display = "none";
       c.style.display = "initial";
+      open_nav(veil_id);
     } else {
       b.style.display = "initial";
       c.style.display = "none";
+      close_nav(veil_id);
     }
   }
 
