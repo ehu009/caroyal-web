@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-    if session[:create_params] == nil then
+    if session[:create_params].nil? then
       session[:create_params] = {}
     end
   end
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     session[:create_params] = {}
     message = "User account was created successfully."
     redir = new_user_path
-    if @user.save
+    if @user.save then
       session[:user_id] = @user.id
       session[:create_params] = nil
       email = false
@@ -57,11 +57,11 @@ class UsersController < ApplicationController
     
     @user = User.find(params[:user_id])
     p = params.require(:user).permit(:password, :new_password, :password_confirm)
-    if p[:new_password] != nil then
+    unless p[:new_password].nil? then
       message = "New password and confirmation do not match."
-      if p[:new_password] == p[:password_confirm]
+      if p[:new_password] == p[:password_confirm] then
         message = "You must provide your current password."
-        if p[:password] != nil && @user.authenticate(p[:password]) != false then
+        if p[:password] != nil && @user.authenticate(p[:password]) then
           @user.password = p[:new_password]
           message = "Password successfully updated."
           confirm = true
@@ -82,10 +82,10 @@ class UsersController < ApplicationController
 
     @user = User.find_by_id params[:user_id]
     p = params.require(:user).permit(:phone_number, :phone_number_confirm, :phone_code)
-    if p[:phone_number] != nil then
+    unless p[:phone_number].nil? then
       message = "New phone number and confirmation do not match."
-      if p[:phone_number] == p[:phone_number_confirm]
-        if p[:phone_code] != nil then
+      if p[:phone_number] == p[:phone_number_confirm] then
+        unless p[:phone_code].nil? then
           @user.phone_code = p[:phone_code]
         end
         @user.phone_number = p[:phone_number]
@@ -136,7 +136,7 @@ class UsersController < ApplicationController
   private
 
   def must_login
-    if @current_user.nil?
+    if @current_user.nil? then
       redirect_to login_path, notice: "You must log in to do that."
     end
   end
@@ -160,7 +160,7 @@ class UsersController < ApplicationController
 
   def user_params
     c_id = session[:user_id]
-    if c_id != nil then
+    unless c_id.nil? then
       current_user = User.find_by_id c_id
 
       unless current_user.administrator then
