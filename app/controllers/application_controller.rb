@@ -68,24 +68,6 @@ class ApplicationController < ActionController::Base
     end
 
 
-
-    def account_overview
-
-        if @current_user == nil then
-            redirect_to login_path, notice: "You are not logged in."
-        else
-          @user = @current_user
-          
-          if @user.producer == true then
-            @prod_q = ProducerQuestionaire.where(user: @current_user)
-          end
-          if @user.distributor == true then
-            @dist_q = DistributorQuestionaire.where(user: @current_user)
-          end
-        end
-
-    end
-
     private
     def get_current_user
         @current_user ||= User.find_by_id(session[:user_id]) if !!session[:user_id]

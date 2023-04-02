@@ -14,9 +14,7 @@ Rails.application.routes.draw do
   get 'blog', to: 'blog#lander', as: :blog
   get 'market', to: 'market#lander', as: :market
 
-  get 'privacy_policy', to: 'application#privacy_policy', as: :privacy_policy
-
-
+  get 'privacy', to: 'application#privacy_policy', as: :privacy_policy
   get '/dev', to: 'application#dev'
 
   
@@ -33,8 +31,13 @@ Rails.application.routes.draw do
     patch 'change_phone', to: "users#change_phone", as: :change_phone
   end
 
+  get '/login', to: 'sessions#login'
+  post '/login', to: 'sessions#create'
+  post '/logout', to: 'sessions#destroy'
+  get '/logout', to: 'sessions#destroy'
   get 'welcome', to: 'sessions#first_time_login', as: :first_time_login
-  
+  get 'account', to: 'sessions#account_overview', as: :account_overview
+
   scope 'questionaires' do
     get 'producer', to: 'questionaires#new_producer_questionaire', as: :new_producer_questionaire
     post 'producer', to: 'questionaires#fill_producer_questionaire', as: :fill_producer_questionaire
@@ -42,12 +45,7 @@ Rails.application.routes.draw do
     post 'distributor', to: 'questionaires#fill_distributor_questionaire', as: :fill_distributor_questionaire
   end
 
-  get 'account', to: 'application#account_overview', as: :account_overview
-
-  get '/login', to: 'sessions#login'
-  post '/login', to: 'sessions#create'
-  post '/logout', to: 'sessions#destroy'
-  get '/logout', to: 'sessions#destroy'
+  
 
 
   resources :newsletter do
@@ -59,7 +57,5 @@ Rails.application.routes.draw do
     post 'subscribe', to: 'newsletter_subscriber#create', as: :create_newsletter_subscription
     get 'unsubscribe/:unsubscribe_token', to: 'newsletter_subscriber#destroy', as: :unsubscribe_newsletter
   end
-
-  resources :inquiries, except: [:new]
 
 end
