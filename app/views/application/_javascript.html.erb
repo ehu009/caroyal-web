@@ -177,13 +177,24 @@
     var url = ""
     for (e of elem.childNodes) { 
       e.classList.remove("active")
-      var c = e.firstChild.firstChild
+      var c = e.firstChild.firstChild;
+
       if (c.childNodes[0].textContent == value) {
         url = c.childNodes[1].firstChild.style.backgroundImage.split('"')[1]
         break;
       }
     }
-    var bb = document.getElementById("user_phone_code_dropdown-button").childNodes[1];    
+    var mm = document.getElementById("user_phone_code_dropdown-button").childNodes
+    
+    console.log(mm);
+    mm[1].textContent = value;
+    
+  console.log(mm[0]);
+  console.log(mm[1]);
+console.log(mm[2]);
+
+    var bb = mm[3];
+    console.log(bb)
     bb.src = url;
     
     hiddenField.value = value;
@@ -242,7 +253,7 @@
     document.getElementById(spinner).style.display = "block";
     var phone_code_field = document.getElementById(phoneCodeSelectId);
     var hidden_field = document.getElementById(hiddenField);
-
+    document.getElementById("user_phone_code_dropdown-button").childNodes[1].textContent = "Dial code";
     addEventListener("phone-data-available", () => {
         addEventListener("phone-flags-available", () => {
             populatePhoneSelect(phone_code_field, hidden_field);

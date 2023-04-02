@@ -20,12 +20,12 @@
           <div class="col-sm-5 col-md-4" style="padding:0px;display:flex; justify-content:center;align-items: center;">
             <%= f.hidden_field :phone_code %>
             <div class="dropdown" style="vertical-align:center">
-              <button type="button" id="user_phone_code_dropdown-button" class="dropdown-toggle text-input" data-bs-toggle="dropdown">
-                <img id="user_phone_code_indicator" src="" style="height:35px;">
+              <button type="button" id="user_phone_code_dropdown-button" class="dropdown-toggle text-input" data-bs-toggle="dropdown" style="height:30px">
+                <span></span>&nbsp;
+                <img id="user_phone_code_indicator" src="" style="height:100%;">
               </button>
               <ul class="dropdown-menu" id="user_phone_code_dropdown"></ul>
             </div>
-            <img id="user_phone_code_indicator" src="" style="height:50px;">
           </div>
           <div class="col-sm-7 col-md-8" style="padding:0px;vertical-align:bottom">
             <%= f.number_field :phone_number, style: "width:100%", class: "hidden-arrows", autocomplete: "tel-national" %>
