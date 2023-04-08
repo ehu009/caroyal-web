@@ -1,0 +1,95 @@
+<h3>Producers</h3>
+<div class="row">
+  <div class="col-xs-12 col-md-4">
+  payment methods:<br>
+  <ul>
+    <li>
+      deposit: <%= @prod_depo_bros %>
+    </li>
+    <li>
+      wire: <%= @prod_wire_bros %>
+    </li>
+    <li>
+      card: <%= @prod_card_bros %>
+    </li>
+    <li>
+      crypto: <%= @prod_cryp_bros %>
+    </li>
+  </ul>
+  utilization:<br>
+  <ul>
+  <li>
+    tonnes yearly: <%= @prod_amount_sum %>
+    <br>
+    user average: <%= @prod_amount_avg %>
+  <br>
+    min: <%= @prod_amount_min %>
+    <br>
+    max: <%= @prod_amount_max %>
+    </li>
+  </ul>
+  </div>
+    
+  <div class="col-xs-12 col-md-8">
+    <%= @prod_randomized.each do |p| %>
+    <% unless p.commodities.nil? %>
+    <p>
+    <%= p.commodities %>
+    </p>
+    <% end %>
+    <% end %>
+  </div>
+
+</div>
+<hr>
+<h3>Distributors</h3>
+<div class="row">
+  <div class="col-xs-12 col-md-4">
+  payment methods:<br>
+  <ul>
+    <li>
+      deposit: <%= @dist_depo_bros %>
+    </li>
+    <li>
+      wire: <%= @dist_wire_bros %>
+    </li>
+    <li>
+      card: <%= @dist_card_bros %>
+    </li>
+    <li>
+      crypto: <%= @dist_cryp_bros %>
+    </li>
+  </ul>
+  utilization:<br>
+  <ul>
+  <li>
+    dollars yearly: <%= @dist_amount_sum %>
+    <br>
+    user average: <%= @dist_amount_avg %>
+    <br>
+    min: <%= @dist_amount_min %>
+    <br>
+    max: <%= @dist_amount_max %>
+  </li>
+  <li>
+    years: <%= @dist_age_sum %>
+    <br>
+    user average: <%= @dist_age_avg %>
+    <br>
+    min: <%= @dist_age_min %>
+    <br>
+    max: <%= @dist_age_max %>
+  </li>
+  </ul>
+  </div>
+  
+  <div class="col-xs-12 col-md-8">
+    <%= @dist_randomized.each do |d| %>
+    <% unless d.other_products.nil? then %>
+    <p>
+    <%= d.other_products %>
+    </p>
+    <% end %>
+    <% end %>
+  </div>
+</div>
