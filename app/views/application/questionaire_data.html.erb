@@ -31,7 +31,7 @@
   </div>
     
   <div class="col-xs-12 col-md-8">
-    <%= @prod_randomized.each do |p| %>
+    <% @prod_randomized.each do |p| %>
     <% unless p.commodities.nil? %>
     <p>
     <%= p.commodities %>
@@ -84,7 +84,7 @@
   </div>
   
   <div class="col-xs-12 col-md-8">
-    <%= @dist_randomized.each do |d| %>
+    <% @dist_randomized.each do |d| %>
     <% unless d.other_products.nil? then %>
     <p>
     <%= d.other_products %>
