@@ -26,9 +26,8 @@ class QuestionairesController < ApplicationController
     
     @prod_amount_sum = p.sum(:volume)
     @prod_amount_avg = p.average(:volume)
-    pvol = p.select(:volume)
-    @prod_amount_min = pvol.min
-    @prod_amount_max = pvol.max
+    @prod_amount_min = p.minimum(:volume)
+    @prod_amount_max = p.maximum(:volume)
 
     d = DistributorQuestionaire.all
     @dist_cryp_bros = d.where(:pays_crypto => true).count
@@ -39,15 +38,13 @@ class QuestionairesController < ApplicationController
 
     @dist_amount_sum = d.sum(:yearly_amount)
     @dist_amount_avg = d.average(:yearly_amount)
-    dvol = p.select(:yearly_amount)
-    @dist_amount_min = dvol.min
-    @dist_amount_max = dvol.max
+    @dist_amount_min = d.minimum(:yearly_amount)
+    @dist_amount_max = d.maximum(:yearly_amount)
 
     @dist_age_sum = d.sum(:length)
     @dist_age_avg = d.average(:length)
-    dage = p.select(:length)
-    @dist_age_min = dage.min
-    @dist_age_max = dage.max
+    @dist_age_min = d.minimum(:length)
+    @dist_age_max = d.maximum(:length)
   end
 
   def fill_producer_questionaire        
