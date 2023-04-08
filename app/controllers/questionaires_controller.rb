@@ -8,7 +8,15 @@ class QuestionairesController < ApplicationController
   end
 
   def questionaire_data
-    
+    u = User.find_by_id(session[:user_id])
+    if u.nil?
+      redirect_to :root, notice: "No access."
+      return
+    end
+    unless u.administrator then
+      redirect_to :root, notice: "No access."
+      return
+    end
     p = ProducerQuestionaire.all
     @prod_randomized = p.select(:commodities).shuffle
     @prod_cryp_bros = p.where(:pays_crypto => true).count
@@ -22,14 +30,13 @@ class QuestionairesController < ApplicationController
     @prod_amount_min = pvol.min
     @prod_amount_max = pvol.max
 
-
     d = DistributorQuestionaire.all
     @dist_cryp_bros = d.where(:pays_crypto => true).count
     @dist_card_bros = d.where(:pays_card => true).count
     @dist_wire_bros = d.where(:pays_wire => true).count
     @dist_depo_bros = d.where(:pays_deposit => true).count
     @dist_randomized = d.select(:other_products).shuffle
-    
+
     @dist_amount_sum = d.sum(:yearly_amount)
     @dist_amount_avg = d.average(:yearly_amount)
     dvol = p.select(:yearly_amount)
@@ -41,8 +48,6 @@ class QuestionairesController < ApplicationController
     dage = p.select(:length)
     @dist_age_min = dage.min
     @dist_age_max = dage.max
-
-
   end
 
   def fill_producer_questionaire        
