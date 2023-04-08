@@ -36,6 +36,7 @@ Rails.application.routes.draw do
     patch 'change_password', to: "users#change_pwd", as: :change_password
     patch 'change_phone', to: "users#change_phone", as: :change_phone
   end
+  
 
   get '/login', to: 'sessions#login'
   post '/login', to: 'sessions#create'
@@ -49,6 +50,7 @@ Rails.application.routes.draw do
     post 'producer', to: 'questionaires#fill_producer_questionaire', as: :fill_producer_questionaire
     get 'distributor', to: 'questionaires#new_distributor_questionaire', as: :new_distributor_questionaire
     post 'distributor', to: 'questionaires#fill_distributor_questionaire', as: :fill_distributor_questionaire
+    get 'data', to: 'questionaires#questionaire_data'
   end
 
   
